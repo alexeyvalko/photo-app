@@ -35,6 +35,7 @@ import SearchForm from '@/components/SearchForm.vue';
 }
 
 .navbar__left {
+  gap: var(--navigation-gap);
   flex: 1;
 }
 .navbar-container {
@@ -43,9 +44,9 @@ import SearchForm from '@/components/SearchForm.vue';
   top: 0;
   right: 0;
   left: 0;
-  height: 80px;
-  background: #fff;
-  box-shadow: 0 1px 0 #f7f7f7;
+  height: var(--navbar-height);
+  background: var(---color-background);
+  box-shadow: 0 1px 0 var(--color-background-mute);
   transition: background 0.2s ease, box-shadow 0.2s ease;
 }
 .navbar {
@@ -53,7 +54,7 @@ import SearchForm from '@/components/SearchForm.vue';
   align-items: center;
   justify-content: space-between;
   height: 100%;
-  gap: 50px;
+  gap: var(--navigation-gap);
 }
 
 .navbar .link {
@@ -61,6 +62,6 @@ import SearchForm from '@/components/SearchForm.vue';
 }
 
 .active-link {
-  color: #0070f3;
+  color: var(--primary-color);
 }
 </style>

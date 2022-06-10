@@ -9,6 +9,7 @@ const searchQuery = ref('');
   <form @submit.prevent class="search-form">
     <div class="search-container" :class="{ active: isFocused }">
       <input
+        autocomplete="off"
         class="search-input"
         type="text"
         placeholder="Search"
@@ -39,19 +40,18 @@ const searchQuery = ref('');
 }
 
 .search-container {
-  border: 1px solid #f7f7f7;
-  background: #f7f7f7;
+  border: 1px solid var(--color-background-mute);
+  background: var(--color-background-mute);
   border-radius: 5px;
   display: flex;
   align-items: center;
-  color: #7f7f7f;
   height: 50px;
+  transition: all 0.3s linear;
 }
 
 .active {
-  border: 1px solid #a2a2a2;
-  background: #ffffff;
-  color: #323232;
+  border: 1px solid var(--color-border-hover);
+  background: var(--search-background-active);
 }
 
 .search-input {
@@ -64,6 +64,7 @@ const searchQuery = ref('');
   background: transparent;
   outline: none;
   height: 100%;
+  color: var(--color-text);
 }
 
 .search-input::placeholder {
