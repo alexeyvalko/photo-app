@@ -1,4 +1,4 @@
 import IconSearch from '@/components/icons/IconSearch.vue';
-import IconSupport from '@/components/icons/IconSupport.vue';
+import IconHeart from '@/components/icons/IconHeart.vue';
 
-export default [IconSearch, IconSupport];
+export default [IconSearch, IconHeart];

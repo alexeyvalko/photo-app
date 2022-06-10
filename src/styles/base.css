@@ -86,3 +86,16 @@ body {
   width: 100%;
   max-width: 1400px;
 }
+
+.button {
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+.link {
+  color: var(--color-text);
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.3s;
+}
