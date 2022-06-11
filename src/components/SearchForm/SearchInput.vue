@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { ref } from 'vue';
-const searchQuery = ref('');
+import { useImagesStore } from '@/stores/images';
+const imagesStore = useImagesStore();
 </script>
 
 <template>
@@ -8,8 +8,8 @@ const searchQuery = ref('');
     autocomplete="off"
     class="search-input"
     type="text"
-    placeholder="Search"
-    v-model="searchQuery"
+    placeholder="Search free photos"
+    v-model="imagesStore.searchQuery"
     @focus="$emit('focused', true)"
     @blur="$emit('focused', false)"
   />
