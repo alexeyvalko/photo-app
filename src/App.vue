@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { RouterView } from 'vue-router';
-import HeaderItem from './components/HeaderItem.vue';
+import NavbarItem from '@/components/NavbarItem/NavbarItem.vue';
 </script>
 
 <template>
-  <HeaderItem />
+  <NavbarItem />
   <main class="main">
     <div class="wrapper">
       <RouterView />
