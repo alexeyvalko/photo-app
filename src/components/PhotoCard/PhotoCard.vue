@@ -21,7 +21,11 @@
 </template>
 
 <script setup lang="ts">
-const props = defineProps(['photo']);
+import type { PhotoBasic } from '@/types/photos';
+
+const props = defineProps<{
+  photo: PhotoBasic;
+}>();
 </script>
 
 <style scoped>

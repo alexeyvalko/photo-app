@@ -1,14 +1,19 @@
 <script setup lang="ts">
-import { data } from '@/components/data';
+import { onMounted } from 'vue';
 import ThreeColumns from '@/components/Columns/ThreeColumns.vue';
 import TwoColumns from '@/components/Columns/TwoColumns.vue';
-const photos = data.results;
+import { usePhotosStore } from '@/stores/photos';
+
+const photosStore = usePhotosStore();
+onMounted(() => {
+  if (photosStore.photos.length === 0) photosStore.fetchLatestPhotos();
+});
 </script>
 
 <template>
   <div class="photos-wrapper">
-    <ThreeColumns :photos="photos" />
-    <TwoColumns :photos="photos" />
+    <ThreeColumns :photos="photosStore.photos" />
+    <TwoColumns :photos="photosStore.photos" />
   </div>
 </template>
 

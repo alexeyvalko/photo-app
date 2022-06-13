@@ -16,7 +16,10 @@
 <script setup lang="ts">
 import PhotoCard from '@/components/PhotoCard/PhotoCard.vue';
 import TwoColumnsLayout from '@/components/Columns/TwoColumnsLayout.vue';
-import { columnsCounter } from '@/Utils/columnsCounter';
-const props = defineProps(['photos']);
+import { columnsCounter } from '@/utils/columnsCounter';
+import type { PhotoBasic } from '@/types/photos';
+const props = defineProps<{
+  photos: PhotoBasic[];
+}>();
 const count = columnsCounter(2);
 </script>

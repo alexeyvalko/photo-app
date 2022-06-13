@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { useImagesStore } from '@/stores/images';
+import { usePhotosStore } from '@/stores/photos';
 import PhotoList from '@/components/PhotoList/PhotoList.vue';
-const imagesStore = useImagesStore();
+const imagesStore = usePhotosStore();
 </script>
 
 <template>

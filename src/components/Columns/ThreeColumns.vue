@@ -21,8 +21,10 @@
 <script setup lang="ts">
 import PhotoCard from '@/components/PhotoCard/PhotoCard.vue';
 import ThreeColumnsLayout from '@/components/Columns/ThreeColumnsLayout.vue';
-import { columnsCounter } from '@/Utils/columnsCounter';
-const props = defineProps(['photos']);
-
+import { columnsCounter } from '@/utils/columnsCounter';
+import type { PhotoBasic } from '@/types/photos';
+const props = defineProps<{
+  photos: PhotoBasic[];
+}>();
 const count = columnsCounter(3);
 </script>
