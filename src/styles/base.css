@@ -36,8 +36,18 @@
   --search-background-active: var(--white);
 
   --primary-transition: all 0.3s linear;
+
   --navigation-gap: 50px;
   --navbar-height: 80px;
+
+  --column-gutter: 30px;
+  --column-gutter-tablet: 15px;
+  --columns: 3;
+  --columns-tablet: 2;
+  --columns-mobile: 2;
+
+  --tablet-size: 768px;
+  --mobile-size: 480px;
 }
 
 /* @media (prefers-color-scheme: dark) {
@@ -90,7 +100,8 @@ body {
 .wrapper {
   margin: 0 auto;
   width: 100%;
-  max-width: 1400px;
+  max-width: 1440px;
+  padding: 0 30px;
 }
 
 .button {
@@ -108,4 +119,10 @@ body {
 
 .logo-fill {
   fill: var(--primary-color);
+}
+
+@media (max-width: 768px) {
+  .wrapper {
+    padding: 0 15px;
+  }
 }
