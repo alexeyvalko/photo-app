@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { useSearchStore } from '@/stores/search';
-const searchStore = useSearchStore();
+import { usePhotoStore } from '@/stores/photo';
+const photoStore = usePhotoStore();
 </script>
 
 <template>
@@ -9,7 +9,7 @@ const searchStore = useSearchStore();
     class="search-input"
     type="search"
     placeholder="Search free photos"
-    v-model="searchStore.searchQuery"
+    v-model="photoStore.searchQuery"
     @focus="$emit('focused', true)"
     @blur="$emit('focused', false)"
   />

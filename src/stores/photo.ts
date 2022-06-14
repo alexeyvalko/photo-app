@@ -4,10 +4,15 @@ import { filterPhotosByColumn } from '@/utils';
 import type { IResponsePhotos } from '@/types/types';
 import axios from 'axios';
 import { defineStore } from 'pinia';
+import type { OrderByListType } from '@/types/helpers';
 
-export const usePhotoListStore = defineStore({
+export const usePhotoStore = defineStore({
   id: 'photos',
   state: () => ({
+    searchQuery: '',
+    page: 1,
+    perPage: 30,
+    orderBy: 'latest' as OrderByListType,
     photos: [] as PhotoBasic[],
     isPhotoLIstLoading: false,
   }),
@@ -29,17 +34,31 @@ export const usePhotoListStore = defineStore({
   },
 
   actions: {
-    async fetchLatestPhotos() {
+    async fetchPhotos() {
       try {
         this.isPhotoLIstLoading = true;
         const response = await axios.get<IResponsePhotos<PhotoBasic>>(
           `${SERVER_URL}/latest`,
+          {
+            params: {
+              page: this.page,
+              per_page: this.perPage,
+              order_by: this.orderBy,
+            },
+          },
         );
-        this.photos = response.data.results;
+        this.photos = [...this.photos, ...response.data.results];
       } catch {
         console.error('Failed to fetch latest photos');
       } finally {
         this.isPhotoLIstLoading = false;
+      }
+    },
+
+    async loadPosts() {
+      if (this.photos.length > 0) {
+        this.page += 1;
+        await this.fetchPhotos();
       }
     },
   },
