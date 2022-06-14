@@ -1,27 +1,27 @@
+import { SERVER_URL } from '@/common/config';
 import type { PhotoBasic } from '@/types/photos';
 import type { IResponsePhotos } from '@/types/types';
 import axios from 'axios';
 import { defineStore } from 'pinia';
 
-export const usePhotosStore = defineStore({
+export const usePhotoListStore = defineStore({
   id: 'photos',
   state: () => ({
-    searchQuery: '',
     photos: [] as PhotoBasic[],
-    isPhotosLoading: false,
+    isPhotoLIstLoading: false,
   }),
   actions: {
     async fetchLatestPhotos() {
       try {
-        this.isPhotosLoading = true;
+        this.isPhotoLIstLoading = true;
         const response = await axios.get<IResponsePhotos<PhotoBasic>>(
-          'http://localhost:5000/latest',
+          `${SERVER_URL}/latest`,
         );
         this.photos = response.data.results;
       } catch {
         console.error('Failed to fetch latest photos');
       } finally {
-        this.isPhotosLoading = false;
+        this.isPhotoLIstLoading = false;
       }
     },
   },

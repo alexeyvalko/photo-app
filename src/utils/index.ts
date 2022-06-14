@@ -1,3 +1,5 @@
+import type { PhotoBasic } from '@/types/photos';
+
 export const columnsCounter = (columns: number) => {
   let counter = 0;
   return () => {
@@ -9,4 +11,9 @@ export const columnsCounter = (columns: number) => {
       return counter;
     }
   };
+};
+
+export const filterPhotosByColumn = (photos: PhotoBasic[], column: number) => {
+  const count = columnsCounter(3);
+  return photos.filter(() => count() === column);
 };

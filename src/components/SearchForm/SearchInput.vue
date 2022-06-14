@@ -1,15 +1,15 @@
 <script setup lang="ts">
-import { usePhotosStore } from '@/stores/photos';
-const photosStore = usePhotosStore();
+import { useSearchStore } from '@/stores/search';
+const searchStore = useSearchStore();
 </script>
 
 <template>
   <input
     autocomplete="off"
     class="search-input"
-    type="text"
+    type="search"
     placeholder="Search free photos"
-    v-model="photosStore.searchQuery"
+    v-model="searchStore.searchQuery"
     @focus="$emit('focused', true)"
     @blur="$emit('focused', false)"
   />

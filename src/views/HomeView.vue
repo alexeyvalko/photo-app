@@ -1,13 +1,13 @@
 <script setup lang="ts">
-import { usePhotosStore } from '@/stores/photos';
+import { useSearchStore } from '@/stores/search';
 import PhotoList from '@/components/PhotoList/PhotoList.vue';
-const imagesStore = usePhotosStore();
+const searchStore = useSearchStore();
 </script>
 
 <template>
   <h1>Free stock photos</h1>
   <p>
-    {{ imagesStore.searchQuery }}
+    {{ searchStore.searchQuery }}
   </p>
   <PhotoList />
 </template>

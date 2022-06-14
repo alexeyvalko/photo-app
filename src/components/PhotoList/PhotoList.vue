@@ -2,16 +2,16 @@
 import { onMounted } from 'vue';
 import ThreeColumns from '@/components/Columns/ThreeColumns.vue';
 import TwoColumns from '@/components/Columns/TwoColumns.vue';
-import { usePhotosStore } from '@/stores/photos';
+import { usePhotoListStore } from '@/stores//photoList';
 
-const photosStore = usePhotosStore();
-onMounted(() => {
-  if (photosStore.photos.length === 0) photosStore.fetchLatestPhotos();
+const photosStore = usePhotoListStore();
+onMounted(async () => {
+  if (photosStore.photos.length === 0) await photosStore.fetchLatestPhotos();
 });
 </script>
 
 <template>
-  <div class="photos-wrapper">
+  <div class="photos-wrapper" v-if="!photosStore.isPhotoLIstLoading">
     <ThreeColumns :photos="photosStore.photos" />
     <TwoColumns :photos="photosStore.photos" />
   </div>
