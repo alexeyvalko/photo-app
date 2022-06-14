@@ -13,7 +13,11 @@ export const columnsCounter = (columns: number) => {
   };
 };
 
-export const filterPhotosByColumn = (photos: PhotoBasic[], column: number) => {
-  const count = columnsCounter(3);
+export const filterPhotosByColumn = (
+  photos: PhotoBasic[],
+  totalColumns: number,
+  column: number,
+) => {
+  const count = columnsCounter(totalColumns);
   return photos.filter(() => count() === column);
 };

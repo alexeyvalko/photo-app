@@ -1,19 +1,27 @@
 <script setup lang="ts">
-import { onMounted } from 'vue';
+import { onMounted, computed } from 'vue';
 import ThreeColumns from '@/components/Columns/ThreeColumns.vue';
 import TwoColumns from '@/components/Columns/TwoColumns.vue';
 import { usePhotoListStore } from '@/stores//photoList';
 
-const photosStore = usePhotoListStore();
+const photoListStore = usePhotoListStore();
 onMounted(async () => {
-  if (photosStore.photos.length === 0) await photosStore.fetchLatestPhotos();
+  if (photoListStore.photos.length === 0)
+    await photoListStore.fetchLatestPhotos();
+});
+
+const threeColumns = computed(() => {
+  return photoListStore.filteredByThreeColumn;
+});
+const twoColumns = computed(() => {
+  return photoListStore.filteredByTwoColumn;
 });
 </script>
 
 <template>
-  <div class="photos-wrapper" v-if="!photosStore.isPhotoLIstLoading">
-    <ThreeColumns :photos="photosStore.photos" />
-    <TwoColumns :photos="photosStore.photos" />
+  <div class="photos-wrapper" v-if="!photoListStore.isPhotoLIstLoading">
+    <ThreeColumns :columns="threeColumns" />
+    <TwoColumns :columns="twoColumns" />
   </div>
 </template>
 
