@@ -16,6 +16,7 @@ const searchStore = useSearchStore();
 const updateQuery = async () => {
   searchStore.$patch({
     query: route.params.query as string,
+    pageQuery: route.params.query as string,
   });
   await searchStore.searchPhotos();
 };
