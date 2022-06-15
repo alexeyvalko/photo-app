@@ -13,7 +13,7 @@ const observed = ref(null) as Ref<Element | null>;
 const observerBottom = ref(null) as Ref<Element | null>;
 const searchStore = useSearchStore();
 
-const updateQuery = async () => {
+const updateQueryAndSearch = async () => {
   searchStore.$patch({
     query: route.params.query as string,
     pageQuery: route.params.query as string,
@@ -21,11 +21,11 @@ const updateQuery = async () => {
   await searchStore.searchPhotos();
 };
 onMounted(async () => {
-  updateQuery();
+  updateQueryAndSearch();
   createObserver([observed.value, observerBottom.value], searchStore.loadPosts);
 });
 
-watch(() => route.params.query, updateQuery);
+watch(() => route.params.query, updateQueryAndSearch);
 
 const threeColumns = computed(() => {
   return searchStore.filteredByThreeColumn;
@@ -44,34 +44,6 @@ const twoColumns = computed(() => {
   </div>
 </template>
 
-<style scoped>
-.photos-wrapper {
-  position: relative;
-  padding: 0 var(--column-gutter);
-  width: 100%;
-}
-
-.observer {
-  position: absolute;
-  width: 0;
-  bottom: 35%;
-  left: 0;
-  height: 10px;
-  opacity: 0;
-}
-
-.observer-bottom {
-  position: absolute;
-  width: 0;
-  bottom: 10px;
-  left: 0;
-  height: 10px;
-  opacity: 0;
-}
-
-@media (max-width: 768px) {
-  .photos-wrapper {
-    padding: 0;
-  }
-}
+<style>
+@import '@/styles/list.css';
 </style>

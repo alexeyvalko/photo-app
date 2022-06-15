@@ -5,6 +5,6 @@ const searchStore = useSearchStore();
 </script>
 
 <template>
-  <h1>Free {{ searchStore.query }} photos</h1>
+  <h1>Free {{ searchStore.pageQuery }} photos</h1>
   <SearchList />
 </template>

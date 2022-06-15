@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onMounted, computed, ref, watch } from 'vue';
+import { onMounted, computed, ref } from 'vue';
 import ThreeColumns from '@/components/Columns/ThreeColumns.vue';
 import TwoColumns from '@/components/Columns/TwoColumns.vue';
 import { usePhotoStore } from '@/stores/photo';
@@ -33,34 +33,6 @@ const twoColumns = computed(() => {
   </div>
 </template>
 
-<style scoped>
-.photos-wrapper {
-  position: relative;
-  padding: 0 var(--column-gutter);
-  width: 100%;
-}
-
-.observer {
-  position: absolute;
-  width: 0;
-  bottom: 35%;
-  left: 0;
-  height: 10px;
-  opacity: 0;
-}
-
-.observer-bottom {
-  position: absolute;
-  width: 0;
-  bottom: 10px;
-  left: 0;
-  height: 10px;
-  opacity: 0;
-}
-
-@media (max-width: 768px) {
-  .photos-wrapper {
-    padding: 0;
-  }
-}
+<style>
+@import '@/styles/list.css';
 </style>

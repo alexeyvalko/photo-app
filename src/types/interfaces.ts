@@ -7,12 +7,6 @@ import type {
   SearchOrientationType,
 } from '@/types/helpers';
 
-// export interface IPhotoListOptions {
-//   page: number;
-//   perPage: number;
-//   orderBy: OrderByListType;
-// }
-
 export interface IResponsePhotos<T> {
   type: ResponseTypeUnsplash;
   statusCode: number;

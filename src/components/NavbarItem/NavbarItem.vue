@@ -7,13 +7,9 @@ import SearchForm from '@/components/SearchForm/SearchForm.vue';
   <div class="navbar-container">
     <nav class="wrapper navbar">
       <div class="navbar__left">
-        <img
-          alt="logo"
-          class="logo"
-          src="@/assets/logo.svg"
-          width="40"
-          height="40"
-        />
+        <RouterLink to="/" class="logo">
+          <img alt="logo" src="@/assets/logo.svg" width="40" height="40" />
+        </RouterLink>
         <SearchForm />
       </div>
       <div class="navbar__right">
@@ -25,6 +21,9 @@ import SearchForm from '@/components/SearchForm/SearchForm.vue';
 </template>
 
 <style scoped>
+.logo {
+  line-height: 0;
+}
 .navbar__right,
 .navbar__left {
   display: flex;
