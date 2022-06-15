@@ -1,18 +1,29 @@
 import { SERVER_ENDPOINTS, SERVER_URL } from '@/common/config';
 import type { PhotoBasic } from '@/types/photos';
 import { filterPhotosByColumn } from '@/utils';
-import type { IPhotoListParams, IResponsePhotos } from '@/types/interfaces';
+import type { IResponsePhotos, ISearchOptions } from '@/types/interfaces';
 import axios from 'axios';
 import { defineStore } from 'pinia';
-import type { OrderByListType } from '@/types/helpers';
+import type {
+  SearchColorsType,
+  SearchContentFilterType,
+  SearchOrderType,
+  SearchOrientationType,
+} from '@/types/helpers';
 
-export const usePhotoStore = defineStore({
-  id: 'photos',
+export const useSearchStore = defineStore({
+  id: 'search',
   state: () => ({
+    query: '',
     page: 1,
     perPage: 30,
+    orientation: null as SearchOrientationType | null,
+    contentFilter: 'low' as SearchContentFilterType,
+    color: null as SearchColorsType | null,
+    orderBy: 'relevant' as SearchOrderType,
+    collectionIds: [],
+    lang: 'en',
     totalPages: 1,
-    orderBy: 'latest' as OrderByListType,
     photos: [] as PhotoBasic[],
     isPhotoLIstLoading: false,
   }),
@@ -51,27 +62,28 @@ export const usePhotoStore = defineStore({
         this.isPhotoLIstLoading = false;
       }
     },
-
-    async getPhotoList() {
-      this.photos = [];
-      this.page = 1;
-      this.fetchPhotos<IPhotoListParams>(SERVER_ENDPOINTS.PHOTOS, {
-        page: this.page,
-        per_page: this.perPage,
-        order_by: this.orderBy,
-      });
-    },
-
     async loadPosts() {
       if (this.photos.length > 0 && this.page < this.totalPages) {
         this.page += 1;
-        const params = {
+        const params: ISearchOptions = {
+          query: this.query,
           page: this.page,
           per_page: this.perPage,
           order_by: this.orderBy,
         };
-        await this.fetchPhotos(SERVER_ENDPOINTS.PHOTOS, params);
+        await this.fetchPhotos(SERVER_ENDPOINTS.SEARCH_PHOTOS, params);
       }
+    },
+
+    async searchPhotos() {
+      this.photos = [];
+      this.page = 1;
+      await this.fetchPhotos(SERVER_ENDPOINTS.SEARCH_PHOTOS, {
+        query: this.query,
+        page: this.page,
+        per_page: this.perPage,
+        order_by: this.orderBy,
+      });
     },
   },
 });

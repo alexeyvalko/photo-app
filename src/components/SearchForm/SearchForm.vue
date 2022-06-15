@@ -2,15 +2,25 @@
 import { ref } from 'vue';
 import SearchButton from '@/components/SearchForm/SearchButton.vue';
 import SearchInput from '@/components/SearchForm/SearchInput.vue';
+import { useSearchStore } from '@/stores/search';
+import { useRouter } from 'vue-router';
 
+const searchStore = useSearchStore();
+const router = useRouter();
 const isFocused = ref(false);
 const handleFocus = (newValue: boolean): void => {
   isFocused.value = newValue;
 };
+
+const handleSubmit = (): void => {
+  if (searchStore.query) {
+    router.push(`/search/photos/${encodeURIComponent(searchStore.query)}`);
+  }
+};
 </script>
 
 <template>
-  <form @submit.prevent class="search-form">
+  <form @submit.prevent="handleSubmit" class="search-form">
     <div class="search-container" :class="{ 'active-search': isFocused }">
       <SearchInput @focused="handleFocus" />
       <SearchButton />

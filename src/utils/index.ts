@@ -23,25 +23,27 @@ export const filterPhotosByColumn = (
 };
 
 export const createObserver = (
-  observedElement: Element | null,
+  elementsArray: [Element | null, Element | null],
   callback: () => void,
 ) => {
   const options = {
     root: null,
     rootMargin: '0px',
-    threshold: 0.2,
+    threshold: 0.1,
   };
   const observerCallback = function (entries: IntersectionObserverEntry[]) {
-    console.log(entries[0].intersectionRatio);
-    if (entries[0].isIntersecting) {
-      callback();
-    }
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        callback();
+      }
+    });
   };
 
   const observer = new IntersectionObserver(observerCallback, options);
-  const element = observedElement;
 
-  if (element) {
-    observer.observe(element);
-  }
+  elementsArray.forEach((element) => {
+    if (element) {
+      observer.observe(element);
+    }
+  });
 };

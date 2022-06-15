@@ -2,25 +2,35 @@
 import { onMounted, computed, ref, watch } from 'vue';
 import ThreeColumns from '@/components/Columns/ThreeColumns.vue';
 import TwoColumns from '@/components/Columns/TwoColumns.vue';
-import { usePhotoStore } from '@/stores/photo';
+import { useSearchStore } from '@/stores/search';
 import type { Ref } from 'vue';
 import { createObserver } from '@/utils';
+import { useRoute } from 'vue-router';
+
+const route = useRoute();
 
 const observed = ref(null) as Ref<Element | null>;
 const observerBottom = ref(null) as Ref<Element | null>;
-const photoStore = usePhotoStore();
+const searchStore = useSearchStore();
+
+const updateQuery = async () => {
+  searchStore.$patch({
+    query: route.params.query as string,
+  });
+  await searchStore.searchPhotos();
+};
 onMounted(async () => {
-  if (photoStore.photos.length === 0) {
-    await photoStore.getPhotoList();
-  }
-  createObserver([observed.value, observerBottom.value], photoStore.loadPosts);
+  updateQuery();
+  createObserver([observed.value, observerBottom.value], searchStore.loadPosts);
 });
 
+watch(() => route.params.query, updateQuery);
+
 const threeColumns = computed(() => {
-  return photoStore.filteredByThreeColumn;
+  return searchStore.filteredByThreeColumn;
 });
 const twoColumns = computed(() => {
-  return photoStore.filteredByTwoColumn;
+  return searchStore.filteredByTwoColumn;
 });
 </script>
 
