@@ -24,12 +24,14 @@ const updateHeaderAndTitle = (decodedQuery: string) => {
 const getComponentData = async () => {
   const query = route.params.query as string;
   const decodedQuery = decodeURIComponent(query);
+  if (query) {
+    updateHeaderAndTitle(decodedQuery);
+  }
   if (query && decodedQuery !== searchStore.pageQuery) {
     searchStore.$patch({
       query: decodedQuery,
       pageQuery: decodedQuery,
     });
-    updateHeaderAndTitle(decodedQuery);
     await searchStore.searchPhotos();
   }
 };
