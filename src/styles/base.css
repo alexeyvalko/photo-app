@@ -139,8 +139,18 @@ input[type='search']::-webkit-search-results-decoration {
   fill: var(--primary-color);
 }
 
+.container {
+  position: relative;
+  padding: 0 var(--column-gutter);
+  width: 100%;
+}
+
 @media (max-width: 768px) {
   .wrapper {
     padding: 0 15px;
+  }
+
+  .container {
+    padding: 0;
   }
 }
