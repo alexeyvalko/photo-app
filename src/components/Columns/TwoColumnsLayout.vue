@@ -19,7 +19,7 @@
   flex-direction: column;
   gap: var(--column-gutter-tablet);
 }
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
   .two-columns {
     display: grid;
     grid-template-columns: repeat(2, 1fr);

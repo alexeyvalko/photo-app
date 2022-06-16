@@ -24,7 +24,7 @@
   flex-direction: column;
   gap: var(--column-gutter);
 }
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
   .three-columns {
     display: none;
   }

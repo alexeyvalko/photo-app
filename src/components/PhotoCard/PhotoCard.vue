@@ -17,12 +17,36 @@
         loading="lazy"
       />
     </a>
-    <div class="overlay"></div>
+    <div class="overlay">
+      <div class="info-container">
+        <div class="author-info">
+          <div class="author-avatar">
+            <img
+              width="42"
+              height="42"
+              :src="props.photo.user.profile_image.medium"
+              :alt="`${props.photo.user.name} avatar.`"
+            />
+          </div>
+          <div class="author-name">{{ props.photo.user.name }}</div>
+        </div>
+        <button class="download-button">
+          <a
+            :href="props.photo.urls.raw"
+            :download="`${props.photo.id}.jpg`"
+            target="_blank"
+          >
+            <IconDownload class="info-icon" />
+          </a>
+        </button>
+      </div>
+    </div>
   </div>
 </template>
 
 <script setup lang="ts">
 import type { PhotoBasic } from '@/types/photos';
+undefined;
 
 const props = defineProps<{
   photo: PhotoBasic;
@@ -30,6 +54,64 @@ const props = defineProps<{
 </script>
 
 <style scoped>
+.info-icon {
+  width: 20px;
+  height: 20px;
+}
+.author-info {
+  display: flex;
+  align-items: center;
+}
+
+.author-name {
+  opacity: 0.8;
+  max-width: 150px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  font-size: 1.6rem;
+  color: var(--white-mute);
+}
+
+.download-button {
+  background-color: var(--white-mute);
+  border: none;
+  padding: 0;
+  margin: 0;
+  font-size: 1.6rem;
+  padding: 10px;
+  border-radius: 10px;
+  color: var(--black-mute);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.info-container {
+  pointer-events: all;
+  padding: 0 20px 20px 20px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 60px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 4px;
+}
+
+.author-avatar {
+  overflow: hidden;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #fff;
+  margin-right: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 .photo-card {
   overflow: hidden;
   width: 100%;
