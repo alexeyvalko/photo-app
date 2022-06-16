@@ -12,7 +12,6 @@ const route = useRoute();
 const observed = ref(null) as Ref<Element | null>;
 const observerBottom = ref(null) as Ref<Element | null>;
 const searchStore = useSearchStore();
-
 const header = ref('');
 
 const updateHeaderAndTitle = (decodedQuery: string) => {
@@ -22,7 +21,7 @@ const updateHeaderAndTitle = (decodedQuery: string) => {
   document.title = `Free ${upperCasedWord} Photos`;
 };
 
-const updateQueryAndSearch = async () => {
+const getComponentData = async () => {
   const query = route.params.query as string;
   const decodedQuery = decodeURIComponent(query);
   if (query && decodedQuery !== searchStore.pageQuery) {
@@ -43,11 +42,11 @@ const twoColumns = computed(() => {
 });
 
 onMounted(async () => {
-  updateQueryAndSearch();
+  await getComponentData();
   createObserver([observed.value, observerBottom.value], searchStore.loadPosts);
 });
 
-watch(() => route.params.query, updateQueryAndSearch);
+watch(() => route.params.query, getComponentData);
 </script>
 
 <template>
