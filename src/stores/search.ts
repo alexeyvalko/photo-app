@@ -26,7 +26,7 @@ export const useSearchStore = defineStore({
     lang: 'en',
     totalPages: 1,
     photos: [] as PhotoBasic[],
-    isPhotoLIstLoading: false,
+    isPhotoLoading: false,
   }),
 
   getters: {
@@ -48,7 +48,7 @@ export const useSearchStore = defineStore({
   actions: {
     async fetchPhotos<T>(endpoint: string, params: T) {
       try {
-        this.isPhotoLIstLoading = true;
+        this.isPhotoLoading = true;
         const response = await axios.get<IResponsePhotos<PhotoBasic>>(
           `${SERVER_URL}/${endpoint}`,
           {
@@ -60,7 +60,7 @@ export const useSearchStore = defineStore({
       } catch {
         console.error(`Failed to fetch ${this.orderBy} photos`);
       } finally {
-        this.isPhotoLIstLoading = false;
+        this.isPhotoLoading = false;
       }
     },
     async loadPosts() {

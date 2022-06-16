@@ -1,10 +1,7 @@
 <script setup lang="ts">
-import { useSearchStore } from '@/stores/search';
-import SearchList from '../components/SearchList/SearchList.vue';
-const searchStore = useSearchStore();
+import SearchList from '@/components/SearchList/SearchList.vue';
 </script>
 
 <template>
-  <h1>Free {{ searchStore.pageQuery }} photos</h1>
   <SearchList />
 </template>

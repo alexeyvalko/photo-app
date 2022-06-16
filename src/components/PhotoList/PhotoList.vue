@@ -2,6 +2,7 @@
 import { onMounted, computed, ref } from 'vue';
 import ThreeColumns from '@/components/Columns/ThreeColumns.vue';
 import TwoColumns from '@/components/Columns/TwoColumns.vue';
+import HeaderItem from '@/components/HeaderItem.vue';
 import { usePhotoStore } from '@/stores/photo';
 import type { Ref } from 'vue';
 import { createObserver } from '@/utils';
@@ -26,6 +27,7 @@ const twoColumns = computed(() => {
 
 <template>
   <div class="photos-wrapper">
+    <HeaderItem> Free Stock Photos</HeaderItem>
     <ThreeColumns :columns="threeColumns" />
     <TwoColumns :columns="twoColumns" />
     <div ref="observed" class="observer"></div>

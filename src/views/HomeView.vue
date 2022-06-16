@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import PhotoList from '@/components/PhotoList/PhotoList.vue';
+document.title = `Free Stock Photos`;
 </script>
 
 <template>
-  <h1>Free stock photos</h1>
   <PhotoList />
 </template>
