@@ -13,20 +13,24 @@ const observed = ref(null) as Ref<Element | null>;
 const observerBottom = ref(null) as Ref<Element | null>;
 const searchStore = useSearchStore();
 
-const header = ref('Free');
+const header = ref('');
+
+const updateHeaderAndTitle = (decodedQuery: string) => {
+  const firstLetter = decodedQuery[0]?.toUpperCase();
+  const upperCasedWord = firstLetter + decodedQuery.slice(1);
+  header.value = upperCasedWord;
+  document.title = `Free ${upperCasedWord} Photos`;
+};
 
 const updateQueryAndSearch = async () => {
   const query = route.params.query as string;
-  if (query && query !== searchStore.pageQuery) {
+  const decodedQuery = decodeURIComponent(query);
+  if (query && decodedQuery !== searchStore.pageQuery) {
     searchStore.$patch({
-      query: decodeURIComponent(query),
-      pageQuery: decodeURIComponent(query),
+      query: decodedQuery,
+      pageQuery: decodedQuery,
     });
-
-    const firstLetter = query[0]?.toUpperCase();
-    const upperCasedWord = firstLetter + searchStore.pageQuery.slice(1);
-    header.value = upperCasedWord;
-    document.title = `Free ${upperCasedWord} Photos`;
+    updateHeaderAndTitle(decodedQuery);
     await searchStore.searchPhotos();
   }
 };
