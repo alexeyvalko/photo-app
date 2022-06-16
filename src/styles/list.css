@@ -4,24 +4,6 @@
   width: 100%;
 }
 
-.observer {
-  position: absolute;
-  width: 0;
-  bottom: 30%;
-  left: 0;
-  height: 10px;
-  opacity: 0;
-}
-
-.observer-bottom {
-  position: absolute;
-  width: 0;
-  bottom: 10px;
-  left: 0;
-  height: 10px;
-  opacity: 0;
-}
-
 @media (max-width: 768px) {
   .photos-wrapper {
     padding: 0;

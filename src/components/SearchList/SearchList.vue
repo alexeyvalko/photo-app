@@ -5,12 +5,9 @@ import ThreeColumns from '@/components/Columns/ThreeColumns.vue';
 import TwoColumns from '@/components/Columns/TwoColumns.vue';
 import HeaderItem from '@/components/UI/HeaderItem.vue';
 import { useSearchStore } from '@/stores/search';
-import { createObserver } from '@/utils';
-import type { Ref } from 'vue';
+import ObserverItem from '../ObserverItem.vue';
 
 const route = useRoute();
-const observed = ref(null) as Ref<Element | null>;
-const observerBottom = ref(null) as Ref<Element | null>;
 const searchStore = useSearchStore();
 const header = ref('');
 
@@ -45,7 +42,6 @@ const twoColumns = computed(() => {
 
 onMounted(async () => {
   await getComponentData();
-  createObserver([observed.value, observerBottom.value], searchStore.loadPosts);
 });
 
 watch(() => route.params.query, getComponentData);
@@ -56,8 +52,7 @@ watch(() => route.params.query, getComponentData);
     <HeaderItem> {{ header }} Photos</HeaderItem>
     <ThreeColumns :columns="threeColumns" />
     <TwoColumns :columns="twoColumns" />
-    <div ref="observed" class="observer"></div>
-    <div ref="observerBottom" class="observer-bottom"></div>
+    <ObserverItem :callback="searchStore.loadPosts" />
   </div>
 </template>
 
