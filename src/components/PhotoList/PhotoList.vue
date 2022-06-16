@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import { computed, onBeforeMount } from 'vue';
+import { computed, onMounted } from 'vue';
 import ThreeColumns from '@/components/Columns/ThreeColumns.vue';
 import TwoColumns from '@/components/Columns/TwoColumns.vue';
 import { usePhotoStore } from '@/stores/photo';
 import ObserverItem from '../ObserverItem.vue';
 
 const photoStore = usePhotoStore();
-onBeforeMount(async () => {
+onMounted(async () => {
   if (photoStore.photos.length === 0) {
     await photoStore.getPhotoList();
   }
