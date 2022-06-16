@@ -4,17 +4,17 @@
   </h1>
 </template>
 
-<style scoped>
+<style>
 .title {
   color: var(--color-heading);
   font-size: 4.5rem;
   font-weight: 600;
-  padding: 20px 0;
+  padding: 0;
+  line-height: 4.5rem;
 }
 @media (max-width: 768px) {
   .title {
     font-size: 3rem;
-    padding: 10px 0;
   }
 }
 </style>

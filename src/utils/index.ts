@@ -47,3 +47,11 @@ export const createObserver = (
     }
   });
 };
+
+export const downloadPhoto = (url: string, filename: string) => {
+  const link = document.createElement('a');
+  link.download = `${filename}.jpg`;
+  link.href = url;
+  link.click();
+  link.remove();
+};

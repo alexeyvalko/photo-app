@@ -23,8 +23,15 @@ watch(() => route.params.query, updateHeaderAndTitle);
 </script>
 
 <template>
-  <div class="container">
+  <div class="container list-container">
     <HeaderItem> {{ header }} Photos</HeaderItem>
   </div>
   <SearchList :query="decodedQuery" />
 </template>
+
+<style scoped>
+.list-container {
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+</style>
