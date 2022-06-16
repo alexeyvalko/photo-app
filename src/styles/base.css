@@ -50,7 +50,7 @@
   --mobile-size: 480px;
 }
 
-/* @media (prefers-color-scheme: dark) {
+@media (prefers-color-scheme: dark) {
   :root {
     --color-background: var(--black);
     --color-background-soft: var(--black-soft);
@@ -64,7 +64,7 @@
 
     --search-background-active: var(--black-soft);
   }
-} */
+}
 
 *,
 *::before,

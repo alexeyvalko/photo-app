@@ -3,7 +3,7 @@ import { onMounted, computed, ref, watch } from 'vue';
 import { useRoute } from 'vue-router';
 import ThreeColumns from '@/components/Columns/ThreeColumns.vue';
 import TwoColumns from '@/components/Columns/TwoColumns.vue';
-import HeaderItem from '@/components/HeaderItem.vue';
+import HeaderItem from '@/components/UI/HeaderItem.vue';
 import { useSearchStore } from '@/stores/search';
 import { createObserver } from '@/utils';
 import type { Ref } from 'vue';

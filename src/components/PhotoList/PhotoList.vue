@@ -2,7 +2,7 @@
 import { onMounted, computed, ref } from 'vue';
 import ThreeColumns from '@/components/Columns/ThreeColumns.vue';
 import TwoColumns from '@/components/Columns/TwoColumns.vue';
-import HeaderItem from '@/components/HeaderItem.vue';
+import HeaderItem from '@/components/UI/HeaderItem.vue';
 import { usePhotoStore } from '@/stores/photo';
 import type { Ref } from 'vue';
 import { createObserver } from '@/utils';
