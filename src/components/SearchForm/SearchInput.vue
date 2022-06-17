@@ -12,6 +12,7 @@ const searchStore = useSearchStore();
     v-model="searchStore.query"
     @focus="$emit('focused', true)"
     @blur="$emit('focused', false)"
+    required
   />
 </template>
 

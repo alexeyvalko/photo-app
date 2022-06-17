@@ -76,8 +76,6 @@ export const usePhotoStore = defineStore({
 
     setOrderBy(orderBy: OrderByListType) {
       this.orderBy = orderBy;
-      this.photos = [];
-      this.page = 1;
       this.getPhotoList();
     },
   },

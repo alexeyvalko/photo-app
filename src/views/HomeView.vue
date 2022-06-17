@@ -58,13 +58,6 @@ const store = usePhotoStore();
   font-size: 2.5rem;
 }
 
-.filter-wrapper {
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  padding: 20px 0;
-}
-
 @media (max-width: 768px) {
   .header-title {
     font-size: 3rem;

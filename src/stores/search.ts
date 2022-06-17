@@ -1,4 +1,8 @@
-import { SERVER_ENDPOINTS, SERVER_URL } from '@/common/config';
+import {
+  DEFAULT_ORIENTATION_OPTION,
+  SERVER_ENDPOINTS,
+  SERVER_URL,
+} from '@/common/config';
 import type { PhotoBasic } from '@/types/photos';
 import { filterPhotosByColumn } from '@/utils';
 import type { IResponsePhotos, ISearchOptions } from '@/types/interfaces';
@@ -48,11 +52,14 @@ export const useSearchStore = defineStore({
   actions: {
     async fetchPhotos<T>(endpoint: string, params: T) {
       try {
+        const asArray = Object.entries(params);
+        const filtered = asArray.filter(([, value]) => !!value);
+        const filteredParams = Object.fromEntries(filtered) as ISearchOptions;
         this.isPhotoLoading = true;
         const response = await axios.get<IResponsePhotos<PhotoBasic>>(
           `${SERVER_URL}/${endpoint}`,
           {
-            params,
+            params: filteredParams,
           },
         );
         this.totalPages = response.data.total_pages;
@@ -71,7 +78,9 @@ export const useSearchStore = defineStore({
           page: this.page,
           per_page: this.perPage,
           order_by: this.orderBy,
+          orientation: this.orientation,
         };
+
         await this.fetchPhotos(SERVER_ENDPOINTS.SEARCH_PHOTOS, params);
       }
     },
@@ -84,7 +93,20 @@ export const useSearchStore = defineStore({
         page: this.page,
         per_page: this.perPage,
         order_by: this.orderBy,
+        orientation: this.orientation,
       });
+    },
+
+    setOrderBy(orderBy: SearchOrderType) {
+      this.orderBy = orderBy;
+      this.searchPhotos();
+    },
+    setOrientation(
+      orientation: SearchOrientationType | typeof DEFAULT_ORIENTATION_OPTION,
+    ) {
+      this.orientation =
+        orientation === DEFAULT_ORIENTATION_OPTION ? null : orientation;
+      this.searchPhotos();
     },
   },
 });

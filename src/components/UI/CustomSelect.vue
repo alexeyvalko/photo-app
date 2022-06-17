@@ -58,6 +58,9 @@ const handleOptionClick = (option: string) => {
   transition: var(--primary-transition);
   font-size: 1.6rem;
 }
+.select-container:hover {
+  border: 1px solid var(--color-border-hover);
+}
 
 .select-button {
   text-transform: capitalize;
@@ -83,8 +86,9 @@ const handleOptionClick = (option: string) => {
   border-radius: 5px;
   z-index: 0;
   background: var(--color-background);
-  clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+  clip-path: polygon(28% 0, 70% 0, 70% 0, 28% 0);
   transition: all 0.2s ease;
+  width: max-content;
 }
 
 .show-options {

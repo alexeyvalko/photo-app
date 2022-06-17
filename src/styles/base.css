@@ -145,6 +145,14 @@ input[type='search']::-webkit-search-results-decoration {
   width: 100%;
 }
 
+.filter-wrapper {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 20px 0;
+  gap: 30px;
+}
+
 @media (max-width: 768px) {
   .wrapper {
     padding: 0 15px;

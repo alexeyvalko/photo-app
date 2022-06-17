@@ -27,7 +27,7 @@ export interface ISearchOptions {
   query: string;
   page?: number;
   per_page?: number;
-  orientation?: SearchOrientationType;
+  orientation?: SearchOrientationType | null;
   content_filter?: SearchContentFilterType;
   color?: SearchColorsType;
   order_by?: SearchOrderType;
