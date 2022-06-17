@@ -11,6 +11,7 @@ export interface IResponsePhotos<T> {
   type: ResponseTypeUnsplash;
   statusCode: number;
   results: T[];
+  message?: string;
   errors?: never;
   total: number;
   total_pages: number;

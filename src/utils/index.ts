@@ -48,12 +48,16 @@ export const createObserver = (
   });
 };
 
-export const downloadPhoto = (url: string, filename: string) => {
+export const downloadPhoto = async (url: string, filename: string) => {
   const link = document.createElement('a');
+  const response = await fetch(url);
+  const blob = await response.blob();
+  const blobURL = URL.createObjectURL(blob);
   link.download = `${filename}.jpg`;
-  link.href = `${url}`;
+  link.href = blobURL;
   link.target = '_blank';
   console.log(link);
   link.click();
+  URL.revokeObjectURL(blobURL);
   link.remove();
 };
