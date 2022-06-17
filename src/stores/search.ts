@@ -4,7 +4,7 @@ import {
   SERVER_URL,
 } from '@/common/config';
 import type { PhotoBasic } from '@/types/photos';
-import { filterPhotosByColumn } from '@/utils';
+import { deleteFalsyKeys, filterPhotosByColumn } from '@/utils';
 import type { IResponsePhotos, ISearchOptions } from '@/types/interfaces';
 import axios from 'axios';
 import { defineStore } from 'pinia';
@@ -52,9 +52,7 @@ export const useSearchStore = defineStore({
   actions: {
     async fetchPhotos<T>(endpoint: string, params: T) {
       try {
-        const asArray = Object.entries(params);
-        const filtered = asArray.filter(([, value]) => !!value);
-        const filteredParams = Object.fromEntries(filtered) as ISearchOptions;
+        const filteredParams = deleteFalsyKeys(params) as ISearchOptions;
         this.isPhotoLoading = true;
         const response = await axios.get<IResponsePhotos<PhotoBasic>>(
           `${SERVER_URL}/${endpoint}`,

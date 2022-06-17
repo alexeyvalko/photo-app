@@ -48,6 +48,13 @@ export const createObserver = (
   });
 };
 
+export const deleteFalsyKeys = <Type>(object: Type) => {
+  const asArray = Object.entries(object);
+  const filtered = asArray.filter(([, value]) => !!value);
+  const filteredObject = Object.fromEntries(filtered);
+  return filteredObject;
+};
+
 export const downloadPhoto = async (url: string, filename: string) => {
   const link = document.createElement('a');
   const response = await fetch(url);
