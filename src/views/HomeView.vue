@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import PhotoList from '@/components/PhotoList/PhotoList.vue';
 import HeaderItem from '@/components/UI/HeaderItem.vue';
-import CustomSelect from '@/components/CustomSelect.vue';
+import CustomSelect from '@/components/UI/CustomSelect.vue';
 import { LIST_ORDER_OPTIONS } from '@/common/config';
 import { usePhotoStore } from '@/stores/photo';
 

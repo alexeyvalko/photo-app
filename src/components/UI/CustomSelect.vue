@@ -34,7 +34,11 @@ const handleDocumentClick = (): void => {
 
 const toggleOptions = () => {
   showOptions.value = !showOptions.value;
-  document.addEventListener('click', handleDocumentClick);
+  if (showOptions.value) {
+    document.addEventListener('click', handleDocumentClick);
+  } else {
+    document.removeEventListener('click', handleDocumentClick);
+  }
 };
 
 const handleOptionClick = (option: string) => {
@@ -79,11 +83,12 @@ const handleOptionClick = (option: string) => {
   border-radius: 5px;
   z-index: 0;
   background: var(--color-background);
-  box-shadow: -4px 4px 11px -1px rgba(34, 60, 80, 0.19);
+  clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
   transition: all 0.2s ease;
 }
 
 .show-options {
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
   z-index: 100;
   opacity: 1;
 }
