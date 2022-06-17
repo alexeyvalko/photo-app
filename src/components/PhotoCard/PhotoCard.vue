@@ -30,7 +30,7 @@ const props = defineProps<{
 }>();
 </script>
 
-<style>
+<style scoped>
 .photo-card {
   overflow: hidden;
   width: 100%;

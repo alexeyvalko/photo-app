@@ -30,6 +30,7 @@ const searchStore = useSearchStore();
 }
 
 .search-input::placeholder {
+  font-family: Arial, Helvetica, sans-serif;
   font-size: 1.8rem;
   font-weight: 600;
 }

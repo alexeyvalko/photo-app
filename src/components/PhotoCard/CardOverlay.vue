@@ -33,7 +33,7 @@ const props = defineProps<{
 }>();
 </script>
 
-<style>
+<style scoped>
 .info-icon {
   width: 20px;
   height: 20px;
@@ -41,11 +41,12 @@ const props = defineProps<{
 .author-info {
   display: flex;
   align-items: center;
+  max-width: calc(100% - 40px - 20px - 5px);
 }
 
 .author-name {
   opacity: 0.8;
-  max-width: 150px;
+  max-width: 100%;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
@@ -55,6 +56,7 @@ const props = defineProps<{
 }
 
 .download-button {
+  flex-shrink: 0;
   background-color: var(--white-mute);
   border: none;
   padding: 0;
@@ -84,6 +86,7 @@ const props = defineProps<{
 }
 
 .author-avatar {
+  flex-shrink: 0;
   overflow: hidden;
   width: 40px;
   height: 40px;
