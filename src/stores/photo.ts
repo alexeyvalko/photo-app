@@ -73,5 +73,12 @@ export const usePhotoStore = defineStore({
         await this.fetchPhotos(SERVER_ENDPOINTS.PHOTOS, params);
       }
     },
+
+    setOrderBy(orderBy: OrderByListType) {
+      this.orderBy = orderBy;
+      this.photos = [];
+      this.page = 1;
+      this.getPhotoList();
+    },
   },
 });

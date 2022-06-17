@@ -1,16 +1,31 @@
 <script setup lang="ts">
 import PhotoList from '@/components/PhotoList/PhotoList.vue';
 import HeaderItem from '@/components/UI/HeaderItem.vue';
+import CustomSelect from '@/components/CustomSelect.vue';
+import { LIST_ORDER_OPTIONS } from '@/common/config';
+import { usePhotoStore } from '@/stores/photo';
+
 document.title = `Free Stock Photos`;
+const store = usePhotoStore();
 </script>
 
 <template>
-  <div class="container header-container">
-    <HeaderItem class="header-title gradient-text">
-      Free Stock Photos
-    </HeaderItem>
-    <p class="header-description">Stunning high-resolution photos</p>
+  <div class="container">
+    <div class="header-container">
+      <HeaderItem class="header-title gradient-text">
+        Free Stock Photos
+      </HeaderItem>
+      <p class="header-description">Stunning high-resolution photos</p>
+    </div>
+    <div class="filter-wrapper">
+      <CustomSelect
+        :options="LIST_ORDER_OPTIONS"
+        :currentOption="store.orderBy"
+        @changeOption="store.setOrderBy"
+      />
+    </div>
   </div>
+
   <PhotoList />
 </template>
 
@@ -21,7 +36,7 @@ document.title = `Free Stock Photos`;
   justify-content: center;
   flex-direction: column;
   padding-top: 50px;
-  padding-bottom: 50px;
+  padding-bottom: 10px;
 }
 
 .header-title {
@@ -41,6 +56,13 @@ document.title = `Free Stock Photos`;
 
 .header-description {
   font-size: 2.5rem;
+}
+
+.filter-wrapper {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 20px 0;
 }
 
 @media (max-width: 768px) {

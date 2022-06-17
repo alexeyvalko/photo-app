@@ -3,3 +3,5 @@ export enum SERVER_ENDPOINTS {
   PHOTOS = 'photos',
   SEARCH_PHOTOS = 'search/photos',
 }
+
+export const LIST_ORDER_OPTIONS = ['latest', 'oldest', 'popular'];

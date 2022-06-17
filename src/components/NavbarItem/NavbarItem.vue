@@ -37,7 +37,7 @@ import SearchForm from '@/components/SearchForm/SearchForm.vue';
 }
 .navbar-container {
   position: fixed;
-  z-index: 120;
+  z-index: 99999;
   top: 0;
   right: 0;
   left: 0;
