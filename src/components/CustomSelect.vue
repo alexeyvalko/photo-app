@@ -1,6 +1,6 @@
 <template>
   <div class="select-container">
-    <button class="select-button" @click="toggleOptions">
+    <button class="select-button" @click.stop="toggleOptions">
       {{ props.currentOption }}
     </button>
     <div class="select-options" :class="{ 'show-options': showOptions }">
@@ -27,8 +27,14 @@ const props = defineProps<{
 const emit = defineEmits(['changeOption']);
 const showOptions = ref(false);
 
+const handleDocumentClick = (): void => {
+  showOptions.value = false;
+  document.removeEventListener('click', handleDocumentClick);
+};
+
 const toggleOptions = () => {
   showOptions.value = !showOptions.value;
+  document.addEventListener('click', handleDocumentClick);
 };
 
 const handleOptionClick = (option: string) => {
