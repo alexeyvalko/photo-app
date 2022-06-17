@@ -86,13 +86,15 @@ const handleOptionClick = (option: string) => {
   border-radius: 5px;
   z-index: 0;
   background: var(--color-background);
-  clip-path: polygon(28% 0, 70% 0, 70% 0, 28% 0);
-  transition: all 0.2s ease;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+  transform: translate3d(50px, -50px, 0px) scale(0.5);
+  transition: transform 0.2s cubic-bezier(0.24, 0.22, 0.015, 1.56),
+    opacity 0.1s ease-in-out;
   width: max-content;
 }
 
 .show-options {
-  clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+  transform: translate3d(0px, 0px, 0px) scale(1);
   z-index: 100;
   opacity: 1;
 }
