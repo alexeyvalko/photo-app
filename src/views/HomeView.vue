@@ -5,10 +5,12 @@ document.title = `Free Stock Photos`;
 </script>
 
 <template>
-  <header class="container header-container">
-    <HeaderItem class="header-title"> Free Stock Photos</HeaderItem>
+  <div class="container header-container">
+    <HeaderItem class="header-title gradient-text">
+      Free Stock Photos
+    </HeaderItem>
     <p class="header-description">Stunning high-resolution photos</p>
-  </header>
+  </div>
   <PhotoList />
 </template>
 
@@ -25,7 +27,11 @@ document.title = `Free Stock Photos`;
 .header-title {
   color: transparent;
   font-weight: 700;
-  font-size: 5rem;
+  font-size: 6rem;
+  line-height: 1.2;
+}
+
+.gradient-text {
   background: #7474bf;
   background: -webkit-linear-gradient(to left, #348ac7, #7474bf);
   background: linear-gradient(to left, #348ac7, #7474bf);
@@ -34,8 +40,7 @@ document.title = `Free Stock Photos`;
 }
 
 .header-description {
-  padding-top: 10px;
-  font-size: 2.2rem;
+  font-size: 2.5rem;
 }
 
 @media (max-width: 768px) {
