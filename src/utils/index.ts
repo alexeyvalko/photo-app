@@ -68,3 +68,15 @@ export const downloadPhoto = async (url: string, filename: string) => {
   URL.revokeObjectURL(blobURL);
   link.remove();
 };
+
+export const encodeQuery = (query: string) => {
+  const content = query.replace(/%/g, '~~pct~~');
+  const encodedQuery = encodeURIComponent(content);
+  return encodedQuery;
+};
+
+export const decodeQuery = (query: string) => {
+  const decodedQuery = decodeURIComponent(query);
+  const content = decodedQuery.replace(/~~pct~~/g, '%');
+  return content;
+};

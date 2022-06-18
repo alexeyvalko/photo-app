@@ -4,6 +4,7 @@ import SearchButton from '@/components/SearchForm/SearchButton.vue';
 import SearchInput from '@/components/SearchForm/SearchInput.vue';
 import { useSearchStore } from '@/stores/search';
 import { useRouter } from 'vue-router';
+import { encodeQuery } from '@/utils';
 
 const searchStore = useSearchStore();
 const router = useRouter();
@@ -14,7 +15,8 @@ const handleFocus = (newValue: boolean): void => {
 
 const handleSubmit = (): void => {
   if (searchStore.query) {
-    router.push(`/search/photos/${encodeURIComponent(searchStore.query)}`);
+    const query = encodeQuery(searchStore.query);
+    router.push(`/search/photos/${query}`);
   }
 };
 </script>

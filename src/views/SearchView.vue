@@ -10,6 +10,7 @@ import {
   DEFAULT_ORIENTATION_OPTION,
 } from '@/common/config';
 import { useSearchStore } from '@/stores/search';
+import { decodeQuery } from '@/utils';
 
 const route = useRoute();
 const store = useSearchStore();
@@ -18,7 +19,7 @@ const header = ref('');
 
 const updateHeaderAndTitle = () => {
   const query = route.params.query as string;
-  decodedQuery.value = query ? decodeURIComponent(query) : '';
+  decodedQuery.value = query ? decodeQuery(query) : '';
   header.value = decodedQuery.value;
   document.title = `Free ${decodedQuery.value} Photos`;
 };
@@ -46,9 +47,7 @@ const getComponentData = async () => {
 };
 
 onBeforeMount(updateHeaderAndTitle);
-onMounted(async () => {
-  await getComponentData();
-});
+onMounted(getComponentData);
 watch(() => route.params.query, watcher);
 </script>
 
