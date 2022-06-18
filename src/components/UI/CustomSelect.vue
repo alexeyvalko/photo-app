@@ -77,6 +77,7 @@ const handleOptionClick = (option: string) => {
 
 .select-options {
   display: block;
+  visibility: hidden;
   overflow: hidden;
   border: 1px solid var(--color-border);
   position: absolute;
@@ -88,19 +89,20 @@ const handleOptionClick = (option: string) => {
   background: var(--color-background);
   box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
   transform: translate3d(50px, -50px, 0px) scale(0.5);
-  transition: transform 0.2s cubic-bezier(0.24, 0.22, 0.015, 1.56),
+  transition: transform 0.3s cubic-bezier(0.24, 0.22, 0.015, 1.56),
     opacity 0.1s ease-in-out;
   width: max-content;
 }
 
 .show-options {
+  visibility: visible;
   transform: translate3d(0px, 0px, 0px) scale(1);
   z-index: 100;
   opacity: 1;
 }
 .select-option {
   border-radius: 5px;
-  padding: 10px 20px;
+  padding: 10px 22px;
   cursor: pointer;
 }
 .select-option:hover {
