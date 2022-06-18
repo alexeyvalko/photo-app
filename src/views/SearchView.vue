@@ -57,7 +57,7 @@ watch(() => route.params.query, watcher);
       <HeaderItem> {{ header }} Photos</HeaderItem>
     </div>
 
-    <div class="filter-wrapper" v-if="decodedQuery">
+    <div class="filter-wrapper" v-if="store.photos.length">
       <CustomSelect
         :options="[DEFAULT_ORIENTATION_OPTION, ...ORIENTATION_OPTIONS]"
         :currentOption="store.orientation || DEFAULT_ORIENTATION_OPTION"

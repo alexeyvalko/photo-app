@@ -31,7 +31,7 @@ const twoColumns = computed(() => {
       </HeaderItem>
       <p class="header-description">Stunning high-resolution photos</p>
     </div>
-    <div class="filter-wrapper">
+    <div class="filter-wrapper" v-if="store.photos.length">
       <CustomSelect
         :options="LIST_ORDER_OPTIONS"
         :currentOption="store.orderBy"

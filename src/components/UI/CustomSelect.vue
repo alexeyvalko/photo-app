@@ -1,7 +1,10 @@
 <template>
   <div class="select-container">
     <button class="select-button" @click.stop="toggleOptions">
-      {{ props.currentOption }}
+      <span class="button-text">{{ props.currentOption }}</span>
+      <span class="button-icon">
+        <IconSmallArrow class="arrow-icon" :class="{ rotate: showOptions }" />
+      </span>
     </button>
     <div class="select-options" :class="{ 'show-options': showOptions }">
       <div
@@ -66,13 +69,20 @@ const handleOptionClick = (option: string) => {
   text-transform: capitalize;
   padding: 0 20px;
   color: var(--color-text);
-  font-size: 1.6rem;
-  font-weight: 600;
   border: none;
   background: none;
   cursor: pointer;
   width: 100%;
   height: 100%;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  justify-content: space-between;
+}
+
+.button-text {
+  font-size: 1.6rem;
+  font-weight: 600;
 }
 
 .select-options {
@@ -115,5 +125,20 @@ const handleOptionClick = (option: string) => {
   font-size: 1.6rem;
   font-weight: 600;
   padding: 5px;
+}
+
+.arrow-icon {
+  width: 12px;
+  height: 12px;
+  fill: var(--color-border-hover);
+  transition: all 0.2s linear;
+}
+
+.button-icon {
+  line-height: 0;
+}
+
+.rotate {
+  transform: rotate(180deg);
 }
 </style>
