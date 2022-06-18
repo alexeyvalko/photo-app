@@ -16,14 +16,10 @@ const searchStore = useSearchStore();
 const decodedQuery = ref('');
 const header = ref('');
 const updateHeaderAndTitle = () => {
-  if (route.params.query) {
-    const query = route.params.query as string;
-    decodedQuery.value = decodeURIComponent(query);
-    const firstLetter = decodedQuery.value[0]?.toUpperCase();
-    const upperCasedWord = firstLetter + decodedQuery.value.slice(1);
-    header.value = upperCasedWord;
-    document.title = `Free ${upperCasedWord} Photos`;
-  }
+  const query = route.params.query as string;
+  decodedQuery.value = query ? decodeURIComponent(query) : '';
+  header.value = decodedQuery.value;
+  document.title = `Free ${decodedQuery.value} Photos`;
 };
 
 onBeforeMount(updateHeaderAndTitle);
