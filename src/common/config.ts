@@ -1,3 +1,5 @@
+import type { IColorsOptions } from '@/types/interfaces';
+
 export const SERVER_URL = import.meta.env.VITE_SERVER_URL;
 export enum SERVER_ENDPOINTS {
   PHOTOS = 'photos',
@@ -8,10 +10,13 @@ export const LIST_ORDER_OPTIONS = ['latest', 'oldest', 'popular'];
 export const SEARCH_ORDER_OPTIONS = ['relevant', 'latest'];
 export const ORIENTATION_OPTIONS = ['landscape', 'portrait', 'squarish'];
 export const DEFAULT_ORIENTATION_OPTION = 'All orientations';
+export const DEFAULT_SEARCH_ORDER = 'relevant';
 
-export const COLOR_OPTIONS = {
-  any: 'Any color',
-  black_and_white: 'Black and white',
+export const COLOR_OPTIONS: IColorsOptions = {
+  colors: {
+    any: 'Any color',
+    black_and_white: 'Black and white',
+  },
   tones: {
     black: 'rgb(77, 77, 77)',
     white: 'rgb(255, 255, 255)',

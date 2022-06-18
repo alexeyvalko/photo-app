@@ -25,7 +25,7 @@ export const useSearchStore = defineStore({
     orientation: null as SearchOrientationType | null,
     contentFilter: 'high' as SearchContentFilterType,
     color: null as SearchColorsType | null,
-    orderBy: 'relevant' as SearchOrderType,
+    orderBy: null as SearchOrderType | null,
     collectionIds: [],
     lang: 'en',
     totalPages: 1,
@@ -34,8 +34,14 @@ export const useSearchStore = defineStore({
   }),
 
   getters: {
-    currentRoute: (state) => {
-      return `${SERVER_ENDPOINTS.SEARCH_PHOTOS}/${state.pageParam}`;
+    pageQueries: (state) => {
+      const queries = {
+        orientation: state.orientation,
+        color: state.color,
+        order_by: state.orderBy,
+      };
+      const filteredQueries = deleteFalsyKeys(queries);
+      return filteredQueries;
     },
     filteredByThreeColumn: (state) => {
       return {
@@ -95,6 +101,7 @@ export const useSearchStore = defineStore({
         per_page: this.perPage,
         order_by: this.orderBy,
         orientation: this.orientation,
+        color: this.color,
       });
     },
 
@@ -107,6 +114,11 @@ export const useSearchStore = defineStore({
     ) {
       this.orientation =
         orientation === DEFAULT_ORIENTATION_OPTION ? null : orientation;
+      this.searchPhotos();
+    },
+
+    setColor(color: SearchColorsType | 'any') {
+      this.color = color === 'any' ? null : color;
       this.searchPhotos();
     },
   },

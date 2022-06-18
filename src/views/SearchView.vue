@@ -4,10 +4,13 @@ import { useRoute } from 'vue-router';
 import HeaderItem from '@/components/UI/HeaderItem.vue';
 import PhotoList from '@/components/PhotoList/PhotoList.vue';
 import CustomSelect from '@/components/UI/CustomSelect.vue';
+import ColorsSelect from '@/components/UI/ColorsSelect.vue';
 import {
   SEARCH_ORDER_OPTIONS,
   ORIENTATION_OPTIONS,
   DEFAULT_ORIENTATION_OPTION,
+  DEFAULT_SEARCH_ORDER,
+  COLOR_OPTIONS,
 } from '@/common/config';
 import { useSearchStore } from '@/stores/search';
 import { decodeQuery } from '@/utils';
@@ -57,6 +60,11 @@ watch(() => route.params.query, watcher);
     </div>
 
     <div class="filter-wrapper">
+      <ColorsSelect
+        :options="COLOR_OPTIONS"
+        :currentOption="store.color || COLOR_OPTIONS.colors.any"
+        @changeOption="store.setColor"
+      />
       <CustomSelect
         :options="[DEFAULT_ORIENTATION_OPTION, ...ORIENTATION_OPTIONS]"
         :currentOption="store.orientation || DEFAULT_ORIENTATION_OPTION"
@@ -64,7 +72,7 @@ watch(() => route.params.query, watcher);
       />
       <CustomSelect
         :options="SEARCH_ORDER_OPTIONS"
-        :currentOption="store.orderBy"
+        :currentOption="store.orderBy || DEFAULT_SEARCH_ORDER"
         @changeOption="store.setOrderBy"
       />
     </div>

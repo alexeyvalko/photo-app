@@ -30,7 +30,26 @@ export interface ISearchOptions {
   orientation?: SearchOrientationType | null;
   content_filter?: SearchContentFilterType;
   color?: SearchColorsType;
-  order_by?: SearchOrderType;
+  order_by?: SearchOrderType | null;
   collections?: number[];
   lang?: string;
+}
+
+export interface IColorsOptions {
+  colors: {
+    any: 'Any color';
+    black_and_white: 'Black and white';
+  };
+  tones: {
+    black: string;
+    white: string;
+    yellow: string;
+    orange: string;
+    red: string;
+    purple: string;
+    magenta: string;
+    green: string;
+    teal: string;
+    blue: string;
+  };
 }
