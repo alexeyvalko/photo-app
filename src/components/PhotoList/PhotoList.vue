@@ -1,29 +1,27 @@
 <script setup lang="ts">
-import { computed, onMounted } from 'vue';
 import ThreeColumns from '@/components/Columns/ThreeColumns.vue';
 import TwoColumns from '@/components/Columns/TwoColumns.vue';
-import { usePhotoStore } from '@/stores/photo';
+import type { PhotoBasic } from '@/types/photos';
 import ObserverItem from '../ObserverItem.vue';
 
-const photoStore = usePhotoStore();
-onMounted(async () => {
-  if (photoStore.photos.length === 0) {
-    await photoStore.getPhotoList();
-  }
-});
-
-const threeColumns = computed(() => {
-  return photoStore.filteredByThreeColumn;
-});
-const twoColumns = computed(() => {
-  return photoStore.filteredByTwoColumn;
-});
+const props = defineProps<{
+  threeColumns: {
+    one: PhotoBasic[];
+    two: PhotoBasic[];
+    three: PhotoBasic[];
+  };
+  twoColumns: {
+    one: PhotoBasic[];
+    two: PhotoBasic[];
+  };
+  loader: () => void;
+}>();
 </script>
 
 <template>
   <div class="container">
-    <ThreeColumns :columns="threeColumns" />
-    <TwoColumns :columns="twoColumns" />
-    <ObserverItem :callback="photoStore.loadPosts" />
+    <ThreeColumns :columns="props.threeColumns" />
+    <TwoColumns :columns="props.twoColumns" />
+    <ObserverItem :callback="props.loader" />
   </div>
 </template>

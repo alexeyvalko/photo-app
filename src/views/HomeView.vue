@@ -4,9 +4,23 @@ import HeaderItem from '@/components/UI/HeaderItem.vue';
 import CustomSelect from '@/components/UI/CustomSelect.vue';
 import { LIST_ORDER_OPTIONS } from '@/common/config';
 import { usePhotoStore } from '@/stores/photo';
+import { onMounted, computed } from 'vue';
 
 document.title = `Free Stock Photos`;
+
 const store = usePhotoStore();
+onMounted(async () => {
+  if (store.photos.length === 0) {
+    await store.getPhotoList();
+  }
+});
+
+const threeColumns = computed(() => {
+  return store.filteredByThreeColumn;
+});
+const twoColumns = computed(() => {
+  return store.filteredByTwoColumn;
+});
 </script>
 
 <template>
@@ -26,7 +40,11 @@ const store = usePhotoStore();
     </div>
   </div>
 
-  <PhotoList />
+  <PhotoList
+    :threeColumns="threeColumns"
+    :twoColumns="twoColumns"
+    :loader="store.loadPosts"
+  />
 </template>
 
 <style>
