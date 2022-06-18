@@ -19,7 +19,7 @@ export const useSearchStore = defineStore({
   id: 'search',
   state: () => ({
     query: '',
-    pageQuery: '',
+    pageParam: '',
     page: 1,
     perPage: 30,
     orientation: null as SearchOrientationType | null,
@@ -34,6 +34,9 @@ export const useSearchStore = defineStore({
   }),
 
   getters: {
+    currentRoute: (state) => {
+      return `${SERVER_ENDPOINTS.SEARCH_PHOTOS}/${state.pageParam}`;
+    },
     filteredByThreeColumn: (state) => {
       return {
         one: filterPhotosByColumn(state.photos, 3, 1),
@@ -72,7 +75,7 @@ export const useSearchStore = defineStore({
       if (this.photos.length > 0 && this.page < this.totalPages) {
         this.page += 1;
         const params: ISearchOptions = {
-          query: this.pageQuery,
+          query: this.pageParam,
           page: this.page,
           per_page: this.perPage,
           order_by: this.orderBy,
@@ -87,7 +90,7 @@ export const useSearchStore = defineStore({
       this.photos = [];
       this.page = 1;
       await this.fetchPhotos(SERVER_ENDPOINTS.SEARCH_PHOTOS, {
-        query: this.pageQuery,
+        query: this.pageParam,
         page: this.page,
         per_page: this.perPage,
         order_by: this.orderBy,

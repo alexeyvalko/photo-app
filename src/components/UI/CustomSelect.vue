@@ -1,7 +1,7 @@
 <template>
   <div class="select-container">
     <button class="select-button" @click.stop="toggleOptions">
-      <span class="button-text">{{ currentOption }}</span>
+      <span class="button-text">{{ props.currentOption }}</span>
       <span class="button-icon">
         <IconSmallArrow class="arrow-icon" :class="{ rotate: showOptions }" />
       </span>
@@ -9,7 +9,7 @@
     <div class="select-options" :class="{ 'show-options': showOptions }">
       <div
         class="select-option"
-        v-for="option in options"
+        v-for="option in props.options"
         :key="option"
         @click="handleOptionClick(option)"
       >

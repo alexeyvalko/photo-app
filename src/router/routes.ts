@@ -1,7 +1,6 @@
 import type { RouteRecordRaw } from 'vue-router';
 import HomeView from '@/views/HomeView.vue';
 import SearchView from '@/views/SearchView.vue';
-import NotFound from '@/views/NotFound.vue';
 
 const routes: RouteRecordRaw[] = [
   {

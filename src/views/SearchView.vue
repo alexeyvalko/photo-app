@@ -14,14 +14,13 @@ import { decodeQuery } from '@/utils';
 
 const route = useRoute();
 const store = useSearchStore();
-const decodedQuery = ref('');
+const decodedPageParam = ref('');
 const header = ref('');
-
 const updateHeaderAndTitle = () => {
   const query = route.params.query as string;
-  decodedQuery.value = query ? decodeQuery(query) : '';
-  header.value = decodedQuery.value;
-  document.title = `Free ${decodedQuery.value} Photos`;
+  decodedPageParam.value = query ? decodeQuery(query) : '';
+  header.value = decodedPageParam.value;
+  document.title = `Free ${decodedPageParam.value} Photos`;
 };
 
 const watcher = () => {
@@ -37,10 +36,10 @@ const twoColumns = computed(() => {
 });
 
 const getComponentData = async () => {
-  if (decodedQuery.value && decodedQuery.value !== store.pageQuery) {
+  if (decodedPageParam.value && decodedPageParam.value !== store.pageParam) {
     store.$patch({
-      query: decodedQuery.value,
-      pageQuery: decodedQuery.value,
+      query: decodedPageParam.value,
+      pageParam: decodedPageParam.value,
     });
     await store.searchPhotos();
   }
