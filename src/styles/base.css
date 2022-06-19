@@ -78,6 +78,7 @@
 html {
   font-size: 10px;
   scroll-behavior: smooth;
+  height: 100%;
 }
 body {
   color: var(--color-text);
@@ -87,6 +88,7 @@ body {
     Oxygen, Ubuntu, Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   font-size: 1.8rem;
+  height: 100%;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -114,8 +116,14 @@ input[type='search']::-webkit-search-results-decoration {
   display: none;
 }
 
+.app {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
 .main {
   padding-top: var(--navbar-height);
+  flex: 1 0 auto;
 }
 
 .wrapper {

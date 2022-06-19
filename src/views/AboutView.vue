@@ -1,8 +1,7 @@
 <template>
-  <div class="about container">
-    <div class="container">
-      <h2>Used resources</h2>
-    </div>
+  <div class="container">
+    <h2>Used resources</h2>
+
     <ol>
       <li>
         <a target="_blank" rel="noopener noreferrer" href="https://vuejs.org/"
@@ -33,6 +32,6 @@
 
 <style>
 .about {
-  padding: 20px 0;
+  padding-top: 50px;
 }
 </style>

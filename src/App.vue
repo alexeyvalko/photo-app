@@ -2,19 +2,17 @@
 import { RouterView } from 'vue-router';
 import NavbarItem from '@/components/NavbarItem/NavbarItem.vue';
 import MobileMenu from '@/components/MobileMenu/MobileMenu.vue';
+import FooterItem from '@/components/Footer/FooterItem.vue';
 </script>
 
 <template>
   <NavbarItem />
   <main class="main">
     <div class="wrapper">
-      <router-view v-slot="{ Component }">
-        <transition name="fade">
-          <component :is="Component" />
-        </transition>
-      </router-view>
+      <RouterView />
     </div>
   </main>
+  <FooterItem />
   <MobileMenu />
 </template>
 
