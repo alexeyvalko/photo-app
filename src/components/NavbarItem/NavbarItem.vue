@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import { RouterLink } from 'vue-router';
+import { MENU_LINKS } from '@/common/config';
 import SearchForm from '@/components/SearchForm/SearchForm.vue';
+import HamburgerButton from '@/components/MobileMenu/HamburgerButton.vue';
 </script>
 
 <template>
@@ -12,10 +14,17 @@ import SearchForm from '@/components/SearchForm/SearchForm.vue';
         </RouterLink>
         <SearchForm />
       </div>
-      <div class="navbar__right">
-        <RouterLink to="/" class="link">Home</RouterLink>
-        <RouterLink to="/about" class="link">About</RouterLink>
-      </div>
+      <ul class="navigation">
+        <li
+          class="navigation__link"
+          v-for="link in MENU_LINKS"
+          :key="link.name"
+        >
+          <RouterLink :to="link.href" class="link">{{ link.name }}</RouterLink>
+        </li>
+      </ul>
+
+      <HamburgerButton />
     </nav>
   </div>
 </template>
@@ -24,7 +33,7 @@ import SearchForm from '@/components/SearchForm/SearchForm.vue';
 .logo {
   line-height: 0;
 }
-.navbar__right,
+.navigation,
 .navbar__left {
   display: flex;
   align-items: center;
@@ -37,7 +46,7 @@ import SearchForm from '@/components/SearchForm/SearchForm.vue';
 }
 .navbar-container {
   position: fixed;
-  z-index: 99999;
+  z-index: 100;
   top: 0;
   right: 0;
   left: 0;
@@ -56,5 +65,15 @@ import SearchForm from '@/components/SearchForm/SearchForm.vue';
 
 .active-link {
   color: var(--primary-color);
+}
+
+.navigation__link {
+  list-style: none;
+}
+
+@media (max-width: 768px) {
+  .navigation {
+    display: none;
+  }
 }
 </style>

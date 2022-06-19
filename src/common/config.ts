@@ -12,6 +12,17 @@ export const ORIENTATION_OPTIONS = ['landscape', 'portrait', 'squarish'];
 export const DEFAULT_ORIENTATION_OPTION = 'All orientations';
 export const DEFAULT_SEARCH_ORDER = 'relevant';
 
+export const MENU_LINKS = [
+  {
+    name: 'Home',
+    href: '/',
+  },
+  {
+    name: 'About',
+    href: '/about',
+  },
+];
+
 export const COLOR_OPTIONS: IColorsOptions = {
   colors: {
     any: 'Any color',

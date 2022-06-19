@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { RouterView } from 'vue-router';
 import NavbarItem from '@/components/NavbarItem/NavbarItem.vue';
+import MobileMenu from '@/components/MobileMenu/MobileMenu.vue';
 </script>
 
 <template>
@@ -10,6 +11,7 @@ import NavbarItem from '@/components/NavbarItem/NavbarItem.vue';
       <RouterView />
     </div>
   </main>
+  <MobileMenu />
 </template>
 
 <style>
