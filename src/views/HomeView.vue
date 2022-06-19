@@ -38,12 +38,14 @@ const twoColumns = computed(() => {
         @changeOption="store.setOrderBy"
       />
     </div>
-
-    <PhotoList
-      :threeColumns="threeColumns"
-      :twoColumns="twoColumns"
-      :loader="store.loadPosts"
-    />
+    <Transition name="fade">
+      <PhotoList
+        v-if="store.photos.length > 0"
+        :threeColumns="threeColumns"
+        :twoColumns="twoColumns"
+        :loader="store.loadPosts"
+      />
+    </Transition>
   </div>
 </template>
 
