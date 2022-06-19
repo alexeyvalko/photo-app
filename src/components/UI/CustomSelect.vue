@@ -26,7 +26,6 @@ const props = defineProps<{
   options: string[];
   currentOption: string;
 }>();
-
 const emit = defineEmits(['changeOption']);
 const showOptions = ref(false);
 
@@ -34,7 +33,6 @@ const handleDocumentClick = (): void => {
   showOptions.value = false;
   document.removeEventListener('click', handleDocumentClick);
 };
-
 const toggleOptions = () => {
   showOptions.value = !showOptions.value;
   if (showOptions.value) {
@@ -101,7 +99,8 @@ const handleOptionClick = (option: string) => {
   transform: translate3d(50px, -50px, 0px) scale(0.5);
   transition: transform 0.3s cubic-bezier(0.24, 0.22, 0.015, 1.56),
     opacity 0.1s ease-in-out;
-  width: max-content;
+  min-width: max-content;
+  width: 100%;
 }
 
 .show-options {

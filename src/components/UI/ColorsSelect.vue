@@ -1,9 +1,7 @@
 <template>
   <div class="select-container">
     <button class="select-button" @click.stop="toggleOptions">
-      <span class="button-text">{{
-        props.currentOption.replace(/_/g, ' ')
-      }}</span>
+      <span class="button-text">{{ currentOption }}</span>
       <span class="button-icon">
         <IconSmallArrow class="arrow-icon" :class="{ rotate: showOptions }" />
       </span>
@@ -34,14 +32,16 @@
 <script setup lang="ts">
 import { ref } from '@vue/runtime-dom';
 import type { IColorsOptions } from '@/types/interfaces';
+import { computed } from '@vue/reactivity';
 
 const props = defineProps<{
   options: IColorsOptions;
   currentOption: string;
 }>();
 
-const colors = Object.entries(props.options.colors);
-const tones = Object.entries(props.options.tones);
+const colors = computed(() => Object.entries(props.options.colors));
+const tones = computed(() => Object.entries(props.options.tones));
+const currentOption = computed(() => props.currentOption.replace(/_/g, ' '));
 
 const emit = defineEmits(['changeOption']);
 const showOptions = ref(false);
@@ -78,6 +78,7 @@ const handleOptionClick = (option: string) => {
 .tones-wrapper {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
+  justify-items: center;
   grid-gap: 10px;
   padding: 20px;
 }
@@ -85,8 +86,8 @@ const handleOptionClick = (option: string) => {
 .tone {
   cursor: pointer;
   border: 1px solid var(--color-border);
-  width: 20px;
-  height: 20px;
+  width: 25px;
+  height: 25px;
   border-radius: 50%;
 }
 .select-container {
@@ -139,7 +140,8 @@ const handleOptionClick = (option: string) => {
   transform: translate3d(50px, -50px, 0px) scale(0.5);
   transition: transform 0.3s cubic-bezier(0.24, 0.22, 0.015, 1.56),
     opacity 0.1s ease-in-out;
-  width: max-content;
+  min-width: max-content;
+  width: 100%;
 }
 
 .show-options {
