@@ -35,7 +35,7 @@ const props = defineProps<{
   overflow: hidden;
   width: 100%;
   position: relative;
-  border-radius: 20px;
+  border-radius: var(--card-border-radius);
 }
 
 .photo-card__image {

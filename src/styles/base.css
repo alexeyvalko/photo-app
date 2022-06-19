@@ -32,14 +32,14 @@
 
   --color-heading: var(--text-light-2);
   --color-text: var(--text-light-1);
-
+  --skeleton-gradient: linear-gradient(to right, #fcfcfc, #e6e6ec);
   --search-background-active: var(--white);
 
   --primary-transition: all 0.3s linear;
 
   --navigation-gap: 50px;
   --navbar-height: 80px;
-
+  --card-border-radius: 20px;
   --column-gutter: 30px;
   --column-gutter-tablet: 15px;
   --columns: 3;
@@ -50,12 +50,12 @@
   --mobile-size: 480px;
 }
 
-/* @media (prefers-color-scheme: dark) {
+@media (prefers-color-scheme: dark) {
   :root {
     --color-background: var(--black);
     --color-background-soft: var(--black-soft);
     --color-background-mute: var(--black-mute);
-
+    --skeleton-gradient: linear-gradient(to right, #232526, #414345);
     --color-border: var(--divider-dark-2);
     --color-border-hover: var(--divider-dark-1);
 
@@ -64,7 +64,7 @@
 
     --search-background-active: var(--black-soft);
   }
-} */
+}
 
 *,
 *::before,

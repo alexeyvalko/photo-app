@@ -5,6 +5,7 @@ import HeaderItem from '@/components/UI/HeaderItem.vue';
 import PhotoList from '@/components/PhotoList/PhotoList.vue';
 import CustomSelect from '@/components/UI/CustomSelect.vue';
 import ColorsSelect from '@/components/UI/ColorsSelect.vue';
+import SkeletonItem from '@/components/Skeleton/SkeletonItem.vue';
 import {
   SEARCH_ORDER_OPTIONS,
   ORIENTATION_OPTIONS,
@@ -83,6 +84,9 @@ watch(() => route.params.query, watcher);
         :twoColumns="twoColumns"
         :loader="store.loadPosts"
     /></Transition>
+    <Transition name="fade">
+      <SkeletonItem :cards="6" v-if="store.isLoading" />
+    </Transition>
   </div>
 </template>
 

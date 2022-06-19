@@ -2,6 +2,7 @@
 import PhotoList from '@/components/PhotoList/PhotoList.vue';
 import HeaderItem from '@/components/UI/HeaderItem.vue';
 import CustomSelect from '@/components/UI/CustomSelect.vue';
+import SkeletonItem from '@/components/Skeleton/SkeletonItem.vue';
 import { LIST_ORDER_OPTIONS } from '@/common/config';
 import { usePhotoStore } from '@/stores/photo';
 import { onMounted, computed } from 'vue';
@@ -46,6 +47,9 @@ const twoColumns = computed(() => {
         :loader="store.loadPosts"
       />
     </Transition>
+    <Transition name="fade">
+      <SkeletonItem :cards="6" v-if="store.isLoading"
+    /></Transition>
   </div>
 </template>
 

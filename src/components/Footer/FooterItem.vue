@@ -3,7 +3,10 @@
     <div class="wrapper">
       <div class="footer-container">
         Made by
-        <a href="https://github.com/alexeyvalko" class="footer-link"
+        <a
+          href="https://github.com/alexeyvalko"
+          class="footer-link"
+          target="_blank"
           >@alexeyvalko</a
         >
       </div>

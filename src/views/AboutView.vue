@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <h2>Used resources</h2>
+    <h2 class="about-title">Used resources</h2>
 
     <ol>
       <li>
@@ -27,10 +27,36 @@
         - Largest open collection of high-quality photos.
       </li>
     </ol>
+    <h2 class="about-title">Source code</h2>
+    <ol>
+      <li>
+        <a
+          target="_blank"
+          rel="noopener noreferrer"
+          href="https://github.com/alexeyvalko"
+          >Frontend</a
+        >
+        - github repository.
+      </li>
+      <li>
+        <a
+          target="_blank"
+          rel="noopener noreferrer"
+          href="https://github.com/alexeyvalko"
+          >Backend</a
+        >
+        - github repository.
+      </li>
+    </ol>
   </div>
 </template>
 
 <style>
+.about-title {
+  padding: 30px 0;
+  text-align: center;
+  font-weight: 600;
+}
 .about {
   padding-top: 50px;
 }
