@@ -85,7 +85,7 @@ watch(() => route.params.query, watcher);
         :loader="store.loadPosts"
     /></Transition>
     <Transition name="fade">
-      <SkeletonItem :cards="6" v-if="store.isLoading" />
+      <SkeletonItem :cards="9" v-if="store.isLoading" />
     </Transition>
   </div>
 </template>
