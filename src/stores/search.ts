@@ -4,8 +4,12 @@ import {
   SERVER_URL,
 } from '@/common/config';
 import type { PhotoBasic } from '@/types/photos';
-import { deleteFalsyKeys, filterPhotosByColumn } from '@/utils';
-import type { IResponsePhotos, ISearchOptions } from '@/types/interfaces';
+import {
+  deleteFalsyKeys,
+  filterPhotosByColumn,
+  filterPhotosByRatio,
+} from '@/utils';
+import type { IColumns, IResponsePhotos, ISearchOptions } from '@/types/interfaces';
 import axios from 'axios';
 import { defineStore } from 'pinia';
 import type {
@@ -43,6 +47,15 @@ export const useSearchStore = defineStore({
       const filteredQueries = deleteFalsyKeys(queries);
       return filteredQueries;
     },
+
+    filteredThreeColumnsByRatio: (state) => {
+      return filterPhotosByRatio(state.photos, 3);
+    },
+
+    filteredTwoColumnsByRatio: (state) => {
+      return filterPhotosByRatio(state.photos, 2);
+    },
+
     filteredByThreeColumn: (state) => {
       return {
         one: filterPhotosByColumn(state.photos, 3, 1),

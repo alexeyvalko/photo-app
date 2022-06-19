@@ -1,3 +1,4 @@
+import type { IColumns } from '@/types/interfaces';
 import type { PhotoBasic } from '@/types/photos';
 
 const columnsCounter = (columns: number) => {
@@ -20,6 +21,34 @@ export const filterPhotosByColumn = (
 ) => {
   const count = columnsCounter(totalColumns);
   return photos.filter(() => count() === column);
+};
+
+export const filterPhotosByRatio = (
+  photos: PhotoBasic[],
+  totalColumns: number,
+) => {
+  const obj = {} as {
+    [key: string]: PhotoBasic[];
+  };
+  const ratioArray = new Array(totalColumns).fill(0);
+  while (totalColumns) {
+    obj[`column_${totalColumns}`] = [];
+    totalColumns--;
+  }
+
+  if (photos.length > 0) {
+    photos.forEach((photo) => {
+      const ratio = photo.height / photo.width;
+      const min = Math.min(...ratioArray);
+      const index = ratioArray.indexOf(min);
+      if (index !== -1) {
+        ratioArray[index] += ratio;
+        obj[`column_${index + 1}`].push(photo);
+      }
+    });
+  }
+
+  return obj;
 };
 
 export const createObserver = (

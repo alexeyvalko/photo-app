@@ -6,6 +6,7 @@ import type {
   SearchOrderType,
   SearchOrientationType,
 } from '@/types/helpers';
+import type { PhotoBasic } from './photos';
 
 export interface IResponsePhotos<T> {
   type: ResponseTypeUnsplash;
@@ -52,4 +53,10 @@ export interface IColorsOptions {
     teal: string;
     blue: string;
   };
+}
+
+export interface IColumns {
+  column_1: PhotoBasic[];
+  column_2: PhotoBasic[];
+  column_3: PhotoBasic[];
 }

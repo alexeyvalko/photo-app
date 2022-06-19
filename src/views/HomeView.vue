@@ -5,7 +5,7 @@ import CustomSelect from '@/components/UI/CustomSelect.vue';
 import SkeletonItem from '@/components/Skeleton/SkeletonItem.vue';
 import { LIST_ORDER_OPTIONS } from '@/common/config';
 import { usePhotoStore } from '@/stores/photo';
-import { onMounted, computed } from 'vue';
+import { onMounted, computed, watch } from 'vue';
 
 document.title = `Free Stock Photos`;
 
@@ -17,11 +17,18 @@ onMounted(async () => {
 });
 
 const threeColumns = computed(() => {
-  return store.filteredByThreeColumn;
+  return store.filteredThreeColumnsByRatio;
 });
 const twoColumns = computed(() => {
-  return store.filteredByTwoColumn;
+  return store.filteredTwoColumnsByRatio;
 });
+
+watch(
+  () => store.filteredThreeColumnsByRatio,
+  () => {
+    console.log(store.filteredThreeColumnsByRatio);
+  },
+);
 </script>
 
 <template>
@@ -48,7 +55,7 @@ const twoColumns = computed(() => {
       />
     </Transition>
     <Transition name="fade">
-      <SkeletonItem :cards="9" v-if="store.isLoading"
+      <SkeletonItem :cards="27" v-if="store.isLoading"
     /></Transition>
   </div>
 </template>

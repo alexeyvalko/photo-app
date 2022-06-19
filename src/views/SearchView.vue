@@ -33,10 +33,10 @@ const watcher = () => {
 };
 
 const threeColumns = computed(() => {
-  return store.filteredByThreeColumn;
+  return store.filteredThreeColumnsByRatio;
 });
 const twoColumns = computed(() => {
-  return store.filteredByTwoColumn;
+  return store.filteredTwoColumnsByRatio;
 });
 
 const getComponentData = async () => {
@@ -85,7 +85,7 @@ watch(() => route.params.query, watcher);
         :loader="store.loadPosts"
     /></Transition>
     <Transition name="fade">
-      <SkeletonItem :cards="9" v-if="store.isLoading" />
+      <SkeletonItem :cards="27" v-if="store.isLoading" />
     </Transition>
   </div>
 </template>

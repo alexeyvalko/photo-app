@@ -6,13 +6,10 @@ import ObserverItem from '../ObserverItem.vue';
 
 const props = defineProps<{
   threeColumns: {
-    one: PhotoBasic[];
-    two: PhotoBasic[];
-    three: PhotoBasic[];
+    [key: string]: PhotoBasic[];
   };
   twoColumns: {
-    one: PhotoBasic[];
-    two: PhotoBasic[];
+    [key: string]: PhotoBasic[]
   };
   loader: () => void;
 }>();

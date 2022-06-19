@@ -1,6 +1,7 @@
 <template>
   <div class="'photo-container'">
     {{ route.params.id }}
+    <h2>In development</h2>
   </div>
 </template>
 

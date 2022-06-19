@@ -115,6 +115,10 @@ input[type='search']::-webkit-search-results-decoration {
   display: none;
 }
 
+a {
+  color: var(--primary-color)
+}
+
 .app {
   display: flex;
   flex-direction: column;

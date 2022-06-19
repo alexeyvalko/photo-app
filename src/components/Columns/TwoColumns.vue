@@ -1,12 +1,18 @@
 <template>
   <TwoColumnsLayout>
     <template #column-1>
-      <template v-for="photo in props.columns.one" :key="photo.id + 'two-1'">
+      <template
+        v-for="photo in props.columns.column_1"
+        :key="photo.id + 'two-1'"
+      >
         <PhotoCard :photo="photo" />
       </template>
     </template>
     <template #column-2>
-      <template v-for="photo in props.columns.two" :key="photo.id + 'two-2'">
+      <template
+        v-for="photo in props.columns.column_2"
+        :key="photo.id + 'two-2'"
+      >
         <PhotoCard :photo="photo" />
       </template>
     </template>
@@ -19,8 +25,7 @@ import TwoColumnsLayout from '@/components/Columns/TwoColumnsLayout.vue';
 import type { PhotoBasic } from '@/types/photos';
 const props = defineProps<{
   columns: {
-    one: PhotoBasic[];
-    two: PhotoBasic[];
+    [key: string]: PhotoBasic[]
   };
 }>();
 </script>
