@@ -41,7 +41,6 @@
   --navbar-height: 80px;
   --card-border-radius: 20px;
   --column-gutter: 30px;
-  --column-gutter-tablet: 15px;
   --columns: 3;
   --columns-tablet: 2;
   --columns-mobile: 2;
@@ -162,7 +161,7 @@ input[type='search']::-webkit-search-results-decoration {
   align-items: center;
   flex-wrap: wrap;
   padding: 20px 0;
-  gap: 30px;
+  gap: var(--navigation-gap);
 }
 
 @media (max-width: 768px) {

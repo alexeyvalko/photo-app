@@ -17,13 +17,13 @@
 .two-columns__column {
   display: flex;
   flex-direction: column;
-  gap: var(--column-gutter-tablet);
+  gap: calc(var(--column-gutter) / 2);
 }
 @media (max-width: 1024px) {
   .two-columns {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: var(--column-gutter-tablet);
+    gap: calc(var(--column-gutter) / 2);
   }
 }
 </style>

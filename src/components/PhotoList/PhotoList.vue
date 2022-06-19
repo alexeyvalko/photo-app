@@ -25,3 +25,9 @@ const props = defineProps<{
     <ObserverItem :callback="props.loader" />
   </div>
 </template>
+
+<style>
+.list-container {
+  padding-bottom: var(--column-gutter);
+}
+</style>
