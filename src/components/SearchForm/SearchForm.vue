@@ -9,12 +9,15 @@ import { encodeQuery } from '@/utils';
 const searchStore = useSearchStore();
 const router = useRouter();
 const isFocused = ref(false);
+const isBlurred = ref(!isFocused.value);
 const handleFocus = (newValue: boolean): void => {
   isFocused.value = newValue;
+  isBlurred.value = !newValue;
 };
 
 const handleSubmit = (): void => {
   if (searchStore.query) {
+    isBlurred.value = true;
     const query = encodeQuery(searchStore.query);
     router.push(`/search/photos/${query}`);
   }
@@ -24,7 +27,7 @@ const handleSubmit = (): void => {
 <template>
   <form @submit.prevent="handleSubmit" class="search-form">
     <div class="search-container" :class="{ 'active-search': isFocused }">
-      <SearchInput @focused="handleFocus" />
+      <SearchInput @focused="handleFocus" :isBlurred="isBlurred" />
       <SearchButton />
     </div>
   </form>
