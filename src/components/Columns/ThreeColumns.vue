@@ -33,7 +33,7 @@ import ThreeColumnsLayout from '@/components/Columns/ThreeColumnsLayout.vue';
 import type { PhotoBasic } from '@/types/photos';
 const props = defineProps<{
   columns: {
-    [key: string]: PhotoBasic[]
+    [key: string]: PhotoBasic[];
   };
 }>();
 </script>

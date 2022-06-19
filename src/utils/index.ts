@@ -1,4 +1,3 @@
-import type { IColumns } from '@/types/interfaces';
 import type { PhotoBasic } from '@/types/photos';
 
 const columnsCounter = (columns: number) => {

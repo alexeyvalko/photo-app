@@ -9,7 +9,7 @@ import {
   filterPhotosByColumn,
   filterPhotosByRatio,
 } from '@/utils';
-import type { IColumns, IResponsePhotos, ISearchOptions } from '@/types/interfaces';
+import type { IResponsePhotos, ISearchOptions } from '@/types/interfaces';
 import axios from 'axios';
 import { defineStore } from 'pinia';
 import type {

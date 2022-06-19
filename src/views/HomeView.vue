@@ -5,7 +5,7 @@ import CustomSelect from '@/components/UI/CustomSelect.vue';
 import SkeletonItem from '@/components/Skeleton/SkeletonItem.vue';
 import { LIST_ORDER_OPTIONS } from '@/common/config';
 import { usePhotoStore } from '@/stores/photo';
-import { onMounted, computed, watch } from 'vue';
+import { onMounted, computed } from 'vue';
 
 document.title = `Free Stock Photos`;
 
@@ -22,13 +22,6 @@ const threeColumns = computed(() => {
 const twoColumns = computed(() => {
   return store.filteredTwoColumnsByRatio;
 });
-
-watch(
-  () => store.filteredThreeColumnsByRatio,
-  () => {
-    console.log(store.filteredThreeColumnsByRatio);
-  },
-);
 </script>
 
 <template>

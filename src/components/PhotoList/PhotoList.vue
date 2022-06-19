@@ -9,7 +9,7 @@ const props = defineProps<{
     [key: string]: PhotoBasic[];
   };
   twoColumns: {
-    [key: string]: PhotoBasic[]
+    [key: string]: PhotoBasic[];
   };
   loader: () => void;
 }>();

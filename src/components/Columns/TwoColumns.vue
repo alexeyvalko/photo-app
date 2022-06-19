@@ -25,7 +25,7 @@ import TwoColumnsLayout from '@/components/Columns/TwoColumnsLayout.vue';
 import type { PhotoBasic } from '@/types/photos';
 const props = defineProps<{
   columns: {
-    [key: string]: PhotoBasic[]
+    [key: string]: PhotoBasic[];
   };
 }>();
 </script>
