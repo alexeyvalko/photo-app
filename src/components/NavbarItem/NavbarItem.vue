@@ -75,5 +75,12 @@ import HamburgerButton from '@/components/MobileMenu/HamburgerButton.vue';
   .navigation {
     display: none;
   }
+
+  .navbar__left {
+    gap: calc(var(--navigation-gap) / 3);
+  }
+  .navbar {
+    gap: calc(var(--navigation-gap) / 3);
+  }
 }
 </style>

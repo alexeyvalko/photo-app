@@ -9,6 +9,11 @@ const routes: RouteRecordRaw[] = [
     component: HomeView,
   },
   {
+    path: '/photo/:id',
+    name: 'photo',
+    component: () => import('@/views/PhotoView.vue'),
+  },
+  {
     path: '/search/photos/:query?',
     name: 'search',
     component: SearchView,
@@ -16,9 +21,6 @@ const routes: RouteRecordRaw[] = [
   {
     path: '/about',
     name: 'about',
-    // route level code-splitting
-    // this generates a separate chunk (About.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
     component: () => import('@/views/AboutView.vue'),
   },
   {

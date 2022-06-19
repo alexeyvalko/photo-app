@@ -3,7 +3,7 @@
     class="photo-card"
     :style="`background-color: ${props.photo.color}; aspect-ratio: ${props.photo.width} / ${props.photo.height}`"
   >
-    <a href="#" class="card-link">
+    <RouterLink :to="`/photo/${props.photo.id}`" class="card-link">
       <img
         :src="props.photo.urls.regular"
         :srcset="`${props.photo.urls.small_s3} 100w, ${props.photo.urls.thumb} 200w, ${props.photo.urls.small} 400w, ${props.photo.urls.medium} 600w, ${props.photo.urls.regular}  800w, ${props.photo.urls.full} 1200w`"
@@ -16,7 +16,7 @@
         class="photo-card__image"
         loading="lazy"
       />
-    </a>
+    </RouterLink>
     <CardOverlay :photo="props.photo" />
   </div>
 </template>
@@ -35,7 +35,7 @@ const props = defineProps<{
   overflow: hidden;
   width: 100%;
   position: relative;
-  border-radius: 15px;
+  border-radius: 20px;
 }
 
 .photo-card__image {
