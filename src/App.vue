@@ -8,7 +8,11 @@ import MobileMenu from '@/components/MobileMenu/MobileMenu.vue';
   <NavbarItem />
   <main class="main">
     <div class="wrapper">
-      <RouterView />
+      <router-view v-slot="{ Component }">
+        <transition name="fade">
+          <component :is="Component" />
+        </transition>
+      </router-view>
     </div>
   </main>
   <MobileMenu />
@@ -16,4 +20,13 @@ import MobileMenu from '@/components/MobileMenu/MobileMenu.vue';
 
 <style>
 @import '@/styles/base.css';
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.2s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
 </style>

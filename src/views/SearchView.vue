@@ -76,12 +76,13 @@ watch(() => route.params.query, watcher);
         @changeOption="store.setOrderBy"
       />
     </div>
+
+    <PhotoList
+      :threeColumns="threeColumns"
+      :twoColumns="twoColumns"
+      :loader="store.loadPosts"
+    />
   </div>
-  <PhotoList
-    :threeColumns="threeColumns"
-    :twoColumns="twoColumns"
-    :loader="store.loadPosts"
-  />
 </template>
 
 <style scoped>

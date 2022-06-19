@@ -19,7 +19,7 @@ const props = defineProps<{
 </script>
 
 <template>
-  <div class="container">
+  <div class="list-container">
     <ThreeColumns :columns="props.threeColumns" />
     <TwoColumns :columns="props.twoColumns" />
     <ObserverItem :callback="props.loader" />

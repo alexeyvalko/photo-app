@@ -38,13 +38,13 @@ const twoColumns = computed(() => {
         @changeOption="store.setOrderBy"
       />
     </div>
-  </div>
 
-  <PhotoList
-    :threeColumns="threeColumns"
-    :twoColumns="twoColumns"
-    :loader="store.loadPosts"
-  />
+    <PhotoList
+      :threeColumns="threeColumns"
+      :twoColumns="twoColumns"
+      :loader="store.loadPosts"
+    />
+  </div>
 </template>
 
 <style>

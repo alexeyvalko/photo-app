@@ -18,8 +18,11 @@
         - A progressive Node.js framework for building efficient, reliable and
         scalable server-side applications.
       </li>
-       <li>
-        <a target="_blank" rel="noopener noreferrer" href="https://unsplash.com/developers"
+      <li>
+        <a
+          target="_blank"
+          rel="noopener noreferrer"
+          href="https://unsplash.com/developers"
           >Unsplash API</a
         >
         - Largest open collection of high-quality photos.
@@ -29,7 +32,6 @@
 </template>
 
 <style>
-
 .about {
   padding: 20px 0;
 }

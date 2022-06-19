@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="'photo-container'">
     {{ route.params.id }}
   </div>
 </template>
