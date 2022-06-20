@@ -14,6 +14,7 @@ export const usePhotoStore = defineStore({
     totalPages: 1,
     orderBy: 'latest' as OrderByListType,
     photos: [] as PhotoBasic[],
+    currentPhoto: null as PhotoBasic | null,
     isLoading: false,
   }),
 
@@ -85,6 +86,10 @@ export const usePhotoStore = defineStore({
     setOrderBy(orderBy: OrderByListType) {
       this.orderBy = orderBy;
       this.getPhotoList();
+    },
+
+    setCurrentPhoto(photo: PhotoBasic) {
+      this.currentPhoto = photo;
     },
   },
 });
