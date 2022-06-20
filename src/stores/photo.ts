@@ -1,6 +1,6 @@
 import { SERVER_ENDPOINTS, SERVER_URL } from '@/common/config';
 import type { PhotoBasic } from '@/types/photos';
-import { filterPhotosByColumn, filterPhotosByRatio } from '@/utils';
+import { filterPhotosByRatio } from '@/utils';
 import type { IPhotoListParams, IResponsePhotos } from '@/types/interfaces';
 import axios from 'axios';
 import { defineStore } from 'pinia';
@@ -26,19 +26,19 @@ export const usePhotoStore = defineStore({
       return filterPhotosByRatio(state.photos, 2);
     },
 
-    filteredByThreeColumn: (state) => {
-      return {
-        one: filterPhotosByColumn(state.photos, 3, 1),
-        two: filterPhotosByColumn(state.photos, 3, 2),
-        three: filterPhotosByColumn(state.photos, 3, 3),
-      };
-    },
-    filteredByTwoColumn: (state) => {
-      return {
-        one: filterPhotosByColumn(state.photos, 2, 1),
-        two: filterPhotosByColumn(state.photos, 2, 2),
-      };
-    },
+    // filteredByThreeColumn: (state) => {
+    //   return {
+    //     one: filterPhotosByColumn(state.photos, 3, 1),
+    //     two: filterPhotosByColumn(state.photos, 3, 2),
+    //     three: filterPhotosByColumn(state.photos, 3, 3),
+    //   };
+    // },
+    // filteredByTwoColumn: (state) => {
+    //   return {
+    //     one: filterPhotosByColumn(state.photos, 2, 1),
+    //     two: filterPhotosByColumn(state.photos, 2, 2),
+    //   };
+    // },
   },
 
   actions: {
