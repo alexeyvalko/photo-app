@@ -11,7 +11,7 @@
       <div class="info-item">
         <IconCalendar class="info-icon" />Published on
         {{
-          new Date(props.currentPhoto.created_at).toLocaleString('en-GB', {
+          new Date(props.currentPhoto.created_at).toLocaleString(lang, {
             year: 'numeric',
             month: 'long',
             day: 'numeric',
@@ -40,10 +40,13 @@ import IconLocation from '../icons/IconLocation.vue';
 import IconView from '../icons/IconView.vue';
 import IconDownload from '../icons/IconDownload.vue';
 import IconCalendar from '../icons/IconCalendar.vue';
+import { getNavigatorLanguage } from '@/utils';
 
 const props = defineProps<{
   currentPhoto: Photo;
 }>();
+
+const lang = getNavigatorLanguage();
 </script>
 
 <style scoped>

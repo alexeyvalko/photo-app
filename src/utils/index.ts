@@ -110,3 +110,11 @@ export const decodeQuery = (query: string) => {
   const content = decodedQuery.replace(/~~pct~~/g, '%');
   return content;
 };
+
+export const getNavigatorLanguage = () => {
+  if (navigator.languages && navigator.languages.length) {
+    return navigator.languages[0];
+  } else {
+    return navigator.language || 'en-GB';
+  }
+};
