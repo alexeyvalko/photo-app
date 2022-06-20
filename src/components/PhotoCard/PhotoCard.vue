@@ -1,7 +1,7 @@
 <template>
   <div
     class="photo-card"
-    :style="`background-color: ${props.photo.color}; aspect-ratio: calc(${props.photo.width} / ${props.photo.height})`"
+    :style="`background-color: ${props.photo.color}; aspect-ratio: ${props.photo.width} / ${props.photo.height}`"
   >
     <RouterLink
       :to="`/photo/${props.photo.id}`"
@@ -34,6 +34,7 @@ const props = defineProps<{
   photo: PhotoBasic;
 }>();
 const store = usePhotoStore();
+
 </script>
 
 <style scoped>

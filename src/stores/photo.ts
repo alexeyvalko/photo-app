@@ -1,7 +1,11 @@
 import { SERVER_ENDPOINTS, SERVER_URL } from '@/common/config';
 import type { PhotoBasic } from '@/types/photos';
 import { filterPhotosByRatio } from '@/utils';
-import type { IPhotoListParams, IResponsePhotos } from '@/types/interfaces';
+import type {
+  IPhotoListParams,
+  IResponsePhoto,
+  IResponsePhotos,
+} from '@/types/interfaces';
 import axios from 'axios';
 import { defineStore } from 'pinia';
 import type { OrderByListType } from '@/types/helpers';
@@ -86,6 +90,20 @@ export const usePhotoStore = defineStore({
     setOrderBy(orderBy: OrderByListType) {
       this.orderBy = orderBy;
       this.getPhotoList();
+    },
+
+    async fetchPhoto(photoId: string) {
+      try {
+        this.isLoading = true;
+        const response = await axios.get<IResponsePhoto<PhotoBasic>>(
+          `${SERVER_URL}/${SERVER_ENDPOINTS.PHOTO}/${photoId}`,
+        );
+        this.currentPhoto = response.data.result;
+      } catch {
+        console.error(`Failed to fetch photo ${photoId}`);
+      } finally {
+        this.isLoading = false;
+      }
     },
 
     setCurrentPhoto(photo: PhotoBasic) {

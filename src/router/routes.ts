@@ -9,7 +9,7 @@ const routes: RouteRecordRaw[] = [
     component: HomeView,
   },
   {
-    path: '/photo/:id',
+    path: '/photo/:photoId',
     name: 'photo',
     component: () => import('@/views/PhotoView.vue'),
   },

@@ -5,7 +5,7 @@ import HeaderItem from '@/components/UI/HeaderItem.vue';
 import PhotoList from '@/components/PhotoList/PhotoList.vue';
 import CustomSelect from '@/components/UI/CustomSelect.vue';
 import ColorsSelect from '@/components/UI/ColorsSelect.vue';
-import SkeletonItem from '@/components/Skeleton/SkeletonItem.vue';
+import PhotoListSkeleton from '@/components/Skeleton/PhotoListSkeleton.vue';
 import {
   SEARCH_ORDER_OPTIONS,
   ORIENTATION_OPTIONS,
@@ -84,7 +84,7 @@ watch(() => route.params.query, watcher);
         :loader="store.loadPosts"
     /></Transition>
     <Transition name="fade">
-      <SkeletonItem :cards="27" v-if="store.isLoading" />
+      <PhotoListSkeleton :cards="27" v-if="store.isLoading" />
     </Transition>
 
     <div

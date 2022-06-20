@@ -60,3 +60,15 @@ export interface IColumns {
   column_2: PhotoBasic[];
   column_3: PhotoBasic[];
 }
+
+export interface IResponsePhoto<T> {
+  type: ResponseTypeUnsplash;
+  statusCode: number;
+  result: T;
+  errors?: never;
+}
+
+export interface ITag {
+  type: string;
+  title: string;
+}

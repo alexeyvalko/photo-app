@@ -1,4 +1,5 @@
 import type { Nullable } from './helpers';
+import type { ITag } from './interfaces';
 import type { UserBasic } from './user';
 
 interface StatValue {
@@ -50,4 +51,35 @@ export interface PhotoBasic extends PhotoVeryBasic {
   promoted_at: Nullable<string>;
   width: number;
   user: UserBasic;
+}
+
+export interface Photo extends PhotoBasic {
+  exif: {
+    make: Nullable<string>;
+    model: Nullable<string>;
+    name: Nullable<string>;
+    exposure_time: Nullable<string>;
+    aperture: Nullable<string>;
+    focal_length: Nullable<string>;
+    iso: Nullable<number>;
+  };
+  location: {
+    title: Nullable<string>;
+    name: Nullable<string>;
+    city: Nullable<string>;
+    country: Nullable<string>;
+    position: {
+      latitude: Nullable<number>;
+      longitude: Nullable<number>;
+    };
+  };
+  meta: {
+    index: boolean;
+  };
+  public_domain: boolean;
+  tags: ITag[];
+  tags_preview: ITag[];
+  views: number;
+  downloads: number;
+  topics: string[];
 }
