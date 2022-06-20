@@ -59,7 +59,6 @@ watch(() => route.params.query, watcher);
     <div class="header-container">
       <HeaderItem> {{ header }} Photos</HeaderItem>
     </div>
-
     <div class="filter-wrapper">
       <ColorsSelect
         :options="COLOR_OPTIONS"
@@ -87,6 +86,13 @@ watch(() => route.params.query, watcher);
     <Transition name="fade">
       <SkeletonItem :cards="27" v-if="store.isLoading" />
     </Transition>
+
+    <div
+      class="header-container"
+      v-if="!store.isLoading && store.photos.length === 0"
+    >
+      <h2>Oops, can't find anything</h2>
+    </div>
   </div>
 </template>
 

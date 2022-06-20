@@ -1,9 +1,13 @@
 <template>
   <div
     class="photo-card"
-    :style="`background-color: ${props.photo.color}; aspect-ratio: ${props.photo.width} / ${props.photo.height}`"
+    :style="`background-color: ${props.photo.color}; aspect-ratio: calc(${props.photo.width} / ${props.photo.height})`"
   >
-    <RouterLink :to="`/photo/${props.photo.id}`" class="card-link">
+    <RouterLink
+      :to="`/photo/${props.photo.id}`"
+      class="card-link"
+      @click="store.setCurrentPhoto(props.photo)"
+    >
       <img
         :src="props.photo.urls.regular"
         :srcset="`${props.photo.urls.small_s3} 100w, ${props.photo.urls.thumb} 200w, ${props.photo.urls.small} 400w, ${props.photo.urls.medium} 600w, ${props.photo.urls.regular}  800w, ${props.photo.urls.full} 1200w`"
@@ -24,10 +28,12 @@
 <script setup lang="ts">
 import type { PhotoBasic } from '@/types/photos';
 import CardOverlay from '@/components/PhotoCard/CardOverlay.vue';
+import { usePhotoStore } from '@/stores/photo';
 
 const props = defineProps<{
   photo: PhotoBasic;
 }>();
+const store = usePhotoStore();
 </script>
 
 <style scoped>
