@@ -1,5 +1,5 @@
 import { SERVER_ENDPOINTS, SERVER_URL } from '@/common/config';
-import type { PhotoBasic } from '@/types/photos';
+import type { Photo, PhotoBasic } from '@/types/photos';
 import { filterPhotosByRatio } from '@/utils';
 import type {
   IPhotoListParams,
@@ -18,7 +18,7 @@ export const usePhotoStore = defineStore({
     totalPages: 1,
     orderBy: 'latest' as OrderByListType,
     photos: [] as PhotoBasic[],
-    currentPhoto: null as PhotoBasic | null,
+    currentPhoto: null as Photo | null,
     isLoading: false,
   }),
 
@@ -95,7 +95,7 @@ export const usePhotoStore = defineStore({
     async fetchPhoto(photoId: string) {
       try {
         this.isLoading = true;
-        const response = await axios.get<IResponsePhoto<PhotoBasic>>(
+        const response = await axios.get<IResponsePhoto<Photo>>(
           `${SERVER_URL}/${SERVER_ENDPOINTS.PHOTO}/${photoId}`,
         );
         this.currentPhoto = response.data.result;
@@ -106,7 +106,7 @@ export const usePhotoStore = defineStore({
       }
     },
 
-    setCurrentPhoto(photo: PhotoBasic) {
+    setCurrentPhoto(photo: Photo) {
       this.currentPhoto = photo;
     },
   },

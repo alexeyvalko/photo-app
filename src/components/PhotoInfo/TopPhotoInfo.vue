@@ -79,4 +79,11 @@ const props = defineProps<{
   align-items: center;
   justify-content: center;
 }
+
+@media screen and (max-width: 768px) {
+  .top-info {
+    justify-content: center;
+  }
+  
+}
 </style>

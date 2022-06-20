@@ -3,6 +3,7 @@ import { usePhotoStore } from '@/stores/photo';
 import { onMounted } from 'vue';
 import { useRoute } from 'vue-router';
 import TopPhotoInfo from '@/components/PhotoInfo/TopPhotoInfo.vue';
+import BottomInfo from '../components/PhotoInfo/BottomInfo.vue';
 const store = usePhotoStore();
 const route = useRoute();
 
@@ -45,6 +46,7 @@ onMounted(() => {
           />
         </div>
       </div>
+      <BottomInfo :current-photo="store.currentPhoto" />
     </div>
   </div>
 </template>
