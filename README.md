@@ -23,7 +23,7 @@ npm run dev
 npm run build
 ```
 ## How to run app
-In order to run this app locally, you must run [photo REST service](https://vuejs.org/).
+In order to run this app locally, you must run [photo REST service](https://github.com/alexeyvalko/photo-rest-service).
 
 ## Environment variables
 ```sh
