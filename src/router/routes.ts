@@ -1,6 +1,8 @@
 import type { RouteRecordRaw } from 'vue-router';
 import HomeView from '@/views/HomeView.vue';
 import SearchView from '@/views/SearchView.vue';
+import PhotoView from '@/views/PhotoView.vue';
+import AboutView from '@/views/AboutView.vue';
 
 const routes: RouteRecordRaw[] = [
   {
@@ -11,7 +13,7 @@ const routes: RouteRecordRaw[] = [
   {
     path: '/photo/:photoId',
     name: 'photo',
-    component: () => import('@/views/PhotoView.vue'),
+    component: PhotoView,
   },
   {
     path: '/search/photos/:query?',
@@ -21,7 +23,7 @@ const routes: RouteRecordRaw[] = [
   {
     path: '/about',
     name: 'about',
-    component: () => import('@/views/AboutView.vue'),
+    component: AboutView,
   },
   {
     path: '/:pathMatch(.*)*',
