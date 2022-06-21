@@ -1,6 +1,6 @@
 {
-  "name": "image-app",
-  "version": "0.0.0",
+  "name": "photo-app",
+  "version": "0.0.1",
   "scripts": {
     "dev": "vite --open",
     "build": "run-p type-check build-only",

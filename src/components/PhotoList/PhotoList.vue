@@ -1,15 +1,15 @@
 <script setup lang="ts">
 import ThreeColumns from '@/components/Columns/ThreeColumns.vue';
 import TwoColumns from '@/components/Columns/TwoColumns.vue';
-import type { PhotoBasic } from '@/types/photos';
+import type { Photo } from '@/types/photos';
 import ObserverItem from '../ObserverItem.vue';
 
 const props = defineProps<{
   threeColumns: {
-    [key: string]: PhotoBasic[];
+    [key: string]: Photo[];
   };
   twoColumns: {
-    [key: string]: PhotoBasic[];
+    [key: string]: Photo[];
   };
   loader: () => void;
 }>();
