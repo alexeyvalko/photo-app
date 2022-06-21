@@ -30,20 +30,6 @@ export const usePhotoStore = defineStore({
     filteredTwoColumnsByRatio: (state) => {
       return filterPhotosByRatio(state.photos, 2);
     },
-
-    // filteredByThreeColumn: (state) => {
-    //   return {
-    //     one: filterPhotosByColumn(state.photos, 3, 1),
-    //     two: filterPhotosByColumn(state.photos, 3, 2),
-    //     three: filterPhotosByColumn(state.photos, 3, 3),
-    //   };
-    // },
-    // filteredByTwoColumn: (state) => {
-    //   return {
-    //     one: filterPhotosByColumn(state.photos, 2, 1),
-    //     two: filterPhotosByColumn(state.photos, 2, 2),
-    //   };
-    // },
   },
 
   actions: {
