@@ -23,6 +23,7 @@ const props = defineProps<{
 @media (max-width: 768px) {
   .skeleton-container {
     grid-template-columns: repeat(2, 1fr);
+    grid-gap: calc(var(--column-gutter) / 2);
   }
 }
 </style>
