@@ -79,6 +79,7 @@ const lang = getNavigatorLanguage();
 .download-icon {
   width: 16px;
   height: 16px;
+  margin-right: 5px;
 }
 .bottom-info {
   font-size: 1.4rem;
