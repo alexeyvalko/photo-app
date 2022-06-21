@@ -9,14 +9,17 @@
         <span class="info-text"> {{ props.photo.location.title }}</span>
       </div>
       <div class="info-item">
-        <IconCalendar class="info-icon" />Published on
-        <span class="info-text">{{
-          new Date(props.photo.created_at).toLocaleString(lang, {
-            year: 'numeric',
-            month: 'long',
-            day: 'numeric',
-          })
-        }}</span>
+        <IconCalendar class="info-icon" />
+        Published on
+        <span class="info-text">
+          {{
+            new Date(props.photo.created_at).toLocaleString(lang, {
+              year: 'numeric',
+              month: 'long',
+              day: 'numeric',
+            })
+          }}
+        </span>
       </div>
     </div>
     <div class="info-container" v-if="props.photo.views">
