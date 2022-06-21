@@ -5,15 +5,15 @@
         <img
           width="64"
           height="64"
-          :src="props.currentPhoto.user.profile_image.large"
-          :alt="`${props.currentPhoto.user.name} avatar.`"
+          :src="props.photo.user.profile_image.large"
+          :alt="`${props.photo.user.name} avatar.`"
         />
       </div>
-      <div class="author-name">{{ props.currentPhoto.user.name }}</div>
+      <div class="author-name">{{ props.photo.user.name }}</div>
     </div>
     <a
-      :href="`${props.currentPhoto.urls.raw}&dl=${props.currentPhoto.user.username}-${props.currentPhoto.id}.jpg`"
-      :download="`${props.currentPhoto.user.username}-${props.currentPhoto.id}.jpg`"
+      :href="`${props.photo.urls.raw}&dl=${props.photo.user.username}-${props.photo.id}.jpg`"
+      :download="`${props.photo.user.username}-${props.photo.id}.jpg`"
       rel="nofollow"
       ><button class="button download-button">Free download</button></a
     >
@@ -21,10 +21,10 @@
 </template>
 
 <script setup lang="ts">
-import type { PhotoBasic } from '@/types/photos';
+import type { Photo } from '@/types/photos';
 
 const props = defineProps<{
-  currentPhoto: PhotoBasic;
+  photo: Photo;
 }>();
 </script>
 
@@ -84,6 +84,5 @@ const props = defineProps<{
   .top-info {
     justify-content: center;
   }
-  
 }
 </style>

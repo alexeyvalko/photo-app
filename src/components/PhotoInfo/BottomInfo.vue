@@ -3,32 +3,31 @@
     <div class="info-container">
       <div
         class="info-item"
-        v-if="props.currentPhoto.location && props.currentPhoto.location.title"
+        v-if="props.photo.location && props.photo.location.title"
       >
         <IconLocation class="info-icon" />
-        <span> {{ props.currentPhoto.location.title }}</span>
+        <span class="info-text"> {{ props.photo.location.title }}</span>
       </div>
       <div class="info-item">
         <IconCalendar class="info-icon" />Published on
-        {{
-          new Date(props.currentPhoto.created_at).toLocaleString(lang, {
+        <span class="info-text">{{
+          new Date(props.photo.created_at).toLocaleString(lang, {
             year: 'numeric',
             month: 'long',
             day: 'numeric',
           })
-        }}
+        }}</span>
       </div>
     </div>
-    <div class="info-container">
+    <div class="info-container" v-if="props.photo.views">
       <div class="info-item">
-        <IconView class="info-icon" />{{
-          props.currentPhoto?.views?.toLocaleString()
-        }}
+        <IconView class="info-icon" />{{ props.photo?.views?.toLocaleString() }}
       </div>
       <div class="info-item">
-        <IconDownload class="info-icon download-icon" />{{
-          props.currentPhoto?.downloads?.toLocaleString()
-        }}
+        <IconDownload class="info-icon download-icon" />
+        <span class="info-text">{{
+          props.photo?.downloads?.toLocaleString()
+        }}</span>
       </div>
     </div>
   </div>
@@ -43,7 +42,7 @@ import IconCalendar from '../icons/IconCalendar.vue';
 import { getNavigatorLanguage } from '@/utils';
 
 const props = defineProps<{
-  currentPhoto: Photo;
+  photo: Photo;
 }>();
 
 const lang = getNavigatorLanguage();
@@ -60,6 +59,15 @@ const lang = getNavigatorLanguage();
   align-items: center;
   justify-content: flex-start;
   gap: 10px;
+  flex: 1 1;
+  overflow: hidden;
+}
+
+.info-text {
+  display: inline-block;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 .info-icon {
@@ -85,6 +93,10 @@ const lang = getNavigatorLanguage();
 @media screen and (max-width: 768px) {
   .bottom-info {
     justify-content: flex-start;
+  }
+
+  .info-container {
+    width: 100%;
   }
 }
 </style>
