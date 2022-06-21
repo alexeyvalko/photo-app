@@ -30,10 +30,10 @@
 <script setup lang="ts">
 import PhotoCard from '@/components/PhotoCard/PhotoCard.vue';
 import ThreeColumnsLayout from '@/components/Columns/ThreeColumnsLayout.vue';
-import type { PhotoBasic } from '@/types/photos';
+import type { Photo } from '@/types/photos';
 const props = defineProps<{
   columns: {
-    [key: string]: PhotoBasic[];
+    [key: string]: Photo[];
   };
 }>();
 </script>

@@ -22,10 +22,10 @@
 <script setup lang="ts">
 import PhotoCard from '@/components/PhotoCard/PhotoCard.vue';
 import TwoColumnsLayout from '@/components/Columns/TwoColumnsLayout.vue';
-import type { PhotoBasic } from '@/types/photos';
+import type { Photo } from '@/types/photos';
 const props = defineProps<{
   columns: {
-    [key: string]: PhotoBasic[];
+    [key: string]: Photo[];
   };
 }>();
 </script>

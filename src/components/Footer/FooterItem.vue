@@ -29,4 +29,10 @@
   text-decoration: none;
   font-weight: 600;
 }
+
+@media screen and (max-width: 768px) {
+  .footer-container {
+    text-align: center;
+  }
+}
 </style>

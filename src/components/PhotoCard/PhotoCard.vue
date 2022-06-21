@@ -26,15 +26,14 @@
 </template>
 
 <script setup lang="ts">
-import type { PhotoBasic } from '@/types/photos';
+import type { Photo } from '@/types/photos';
 import CardOverlay from '@/components/PhotoCard/CardOverlay.vue';
 import { usePhotoStore } from '@/stores/photo';
 
 const props = defineProps<{
-  photo: PhotoBasic;
+  photo: Photo;
 }>();
 const store = usePhotoStore();
-
 </script>
 
 <style scoped>
@@ -49,7 +48,10 @@ const store = usePhotoStore();
   width: 100%;
   height: auto;
 }
-.photo-card:hover .overlay {
-  opacity: 1;
+
+@media (hover: hover) {
+  .photo-card:hover .overlay {
+    opacity: 1;
+  }
 }
 </style>

@@ -1,11 +1,8 @@
-import type { PhotoBasic } from '@/types/photos';
+import type { Photo } from '@/types/photos';
 
-export const filterPhotosByRatio = (
-  photos: PhotoBasic[],
-  totalColumns: number,
-) => {
+export const filterPhotosByRatio = (photos: Photo[], totalColumns: number) => {
   const obj = {} as {
-    [key: string]: PhotoBasic[];
+    [key: string]: Photo[];
   };
   const ratioArray = new Array(totalColumns).fill(0);
   while (totalColumns) {

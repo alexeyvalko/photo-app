@@ -3,7 +3,7 @@ import {
   SERVER_ENDPOINTS,
   SERVER_URL,
 } from '@/common/config';
-import type { PhotoBasic } from '@/types/photos';
+import type { Photo } from '@/types/photos';
 import { deleteFalsyKeys, filterPhotosByRatio } from '@/utils';
 import type { IResponsePhotos, ISearchOptions } from '@/types/interfaces';
 import axios from 'axios';
@@ -29,7 +29,7 @@ export const useSearchStore = defineStore({
     collectionIds: [],
     lang: 'en',
     totalPages: 1,
-    photos: [] as PhotoBasic[],
+    photos: [] as Photo[],
     isLoading: false,
   }),
 
@@ -58,7 +58,7 @@ export const useSearchStore = defineStore({
       try {
         const filteredParams = deleteFalsyKeys(params) as ISearchOptions;
         this.isLoading = true;
-        const response = await axios.get<IResponsePhotos<PhotoBasic>>(
+        const response = await axios.get<IResponsePhotos<Photo>>(
           `${SERVER_URL}/${endpoint}`,
           {
             params: filteredParams,

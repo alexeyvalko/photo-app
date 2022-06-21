@@ -81,6 +81,13 @@ const props = defineProps<{
 }
 
 @media screen and (max-width: 768px) {
+  .download-button {
+    padding: 8px 12px;
+  }
+  .author-avatar {
+    width: 50px;
+    height: 50px;
+  }
   .top-info {
     justify-content: center;
   }
