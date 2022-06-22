@@ -5,6 +5,7 @@ import { useRoute } from 'vue-router';
 import TopPhotoInfo from '@/components/PhotoInfo/TopPhotoInfo.vue';
 import BottomInfo from '@/components/PhotoInfo/BottomInfo.vue';
 import PhotoItem from '@/components/PhotoItem.vue';
+import BottomInfoSkeleton from '@/components/Skeleton/BottomInfoSkeleton.vue';
 const store = usePhotoStore();
 const route = useRoute();
 
@@ -21,7 +22,8 @@ onMounted(() => {
     <div class="photo-wrapper" v-if="store.currentPhoto">
       <TopPhotoInfo :photo="store.currentPhoto" />
       <PhotoItem :photo="store.currentPhoto" />
-      <BottomInfo :photo="store.currentPhoto" />
+      <BottomInfo :photo="store.currentPhoto" v-if="!store.isLoading" />
+      <BottomInfoSkeleton v-if="store.isLoading" />
     </div>
   </div>
 </template>

@@ -2,7 +2,13 @@
   <div class="bottom-info">
     <div class="info-container">
       <div
-        class="info-item"
+        class="info-item location-info"
+        @click="
+          router.push({
+            name: 'search',
+            params: { query: props.photo.location.title },
+          })
+        "
         v-if="props.photo.location && props.photo.location.title"
       >
         <IconLocation class="info-icon" />
@@ -19,6 +25,13 @@
               day: 'numeric',
             })
           }}
+        </span>
+      </div>
+      <div class="info-item">
+        <IconResolution class="info-icon resolution-icon" />
+
+        <span class="info-text">
+          {{ props.photo.width + 'x' + props.photo.height }}
         </span>
       </div>
     </div>
@@ -43,7 +56,10 @@ import IconView from '../icons/IconView.vue';
 import IconDownload from '../icons/IconDownload.vue';
 import IconCalendar from '../icons/IconCalendar.vue';
 import { getNavigatorLanguage } from '@/utils';
+import IconResolution from '../icons/IconResolution.vue';
+import { useRouter } from 'vue-router';
 
+const router = useRouter();
 const props = defineProps<{
   photo: Photo;
 }>();
@@ -77,12 +93,30 @@ const lang = getNavigatorLanguage();
   width: 20px;
   height: 20px;
   fill: var(--color-text);
+
+  transition: all 0.3s ease;
 }
 
 .download-icon {
   width: 16px;
   height: 16px;
   margin-right: 5px;
+}
+
+.resolution-icon {
+  margin-left: -2px;
+  width: 24px;
+  height: 24px;
+}
+
+.location-info {
+  cursor: pointer;
+}
+
+.location-info:hover .info-icon {
+  opacity: 0.9;
+  fill: var(--primary-color);
+  transform: translate(0, -2px);
 }
 .bottom-info {
   font-size: 1.4rem;

@@ -100,6 +100,7 @@ const props = defineProps<{
 
 .overlay {
   display: none;
+  visibility: hidden;
   pointer-events: none;
   opacity: 0;
   position: absolute;
@@ -146,6 +147,7 @@ const props = defineProps<{
 @media (hover: hover) {
   .overlay {
     display: block;
+    visibility: visible;
   }
 }
 </style>
