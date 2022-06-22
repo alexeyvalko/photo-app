@@ -57,14 +57,13 @@ const props = defineProps<{
 }
 
 .author-name {
-  opacity: 0.8;
   max-width: 100%;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
   font-size: 1.6rem;
   font-weight: 600;
-  color: var(--white-mute);
+  color: var(--color-heading);
 }
 
 .author-avatar {
