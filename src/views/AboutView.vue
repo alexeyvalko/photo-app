@@ -33,7 +33,7 @@
         <a
           target="_blank"
           rel="noopener noreferrer"
-          href="https://github.com/alexeyvalko"
+          href="https://github.com/alexeyvalko/photo-app"
           >Frontend</a
         >
         - github repository.
@@ -42,7 +42,7 @@
         <a
           target="_blank"
           rel="noopener noreferrer"
-          href="https://github.com/alexeyvalko"
+          href="https://github.com/alexeyvalko/photo-rest-service"
           >Backend</a
         >
         - github repository.
