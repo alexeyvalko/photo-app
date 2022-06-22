@@ -1,67 +1,68 @@
 <template>
-  <div class="bottom-info">
-    <div class="info-container">
-      <div
-        class="info-item location-info"
-        @click="
-          router.push({
-            name: 'search',
-            params: { query: props.photo.location.title },
-          })
-        "
-        v-if="props.photo.location && props.photo.location.title"
-      >
-        <IconLocation class="info-icon" />
-        <span class="info-text"> {{ props.photo.location.title }}</span>
-      </div>
-      <div class="info-item">
-        <IconCalendar class="info-icon" />
-        Published on
-        <span class="info-text">
-          {{
-            new Date(props.photo.created_at).toLocaleString(lang, {
-              year: 'numeric',
-              month: 'long',
-              day: 'numeric',
+  <div class="bottom-wrapper">
+    <div class="bottom-info" v-if="!props.isLoading">
+      <div class="info-container">
+        <div
+          class="info-item location-info"
+          @click="
+            router.push({
+              name: 'search',
+              params: { query: props.photo.location.title },
             })
-          }}
-        </span>
-      </div>
-      <div class="info-item">
-        <IconResolution class="info-icon resolution-icon" />
+          "
+          v-if="props.photo.location && props.photo.location.title"
+        >
+          <IconLocation class="info-icon" />
+          <span class="info-text"> {{ props.photo.location.title }}</span>
+        </div>
+        <div class="info-item">
+          <IconCalendar class="info-icon" />
+          Published on
+          <span class="info-text">
+            {{
+              new Date(props.photo.created_at).toLocaleString(lang, {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric',
+              })
+            }}
+          </span>
+        </div>
+        <div class="info-item">
+          <IconResolution class="info-icon resolution-icon" />
 
-        <span class="info-text">
-          {{ props.photo.width + 'x' + props.photo.height }}
-        </span>
+          <span class="info-text">
+            {{ props.photo.width + 'x' + props.photo.height }}
+          </span>
+        </div>
+      </div>
+      <div class="info-container" v-if="props.photo.views">
+        <div class="info-item">
+          <IconView class="info-icon" />{{
+            props.photo?.views?.toLocaleString()
+          }}
+        </div>
+        <div class="info-item">
+          <IconDownload class="info-icon download-icon" />
+          <span class="info-text">{{
+            props.photo?.downloads?.toLocaleString()
+          }}</span>
+        </div>
       </div>
     </div>
-    <div class="info-container" v-if="props.photo.views">
-      <div class="info-item">
-        <IconView class="info-icon" />{{ props.photo?.views?.toLocaleString() }}
-      </div>
-      <div class="info-item">
-        <IconDownload class="info-icon download-icon" />
-        <span class="info-text">{{
-          props.photo?.downloads?.toLocaleString()
-        }}</span>
-      </div>
-    </div>
+    <BottomInfoSkeleton v-if="props.isLoading" />
   </div>
 </template>
 
 <script setup lang="ts">
 import type { Photo } from '@/types/photos';
-import IconLocation from '../icons/IconLocation.vue';
-import IconView from '../icons/IconView.vue';
-import IconDownload from '../icons/IconDownload.vue';
-import IconCalendar from '../icons/IconCalendar.vue';
 import { getNavigatorLanguage } from '@/utils';
-import IconResolution from '../icons/IconResolution.vue';
 import { useRouter } from 'vue-router';
-
+import BottomInfoSkeleton from '@/components/Skeleton/BottomInfoSkeleton.vue';
 const router = useRouter();
 const props = defineProps<{
   photo: Photo;
+  isLoading: boolean;
 }>();
 
 const lang = getNavigatorLanguage();
