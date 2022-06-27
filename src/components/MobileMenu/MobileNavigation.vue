@@ -38,7 +38,7 @@ const store = useAppStore();
   justify-content: center;
   align-items: flex-start;
   padding: 20px 20px 50px 20px;
-  transform: translateY(40px);
+  transform: translateY(45px);
 }
 
 .mobile-navigation {
@@ -49,12 +49,14 @@ const store = useAppStore();
   border-radius: 10px;
   width: 100%;
   list-style: none;
+  margin-bottom: 10px;
 }
 
 .mobile-navigation__link .link {
   padding: 10px 20px;
   display: inline-block;
   width: 100%;
+  border-radius: 10px;
 }
 .mobile-navigation__link:hover {
   background: var(--color-background-mute);
@@ -62,6 +64,7 @@ const store = useAppStore();
 
 .active-link {
   color: var(--primary-color);
+  background: var(--color-background-mute);
 }
 
 @media screen and (max-width: 768px) {

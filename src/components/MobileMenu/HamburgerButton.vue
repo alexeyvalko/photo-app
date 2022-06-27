@@ -32,7 +32,7 @@ const store = useAppStore();
   background: var(--color-text);
   border-radius: 5px;
   z-index: 2;
-  transform-origin: 4px 0px;
+
   transition: all 0.3s ease-in-out;
 }
 

@@ -4,6 +4,7 @@ import IconSmallArrow from '@/components/icons/IconSmallArrow.vue';
 import IconLocation from '@/components/icons/IconLocation.vue';
 import IconView from '@/components/icons/IconView.vue';
 import IconCalendar from '@/components/icons/IconCalendar.vue';
+import IconResolution from '@/components/icons/IconResolution.vue';
 
 export default [
   IconSearch,
@@ -12,4 +13,5 @@ export default [
   IconLocation,
   IconView,
   IconCalendar,
+  IconResolution,
 ];

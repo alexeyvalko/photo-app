@@ -7,15 +7,15 @@
   >
     <div
       class="image-container"
-      :style="`aspect-ratio: calc(${props.photo.width} / ${props.photo.height})`"
+      :style="`aspect-ratio: ${props.photo.width} / ${props.photo.height}`"
     >
       <img
         :src="props.photo.urls.regular"
         :srcset="`${props.photo.urls.small_s3} 100w, ${props.photo.urls.thumb} 200w, ${props.photo.urls.small} 400w, ${props.photo.urls.medium} 600w, ${props.photo.urls.regular}  800w, ${props.photo.urls.full} 1200w`"
         sizes="(max-width: 768px) calc((100vw - 30px - 30px) / 2), (max-width: 992px) calc((100vw - 60px - 60px) / 3), calc((100vw - 60px - 60px) / 3)"
         :alt="
-          `${props.photo.description}.` ||
           `${props.photo.alt_description}.` ||
+          `${props.photo.description}.` ||
           `${props.photo.user.name}'s photo.`
         "
         class="photo-image"
@@ -40,7 +40,7 @@ const props = defineProps<{
   justify-content: center;
   align-items: center;
   min-height: 250px;
-  min-width: calc(250px);
+  min-width: 250px;
 }
 
 .image-container {

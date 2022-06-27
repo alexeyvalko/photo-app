@@ -4,7 +4,9 @@ import { onMounted } from 'vue';
 import { useRoute } from 'vue-router';
 import TopPhotoInfo from '@/components/PhotoInfo/TopPhotoInfo.vue';
 import BottomInfo from '@/components/PhotoInfo/BottomInfo.vue';
-import PhotoItem from '@/components/PhotoItem.vue';
+import PhotoItem from '@/components/PhotoInfo/PhotoItem.vue';
+import PhotoDescription from '@/components/PhotoInfo/PhotoDescription.vue';
+import PhotoTags from '../components/PhotoInfo/PhotoTags.vue';
 const store = usePhotoStore();
 const route = useRoute();
 
@@ -21,7 +23,9 @@ onMounted(() => {
     <div class="photo-wrapper" v-if="store.currentPhoto">
       <TopPhotoInfo :photo="store.currentPhoto" />
       <PhotoItem :photo="store.currentPhoto" />
-      <BottomInfo :photo="store.currentPhoto" />
+      <PhotoDescription :photo="store.currentPhoto" />
+      <BottomInfo :photo="store.currentPhoto" :is-loading="store.isLoading" />
+      <PhotoTags :photo="store.currentPhoto" v-if="store.currentPhoto.tags" />
     </div>
   </div>
 </template>

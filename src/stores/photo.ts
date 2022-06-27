@@ -82,7 +82,7 @@ export const usePhotoStore = defineStore({
       try {
         this.isLoading = true;
         const response = await axios.get<IResponsePhoto<Photo>>(
-          `${SERVER_URL}/${SERVER_ENDPOINTS.PHOTO}/${photoId}`,
+          `${SERVER_URL}/${SERVER_ENDPOINTS.PHOTOS}/${photoId}`,
         );
         this.currentPhoto = response.data.result;
       } catch {

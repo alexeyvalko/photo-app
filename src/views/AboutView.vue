@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container about">
     <h2 class="about-title">Used resources</h2>
 
     <ol>
@@ -33,7 +33,7 @@
         <a
           target="_blank"
           rel="noopener noreferrer"
-          href="https://github.com/alexeyvalko"
+          href="https://github.com/alexeyvalko/photo-app"
           >Frontend</a
         >
         - github repository.
@@ -42,7 +42,7 @@
         <a
           target="_blank"
           rel="noopener noreferrer"
-          href="https://github.com/alexeyvalko"
+          href="https://github.com/alexeyvalko/photo-rest-service"
           >Backend</a
         >
         - github repository.
@@ -58,6 +58,6 @@
   font-weight: 600;
 }
 .about {
-  padding-top: 50px;
+  padding: 0 0 30px 0;
 }
 </style>
