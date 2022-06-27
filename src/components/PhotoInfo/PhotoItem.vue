@@ -7,7 +7,7 @@
   >
     <div
       class="image-container"
-      :style="`aspect-ratio: calc(${props.photo.width} / ${props.photo.height})`"
+      :style="`aspect-ratio: ${props.photo.width} / ${props.photo.height}`"
     >
       <img
         :src="props.photo.urls.regular"
@@ -40,7 +40,7 @@ const props = defineProps<{
   justify-content: center;
   align-items: center;
   min-height: 250px;
-  min-width: calc(250px);
+  min-width: 250px;
 }
 
 .image-container {
