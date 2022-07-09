@@ -35,7 +35,7 @@ VITE_SERVER_URL=http://localhost:5000
 ## Used resources
 ### Frontend
 1. [Vuejs](https://vuejs.org/)  - An approachable, performant and versatile framework for building web user interfaces.
-2. [Unsplash API](https://unsplash.com/developers)  - Modern & Interactive Open-source charts
+2. [Unsplash API](https://unsplash.com/developers)  - Largest open collection of high-quality photos.
 
 ### Backend
 1. [NestJS](https://nestjs.com/)  - A progressive Node.js framework for building efficient, reliable and scalable server-side applications.
