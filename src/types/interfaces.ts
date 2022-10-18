@@ -24,7 +24,7 @@ export interface IPhotoListParams {
   order_by: OrderByListType;
 }
 
-export interface ISearchOptions {
+export interface ISearchOptions extends Record<string, unknown> {
   query: string;
   page?: number;
   per_page?: number;

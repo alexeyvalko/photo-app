@@ -34,7 +34,6 @@ const router = useRouter();
   justify-content: flex-start;
   align-items: center;
   gap: 10px;
-
 }
 .tag {
   display: inline-block;
