@@ -117,7 +117,7 @@ input[type='search']::-webkit-search-results-decoration {
 }
 
 a {
-  color: var(--primary-color)
+  color: var(--primary-color);
 }
 
 .app {

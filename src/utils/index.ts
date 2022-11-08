@@ -53,7 +53,9 @@ export const createObserver = (
   });
 };
 
-export const deleteFalsyKeys = <Type>(object: Type) => {
+export const deleteFalsyKeys = <T extends Record<string, unknown>>(
+  object: T,
+) => {
   const asArray = Object.entries(object);
   const filtered = asArray.filter(([, value]) => !!value);
   const filteredObject = Object.fromEntries(filtered);

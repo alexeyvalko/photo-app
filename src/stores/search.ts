@@ -54,9 +54,14 @@ export const useSearchStore = defineStore({
   },
 
   actions: {
-    async fetchPhotos<T>(endpoint: string, params: T) {
+    async fetchPhotos<T extends Record<string, unknown>>(
+      endpoint: string,
+      params: T,
+    ) {
       try {
-        const filteredParams = deleteFalsyKeys(params) as ISearchOptions;
+        const filteredParams = deleteFalsyKeys(
+          params,
+        ) as unknown as ISearchOptions;
         this.isLoading = true;
         const response = await axios.get<IResponsePhotos<Photo>>(
           `${SERVER_URL}/${endpoint}`,
