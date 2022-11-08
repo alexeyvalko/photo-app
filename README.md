@@ -2,7 +2,7 @@
 
 This app helps to find and download high-resolution photos.
 
-You cant try online [DEMO](https://valko-photo.netlify.app/)
+You can try online [DEMO](https://valko-photo.netlify.app/)
 
 ![image](https://user-images.githubusercontent.com/60567379/174774495-ced1d713-28cb-47ee-b139-0654993929a7.png)
 
@@ -26,7 +26,7 @@ npm run dev
 npm run build
 ```
 ## How to run app
-In order to run this app locally, you must run [photo REST service](https://github.com/alexeyvalko/photo-rest-service).
+In order to run this app locally, you must set up [photo REST service](https://github.com/alexeyvalko/photo-rest-service).
 
 ## Environment variables
 ```sh

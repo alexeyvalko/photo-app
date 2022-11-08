@@ -17,16 +17,19 @@
         </div>
         <div class="info-item">
           <IconCalendar class="info-icon" />
-          Published on
-          <span class="info-text">
-            {{
-              new Date(props.photo.created_at).toLocaleString(lang, {
-                year: 'numeric',
-                month: 'long',
-                day: 'numeric',
-              })
-            }}
-          </span>
+          <div class="info-description">
+            <span class="info-text">Published on </span>
+            {{ ' ' }}
+            <time class="info-text" :datetime="`${props.photo.created_at}`">
+              {{
+                new Date(props.photo.created_at).toLocaleString(lang, {
+                  year: 'numeric',
+                  month: 'long',
+                  day: 'numeric',
+                })
+              }}
+            </time>
+          </div>
         </div>
         <div class="info-item">
           <IconResolution class="info-icon resolution-icon" />
@@ -81,6 +84,11 @@ const lang = getNavigatorLanguage();
   gap: 10px;
   flex: 1 1;
   overflow: hidden;
+}
+
+.info-description {
+  line-height: 1;
+  display: inline-block;
 }
 
 .info-text {
