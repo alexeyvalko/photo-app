@@ -3,17 +3,17 @@
     <div class="bottom-info" v-if="!props.isLoading">
       <div class="info-container">
         <div
+          v-if="photoLocation"
           class="info-item location-info"
           @click="
             router.push({
               name: 'search',
-              params: { query: props.photo.location.title },
+              params: { query: photoLocation },
             })
           "
-          v-if="props.photo.location && props.photo.location.title"
         >
           <IconLocation class="info-icon" />
-          <span class="info-text"> {{ props.photo.location.title }}</span>
+          <span class="info-text"> {{ photoLocation }}</span>
         </div>
         <div class="info-item">
           <IconCalendar class="info-icon" />
@@ -69,6 +69,13 @@ const props = defineProps<{
 }>();
 
 const lang = getNavigatorLanguage();
+
+const photoLocation =
+  props.photo?.location?.title ||
+  props.photo?.location?.city ||
+  props.photo?.location?.country ||
+  props.photo?.location?.name ||
+  null;
 </script>
 
 <style scoped>
