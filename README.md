@@ -26,7 +26,7 @@ npm run dev
 npm run build
 ```
 ## How to run the app
-In order to run this app locally, you must set up [photo REST service](https://github.com/alexeyvalko/photo-rest-service).
+In order to run this app locally, you have to set up [photo REST service](https://github.com/alexeyvalko/photo-rest-service).
 
 ## Environment variables
 ```sh
