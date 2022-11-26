@@ -62,20 +62,22 @@ import type { Photo } from '@/types/photos';
 import { getNavigatorLanguage } from '@/utils';
 import { useRouter } from 'vue-router';
 import BottomInfoSkeleton from '@/components/Skeleton/BottomInfoSkeleton.vue';
+import { computed } from '@vue/reactivity';
 const router = useRouter();
 const props = defineProps<{
   photo: Photo;
   isLoading: boolean;
 }>();
-
 const lang = getNavigatorLanguage();
 
-const photoLocation =
-  props.photo?.location?.title ||
-  props.photo?.location?.city ||
-  props.photo?.location?.country ||
-  props.photo?.location?.name ||
-  null;
+const photoLocation = computed(
+  () =>
+    props.photo?.location?.title ||
+    props.photo?.location?.name ||
+    props.photo?.location?.city ||
+    props.photo?.location?.country ||
+    null,
+);
 </script>
 
 <style scoped>
