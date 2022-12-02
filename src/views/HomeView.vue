@@ -48,8 +48,8 @@ const twoColumns = computed(() => {
       />
     </Transition>
     <Transition name="fade">
-      <PhotoListSkeleton :cards="27" v-if="store.isLoading"
-    /></Transition>
+      <PhotoListSkeleton :cards="12" v-if="store.isLoading" />
+    </Transition>
   </div>
 </template>
 
