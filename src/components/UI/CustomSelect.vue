@@ -1,12 +1,21 @@
 <template>
   <div class="select-container">
-    <button class="select-button" @click.stop="toggleOptions">
+    <button
+      class="select-button"
+      @click.stop="toggleOptions"
+      :aria-expanded="showOptions"
+      :aria-controls="`content${hashId}`"
+    >
       <span class="button-text">{{ props.currentOption }}</span>
       <span class="button-icon">
         <IconSmallArrow class="arrow-icon" :class="{ rotate: showOptions }" />
       </span>
     </button>
-    <div class="select-options" :class="{ 'show-options': showOptions }">
+    <div
+      class="select-options"
+      :class="{ 'show-options': showOptions }"
+      :id="`content${hashId}`"
+    >
       <div
         class="select-option"
         v-for="option in props.options"
@@ -20,6 +29,7 @@
 </template>
 
 <script setup lang="ts">
+import { hashFromString } from '@/utils';
 import { ref } from '@vue/runtime-dom';
 
 const props = defineProps<{
@@ -28,6 +38,8 @@ const props = defineProps<{
 }>();
 const emit = defineEmits(['changeOption']);
 const showOptions = ref(false);
+
+const hashId = hashFromString(props.currentOption);
 
 const handleDocumentClick = (): void => {
   showOptions.value = false;
