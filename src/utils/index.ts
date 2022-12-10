@@ -36,7 +36,7 @@ export const createObserver = (
     rootMargin: '0px',
     threshold: 0.1,
   };
-  const observerCallback = function (entries: IntersectionObserverEntry[]) {
+  const observerCallback = (entries: IntersectionObserverEntry[]) => {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
         callback();
