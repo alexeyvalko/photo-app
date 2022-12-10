@@ -1,12 +1,21 @@
 <template>
   <div class="select-container">
-    <button class="select-button" @click.stop="toggleOptions">
+    <button
+      class="select-button"
+      @click.stop="toggleOptions"
+      :aria-expanded="showOptions"
+      :aria-controls="`content${hashId}`"
+    >
       <span class="button-text">{{ currentOption }}</span>
       <span class="button-icon">
         <IconSmallArrow class="arrow-icon" :class="{ rotate: showOptions }" />
       </span>
     </button>
-    <div class="select-options" :class="{ 'show-options': showOptions }">
+    <div
+      class="select-options"
+      :class="{ 'show-options': showOptions }"
+      :id="`content${hashId}`"
+    >
       <div
         class="select-option"
         v-for="[key, value] in colors"
@@ -33,12 +42,13 @@
 import { ref } from '@vue/runtime-dom';
 import type { IColorsOptions } from '@/types/interfaces';
 import { computed } from '@vue/reactivity';
+import { hashFromString } from '@/utils';
 
 const props = defineProps<{
   options: IColorsOptions;
   currentOption: string;
 }>();
-
+const hashId = hashFromString(props.currentOption);
 const colors = computed(() => Object.entries(props.options.colors));
 const tones = computed(() => Object.entries(props.options.tones));
 const currentOption = computed(() => props.currentOption.replace(/_/g, ' '));

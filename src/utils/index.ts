@@ -95,3 +95,8 @@ export const getNavigatorLanguage = () => {
     return navigator.language || 'en-GB';
   }
 };
+
+export const hashFromString = (str: string) =>
+  str
+    .split('')
+    .reduce((prev, curr) => (Math.imul(31, prev) + curr.charCodeAt(0)) | 0, 0);
