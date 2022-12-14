@@ -57,7 +57,7 @@ watch(() => route.params.query, watcher);
 <template>
   <div class="container">
     <div class="header-container">
-      <HeaderItem> {{ header }} Photos</HeaderItem>
+      <HeaderItem> {{ header }} photos</HeaderItem>
     </div>
     <div class="filter-wrapper">
       <ColorsSelect
