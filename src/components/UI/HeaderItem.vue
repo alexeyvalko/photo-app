@@ -11,7 +11,6 @@
   font-weight: 600;
   padding: 0;
   line-height: 4.5rem;
-  text-transform: uppercase;
 }
 @media (max-width: 768px) {
   .title {

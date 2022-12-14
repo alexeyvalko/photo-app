@@ -96,6 +96,10 @@ export const getNavigatorLanguage = () => {
   }
 };
 
+export const capitalizeFirstLetter = (string: string) => {
+  return string[0].toUpperCase() + string.slice(1);
+};
+
 export const hashFromString = (str: string) =>
   str
     .split('')
