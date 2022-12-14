@@ -14,7 +14,7 @@ import {
   COLOR_OPTIONS,
 } from '@/common/config';
 import { useSearchStore } from '@/stores/search';
-import { decodeQuery } from '@/utils';
+import { decodeQuery, capitalizeFirstLetter } from '@/utils';
 
 const route = useRoute();
 const store = useSearchStore();
@@ -23,7 +23,7 @@ const header = ref('');
 const updateHeaderAndTitle = () => {
   const query = route.params.query as string;
   decodedPageParam.value = query ? decodeQuery(query) : '';
-  header.value = decodedPageParam.value;
+  header.value = capitalizeFirstLetter(decodedPageParam.value);
   document.title = `Free ${decodedPageParam.value} Photos`;
 };
 

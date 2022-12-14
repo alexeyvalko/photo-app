@@ -28,7 +28,7 @@ const twoColumns = computed(() => {
   <div class="container">
     <div class="header-container">
       <HeaderItem class="header-title gradient-text">
-        Free Stock Photos
+        Free stock photos
       </HeaderItem>
       <p class="header-description">Stunning high-resolution photos</p>
     </div>
