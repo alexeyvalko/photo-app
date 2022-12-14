@@ -6,7 +6,7 @@ import HamburgerButton from '@/components/MobileMenu/HamburgerButton.vue';
 </script>
 
 <template>
-  <div class="navbar-container">
+  <header class="navbar-container">
     <nav class="wrapper navbar">
       <div class="navbar__left">
         <RouterLink to="/" class="logo">
@@ -26,7 +26,7 @@ import HamburgerButton from '@/components/MobileMenu/HamburgerButton.vue';
 
       <HamburgerButton />
     </nav>
-  </div>
+  </header>
 </template>
 
 <style scoped>
@@ -46,7 +46,7 @@ import HamburgerButton from '@/components/MobileMenu/HamburgerButton.vue';
 }
 .navbar-container {
   position: fixed;
-  z-index: 100;
+  z-index: 999;
   top: 0;
   right: 0;
   left: 0;

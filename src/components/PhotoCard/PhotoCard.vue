@@ -49,6 +49,12 @@ const store = usePhotoStore();
   height: auto;
 }
 
+.card-link {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
 @media (hover: hover) {
   .photo-card:hover .overlay {
     opacity: 1;
