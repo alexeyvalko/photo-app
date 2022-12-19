@@ -12,27 +12,31 @@
       </span>
     </button>
     <div
+      tabindex="0"
       class="select-options"
       :class="{ 'show-options': showOptions }"
       :id="`content${hashId}`"
+      :hidden="!showOptions"
     >
-      <div
-        class="select-option"
+      <button
+        class="button select-option"
         v-for="[key, value] in colors"
         :key="key"
         @click="handleOptionClick(key)"
       >
         <span class="select-option-text">{{ value }}</span>
-      </div>
+      </button>
       <div class="colors-subtitle">Tones</div>
       <div class="tones-wrapper">
-        <div
-          class="tone"
+        <button
+          class="button tone"
           v-for="[toneName, color] in tones"
           :key="toneName"
           @click="handleOptionClick(toneName)"
           :style="`background-color: ${color}`"
-        ></div>
+        >
+          <span class="visually-hidden">{{ toneName }}</span>
+        </button>
       </div>
     </div>
   </div>
@@ -48,6 +52,7 @@ const props = defineProps<{
   options: IColorsOptions;
   currentOption: string;
 }>();
+
 const hashId = hashFromString(props.currentOption);
 const colors = computed(() => Object.entries(props.options.colors));
 const tones = computed(() => Object.entries(props.options.tones));
@@ -135,9 +140,10 @@ const handleOptionClick = (option: string) => {
 }
 
 .select-options {
-  display: block;
+  display: flex;
+  flex-direction: column;
   visibility: hidden;
-  overflow: hidden;
+  /* overflow: hidden; */
   border: 1px solid var(--color-border);
   position: absolute;
   top: 55px;
@@ -161,8 +167,9 @@ const handleOptionClick = (option: string) => {
   opacity: 1;
 }
 .select-option {
+  text-align: left;
   border-radius: 5px;
-  padding: 10px 22px;
+  padding: 12px 22px;
   cursor: pointer;
 }
 .select-option:hover {

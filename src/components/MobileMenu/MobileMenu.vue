@@ -1,15 +1,13 @@
 <template>
-  <div>
-    <div
-      class="menu-overlay"
-      v-if="store.isMenuOpen"
-      @click="store.toggleMenu"
-      :class="{ 'is-open': store.isMenuOpen }"
-    ></div>
-    <Transition>
-      <MobileNavigation />
-    </Transition>
-  </div>
+  <div
+    class="menu-overlay"
+    v-if="store.isMenuOpen"
+    @click="store.toggleMenu"
+    :class="{ 'is-open': store.isMenuOpen }"
+  ></div>
+  <Transition>
+    <MobileNavigation />
+  </Transition>
 </template>
 
 <script setup lang="ts">

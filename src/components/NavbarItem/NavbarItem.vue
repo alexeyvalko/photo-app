@@ -7,10 +7,12 @@ import HamburgerButton from '@/components/MobileMenu/HamburgerButton.vue';
 
 <template>
   <header class="navbar-container">
+    <a class="skip-link" href="#main">Skip to main content</a>
     <nav class="wrapper navbar">
       <div class="navbar__left">
         <RouterLink to="/" class="logo">
           <img alt="logo" src="@/assets/logo.svg" width="40" height="40" />
+          <span class="visually-hidden">Home page</span>
         </RouterLink>
         <SearchForm />
       </div>

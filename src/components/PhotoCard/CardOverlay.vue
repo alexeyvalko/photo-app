@@ -19,6 +19,7 @@
       >
         <button class="download-button">
           <IconDownload class="info-icon" />
+          <span class="visually-hidden">Download</span>
         </button>
       </a>
     </div>

@@ -7,7 +7,7 @@ import FooterItem from '@/components/Footer/FooterItem.vue';
 
 <template>
   <NavbarItem />
-  <main class="main">
+  <main class="main" id="main" tabindex="-1">
     <div class="wrapper">
       <RouterView />
     </div>

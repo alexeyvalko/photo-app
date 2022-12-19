@@ -1,6 +1,7 @@
 <template>
   <button class="button search-button">
     <IconSearch class="search-icon" />
+    <span class="visually-hidden">search</span>
   </button>
 </template>
 

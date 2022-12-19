@@ -120,6 +120,33 @@ a {
   color: var(--primary-color);
 }
 
+.skip-link {
+  background: var(--black);
+  color: var(--white);
+  height: 5rem;
+  top: 0;
+  left: 50%;
+  padding: 1rem;
+  position: absolute;
+  transform: translate(-50%, -150%);
+  transition: transform 0.3s;
+  z-index: 9999;
+}
+
+.skip-link:focus {
+  transform: translate(-50%, 0%);
+}
+
+.visually-hidden {
+  clip-path: inset(50%);
+  clip: rect(0, 0, 0, 0);
+  height: 0.0625rem;
+  width: 0.0625rem;
+  position: absolute;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
 .app {
   display: flex;
   flex-direction: column;
