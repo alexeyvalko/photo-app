@@ -54,6 +54,8 @@ export interface PhotoBasic extends PhotoVeryBasic {
 }
 
 export interface Photo extends PhotoBasic {
+  width: number;
+  height: number;
   exif: {
     make: Nullable<string>;
     model: Nullable<string>;

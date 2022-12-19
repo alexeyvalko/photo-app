@@ -15,15 +15,18 @@
       class="select-options"
       :class="{ 'show-options': showOptions }"
       :id="`content${hashId}`"
+      ref="menuOptions"
+      tabindex="0"
+      :hidden="!showOptions"
     >
-      <div
-        class="select-option"
+      <button
+        class="button select-option"
         v-for="option in props.options"
         :key="option"
         @click="handleOptionClick(option)"
       >
         <span class="select-option-text">{{ option }}</span>
-      </div>
+      </button>
     </div>
   </div>
 </template>
@@ -38,7 +41,6 @@ const props = defineProps<{
 }>();
 const emit = defineEmits(['changeOption']);
 const showOptions = ref(false);
-
 const hashId = hashFromString(props.currentOption);
 
 const handleDocumentClick = (): void => {
@@ -96,9 +98,10 @@ const handleOptionClick = (option: string) => {
 }
 
 .select-options {
-  display: block;
+  display: flex;
+  flex-direction: column;
   visibility: hidden;
-  overflow: hidden;
+  /* overflow: hidden; */
   border: 1px solid var(--color-border);
   position: absolute;
   top: 55px;
@@ -122,8 +125,9 @@ const handleOptionClick = (option: string) => {
   opacity: 1;
 }
 .select-option {
+  text-align: left;
   border-radius: 5px;
-  padding: 10px 22px;
+  padding: 12px 22px;
   cursor: pointer;
 }
 .select-option:hover {
