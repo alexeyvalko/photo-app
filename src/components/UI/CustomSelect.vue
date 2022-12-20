@@ -16,7 +16,6 @@
       :class="{ 'show-options': showOptions }"
       :id="`content${hashId}`"
       ref="menuOptions"
-      tabindex="0"
       :hidden="!showOptions"
     >
       <button
