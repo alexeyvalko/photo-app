@@ -12,7 +12,6 @@
       </span>
     </button>
     <div
-      tabindex="0"
       class="select-options"
       :class="{ 'show-options': showOptions }"
       :id="`content${hashId}`"
