@@ -1,33 +1,35 @@
 <template>
-  <ThreeColumnsLayout>
-    <template #column-1>
-      <template v-for="card in props.cards" :key="card">
-        <SkeletonCard :ratio="ratioListOne[card - 1] || 1.2" />
+  <div class="list-container">
+    <ThreeColumnsLayout>
+      <template #column-1>
+        <template v-for="card in props.cards" :key="card">
+          <SkeletonCard :ratio="ratioListOne[card - 1] || 1.2" />
+        </template>
       </template>
-    </template>
-    <template #column-2>
-      <template v-for="card in props.cards" :key="card">
-        <SkeletonCard :ratio="ratioListTwo[card - 1] || 1.2" />
+      <template #column-2>
+        <template v-for="card in props.cards" :key="card">
+          <SkeletonCard :ratio="ratioListTwo[card - 1] || 1.2" />
+        </template>
       </template>
-    </template>
-    <template #column-3>
-      <template v-for="card in props.cards" :key="card">
-        <SkeletonCard :ratio="ratioListThree[card - 1] || 1.2" />
+      <template #column-3>
+        <template v-for="card in props.cards" :key="card">
+          <SkeletonCard :ratio="ratioListThree[card - 1] || 1.2" />
+        </template>
       </template>
-    </template>
-  </ThreeColumnsLayout>
-  <TwoColumnsLayout>
-    <template #column-1>
-      <template v-for="card in props.cards" :key="card">
-        <SkeletonCard :ratio="ratioListOne[card - 1] || 1.2" />
+    </ThreeColumnsLayout>
+    <TwoColumnsLayout>
+      <template #column-1>
+        <template v-for="card in props.cards" :key="card">
+          <SkeletonCard :ratio="ratioListOne[card - 1] || 1.2" />
+        </template>
       </template>
-    </template>
-    <template #column-2>
-      <template v-for="card in props.cards" :key="card">
-        <SkeletonCard :ratio="ratioListTwo[card - 1] || 1.2" />
+      <template #column-2>
+        <template v-for="card in props.cards" :key="card">
+          <SkeletonCard :ratio="ratioListTwo[card - 1] || 1.2" />
+        </template>
       </template>
-    </template>
-  </TwoColumnsLayout>
+    </TwoColumnsLayout>
+  </div>
 </template>
 
 <script setup lang="ts">
