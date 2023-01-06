@@ -70,7 +70,6 @@ export const downloadPhoto = async (url: string, filename: string) => {
   link.download = `${filename}.jpg`;
   link.href = blobURL;
   link.target = '_blank';
-  console.log(link);
   link.click();
   URL.revokeObjectURL(blobURL);
   link.remove();

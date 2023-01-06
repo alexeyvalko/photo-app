@@ -6,10 +6,9 @@
 </template>
 
 <script setup lang="ts">
-const props = defineProps<{
+defineProps<{
   ratio: number;
 }>();
-console.log(props.ratio);
 </script>
 
 <style>
