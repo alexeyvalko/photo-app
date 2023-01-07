@@ -1,5 +1,4 @@
 import type { Photo } from '@/types/photos';
-import { onMounted } from 'vue';
 import * as focusTrap from 'focus-trap';
 
 export const filterPhotosByRatio = (photos: Photo[], totalColumns: number) => {
@@ -106,34 +105,28 @@ export const hashFromString = (str: string) =>
     .split('')
     .reduce((prev, curr) => (Math.imul(31, prev) + curr.charCodeAt(0)) | 0, 0);
 
-export const createFocusTrapHook = (
+export const createFocusTrap = (
   container: HTMLElement | null,
 ): focusTrap.FocusTrap | null => {
-  let trap: focusTrap.FocusTrap | null = null;
-  onMounted(() => {
-    if (container) {
-      trap = focusTrap.createFocusTrap(container, {
-        onActivate: () => container?.classList.add('is-active'),
-        checkCanFocusTrap: async (trapContainers): Promise<void> => {
-          const results = trapContainers.map((trapContainer) => {
-            return new Promise<void>((resolve) => {
-              const interval = setInterval(() => {
-                if (getComputedStyle(trapContainer).visibility !== 'hidden') {
-                  resolve();
-                  clearInterval(interval);
-                }
-              }, 10);
-            });
-          });
-          // Return a promise that resolves when all the trap containers are able to receive focus
-          await Promise.all(results);
-          return await Promise.resolve();
-        },
-        clickOutsideDeactivates: () => true,
-        onDeactivate: () => container?.classList.remove('is-active'),
+  if (!container) return null;
+  return focusTrap.createFocusTrap(container, {
+    onActivate: () => container?.classList.add('is-active'),
+    checkCanFocusTrap: async (trapContainers): Promise<void> => {
+      const results = trapContainers.map((trapContainer) => {
+        return new Promise<void>((resolve) => {
+          const interval = setInterval(() => {
+            if (getComputedStyle(trapContainer).visibility !== 'hidden') {
+              resolve();
+              clearInterval(interval);
+            }
+          }, 10);
+        });
       });
-    }
+      // Return a promise that resolves when all the trap containers are able to receive focus
+      await Promise.all(results);
+      return await Promise.resolve();
+    },
+    clickOutsideDeactivates: () => true,
+    onDeactivate: () => container?.classList.remove('is-active'),
   });
-
-  return trap;
 };

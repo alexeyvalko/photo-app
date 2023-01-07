@@ -43,10 +43,11 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
+import { onMounted, ref } from 'vue';
 import type { IColorsOptions } from '@/types/interfaces';
 import { computed } from '@vue/reactivity';
-import { createFocusTrapHook, hashFromString } from '@/utils';
+import type * as focusTrap from 'focus-trap';
+import { createFocusTrap, hashFromString } from '@/utils';
 
 const props = defineProps<{
   options: IColorsOptions;
@@ -60,18 +61,22 @@ const currentOption = computed(() => props.currentOption.replace(/_/g, ' '));
 const menuOptions = ref<HTMLElement | null>(null);
 const emit = defineEmits(['changeOption']);
 const showOptions = ref(false);
-const focusTrap = createFocusTrapHook(menuOptions.value);
+let focusTrapObj: focusTrap.FocusTrap | null = null;
+
+onMounted(() => {
+  focusTrapObj = createFocusTrap(menuOptions.value);
+});
 
 const handleDocumentClick = (): void => {
   showOptions.value = false;
   document.removeEventListener('click', handleDocumentClick);
-  focusTrap?.deactivate();
+  focusTrapObj?.deactivate();
 };
 
 const toggleOptions = () => {
   showOptions.value = !showOptions.value;
   if (showOptions.value) {
-    focusTrap?.activate();
+    focusTrapObj?.activate();
     document.addEventListener('click', handleDocumentClick);
   } else {
     document.removeEventListener('click', handleDocumentClick);
@@ -81,7 +86,7 @@ const toggleOptions = () => {
 const handleOptionClick = (option: string) => {
   showOptions.value = false;
   emit('changeOption', option);
-  focusTrap?.deactivate();
+  focusTrapObj?.deactivate();
 };
 </script>
 

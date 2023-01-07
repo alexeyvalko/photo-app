@@ -31,8 +31,9 @@
 </template>
 
 <script setup lang="ts">
-import { createFocusTrapHook, hashFromString } from '@/utils';
-import { ref } from 'vue';
+import { createFocusTrap, hashFromString } from '@/utils';
+import type * as focusTrap from 'focus-trap';
+import { onMounted, ref } from 'vue';
 
 const props = defineProps<{
   options: string[];
@@ -42,17 +43,21 @@ const emit = defineEmits(['changeOption']);
 const showOptions = ref(false);
 const menuOptions = ref<HTMLElement | null>(null);
 const hashId = hashFromString(props.currentOption);
-const focusTrap = createFocusTrapHook(menuOptions.value);
+let focusTrapObj: focusTrap.FocusTrap | null = null;
+
+onMounted(() => {
+  focusTrapObj = createFocusTrap(menuOptions.value);
+});
 
 const handleDocumentClick = (): void => {
   showOptions.value = false;
   document.removeEventListener('click', handleDocumentClick);
-  focusTrap?.deactivate();
+  focusTrapObj?.deactivate();
 };
 const toggleOptions = () => {
   showOptions.value = !showOptions.value;
   if (showOptions.value) {
-    focusTrap?.activate();
+    focusTrapObj?.activate();
     document.addEventListener('click', handleDocumentClick);
   } else {
     document.removeEventListener('click', handleDocumentClick);
@@ -60,7 +65,7 @@ const toggleOptions = () => {
 };
 
 const handleOptionClick = (option: string) => {
-  focusTrap?.deactivate();
+  focusTrapObj?.deactivate();
   showOptions.value = false;
   emit('changeOption', option);
 };
