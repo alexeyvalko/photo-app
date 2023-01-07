@@ -43,11 +43,10 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, ref } from 'vue';
+import { ref } from 'vue';
 import type { IColorsOptions } from '@/types/interfaces';
 import { computed } from '@vue/reactivity';
-import * as focusTrap from 'focus-trap';
-import { hashFromString } from '@/utils';
+import { createFocusTrap, hashFromString } from '@/utils';
 
 const props = defineProps<{
   options: IColorsOptions;
@@ -61,17 +60,18 @@ const currentOption = computed(() => props.currentOption.replace(/_/g, ' '));
 const menuOptions = ref<HTMLElement | null>(null);
 const emit = defineEmits(['changeOption']);
 const showOptions = ref(false);
+const focusTrap = createFocusTrap(menuOptions.value);
 
 const handleDocumentClick = (): void => {
   showOptions.value = false;
   document.removeEventListener('click', handleDocumentClick);
-  trap?.deactivate();
+  focusTrap?.deactivate();
 };
 
 const toggleOptions = () => {
   showOptions.value = !showOptions.value;
   if (showOptions.value) {
-    trap?.activate();
+    focusTrap?.activate();
     document.addEventListener('click', handleDocumentClick);
   } else {
     document.removeEventListener('click', handleDocumentClick);
@@ -81,34 +81,8 @@ const toggleOptions = () => {
 const handleOptionClick = (option: string) => {
   showOptions.value = false;
   emit('changeOption', option);
-  trap?.deactivate();
+  focusTrap?.deactivate();
 };
-
-let trap: focusTrap.FocusTrap | null = null;
-onMounted(() => {
-  if (menuOptions.value) {
-    trap = focusTrap.createFocusTrap(menuOptions.value, {
-      onActivate: () => menuOptions.value?.classList.add('is-active'),
-      checkCanFocusTrap: async (trapContainers): Promise<void> => {
-        const results = trapContainers.map((trapContainer) => {
-          return new Promise<void>((resolve) => {
-            const interval = setInterval(() => {
-              if (getComputedStyle(trapContainer).visibility !== 'hidden') {
-                resolve();
-                clearInterval(interval);
-              }
-            }, 10);
-          });
-        });
-        // Return a promise that resolves when all the trap containers are able to receive focus
-        await Promise.all(results);
-        return await Promise.resolve();
-      },
-
-      onDeactivate: () => menuOptions.value?.classList.remove('is-active'),
-    });
-  }
-});
 </script>
 
 <style scoped>

@@ -31,9 +31,8 @@
 </template>
 
 <script setup lang="ts">
-import { hashFromString } from '@/utils';
-import { onMounted, ref } from 'vue';
-import * as focusTrap from 'focus-trap';
+import { createFocusTrap, hashFromString } from '@/utils';
+import { ref } from 'vue';
 
 const props = defineProps<{
   options: string[];
@@ -43,41 +42,17 @@ const emit = defineEmits(['changeOption']);
 const showOptions = ref(false);
 const menuOptions = ref<HTMLElement | null>(null);
 const hashId = hashFromString(props.currentOption);
-let trap: focusTrap.FocusTrap | null = null;
-onMounted(() => {
-  if (menuOptions.value) {
-    trap = focusTrap.createFocusTrap(menuOptions.value, {
-      onActivate: () => menuOptions.value?.classList.add('is-active'),
-      checkCanFocusTrap: async (trapContainers): Promise<void> => {
-        const results = trapContainers.map((trapContainer) => {
-          return new Promise<void>((resolve) => {
-            const interval = setInterval(() => {
-              if (getComputedStyle(trapContainer).visibility !== 'hidden') {
-                resolve();
-                clearInterval(interval);
-              }
-            }, 10);
-          });
-        });
-        // Return a promise that resolves when all the trap containers are able to receive focus
-        await Promise.all(results);
-        return await Promise.resolve();
-      },
-
-      onDeactivate: () => menuOptions.value?.classList.remove('is-active'),
-    });
-  }
-});
+const focusTrap = createFocusTrap(menuOptions.value);
 
 const handleDocumentClick = (): void => {
   showOptions.value = false;
   document.removeEventListener('click', handleDocumentClick);
-  trap?.deactivate();
+  focusTrap?.deactivate();
 };
 const toggleOptions = () => {
   showOptions.value = !showOptions.value;
   if (showOptions.value) {
-    trap?.activate();
+    focusTrap?.activate();
     document.addEventListener('click', handleDocumentClick);
   } else {
     document.removeEventListener('click', handleDocumentClick);
@@ -85,7 +60,7 @@ const toggleOptions = () => {
 };
 
 const handleOptionClick = (option: string) => {
-  trap?.deactivate();
+  focusTrap?.deactivate();
   showOptions.value = false;
   emit('changeOption', option);
 };
