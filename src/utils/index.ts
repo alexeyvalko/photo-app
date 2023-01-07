@@ -106,7 +106,7 @@ export const hashFromString = (str: string) =>
     .split('')
     .reduce((prev, curr) => (Math.imul(31, prev) + curr.charCodeAt(0)) | 0, 0);
 
-export const createFocusTrap = (
+export const createFocusTrapHook = (
   container: HTMLElement | null,
 ): focusTrap.FocusTrap | null => {
   let trap: focusTrap.FocusTrap | null = null;

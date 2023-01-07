@@ -31,7 +31,7 @@
 </template>
 
 <script setup lang="ts">
-import { createFocusTrap, hashFromString } from '@/utils';
+import { createFocusTrapHook, hashFromString } from '@/utils';
 import { ref } from 'vue';
 
 const props = defineProps<{
@@ -42,7 +42,7 @@ const emit = defineEmits(['changeOption']);
 const showOptions = ref(false);
 const menuOptions = ref<HTMLElement | null>(null);
 const hashId = hashFromString(props.currentOption);
-const focusTrap = createFocusTrap(menuOptions.value);
+const focusTrap = createFocusTrapHook(menuOptions.value);
 
 const handleDocumentClick = (): void => {
   showOptions.value = false;

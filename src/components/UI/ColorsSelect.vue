@@ -46,7 +46,7 @@
 import { ref } from 'vue';
 import type { IColorsOptions } from '@/types/interfaces';
 import { computed } from '@vue/reactivity';
-import { createFocusTrap, hashFromString } from '@/utils';
+import { createFocusTrapHook, hashFromString } from '@/utils';
 
 const props = defineProps<{
   options: IColorsOptions;
@@ -60,7 +60,7 @@ const currentOption = computed(() => props.currentOption.replace(/_/g, ' '));
 const menuOptions = ref<HTMLElement | null>(null);
 const emit = defineEmits(['changeOption']);
 const showOptions = ref(false);
-const focusTrap = createFocusTrap(menuOptions.value);
+const focusTrap = createFocusTrapHook(menuOptions.value);
 
 const handleDocumentClick = (): void => {
   showOptions.value = false;
