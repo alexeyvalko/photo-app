@@ -17,7 +17,7 @@ import FooterItem from '@/components/Footer/FooterItem.vue';
 </template>
 
 <style>
-@import '@/styles/base.css';
+/* @import '@/styles/base.css'; */
 .fade-enter-active,
 .fade-leave-active {
   transition: opacity 0.2s ease;
