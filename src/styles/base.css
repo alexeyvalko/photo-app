@@ -1,7 +1,7 @@
 /* color palette */
 :root {
   --white: #ffffff;
-  --white-opacity:rgba(255, 255, 255, 0.9);
+  --white-opacity: rgba(255, 255, 255, 0.9);
   --white-soft: #f8f8f8;
   --white-mute: #f2f2f2;
 
@@ -26,7 +26,7 @@
 
   --z-index-header: 100;
   --z-index-overlay: 101;
-  --z-index-mobile-nav: 102
+  --z-index-mobile-nav: 102;
 }
 
 /* semantic color variables for this project */
@@ -35,7 +35,7 @@
   --color-background-soft: var(--white-soft);
   --color-background-mute: var(--white-mute);
   --color-background-header: var(--white-opacity);
-  
+
   --color-background-overlay: var(--black-half);
 
   --color-border: var(--divider-light-2);
