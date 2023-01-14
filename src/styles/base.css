@@ -1,10 +1,13 @@
 /* color palette */
 :root {
   --white: #ffffff;
+  --white-opacity:rgba(255, 255, 255, 0.9);
   --white-soft: #f8f8f8;
   --white-mute: #f2f2f2;
 
   --black: #181818;
+  --black-opacity: rgba(24, 24, 24, 0.95);
+  --black-half: rgba(0, 0, 0, 0.5);
   --black-soft: #222222;
   --black-mute: #282828;
   --primary-color: #3a86ff;
@@ -20,6 +23,10 @@
   --text-light-2: rgba(60, 60, 60, 0.86);
   --text-dark-1: rgba(255, 255, 255, 0.87);
   --text-dark-2: rgba(235, 235, 235, 0.64);
+
+  --z-index-header: 100;
+  --z-index-overlay: 101;
+  --z-index-mobile-nav: 102
 }
 
 /* semantic color variables for this project */
@@ -27,6 +34,9 @@
   --color-background: var(--white);
   --color-background-soft: var(--white-soft);
   --color-background-mute: var(--white-mute);
+  --color-background-header: var(--white-opacity);
+  
+  --color-background-overlay: var(--black-half);
 
   --color-border: var(--divider-light-2);
   --color-border-hover: var(--divider-light-1);
@@ -55,6 +65,8 @@
     --color-background: var(--black);
     --color-background-soft: var(--black-soft);
     --color-background-mute: var(--black-mute);
+    --color-background-header: var(--black-opacity);
+
     --skeleton-gradient: linear-gradient(to right, #232526, #414345);
     --color-border: var(--divider-dark-2);
     --color-border-hover: var(--divider-dark-1);
@@ -128,7 +140,7 @@ a {
   left: 50%;
   padding: 1rem;
   position: absolute;
-  transform: translate(-50%, -150%);
+  transform: translate(-50%, -180%);
   transition: transform 0.3s;
   z-index: 9999;
 }

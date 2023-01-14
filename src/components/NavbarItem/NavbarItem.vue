@@ -48,12 +48,13 @@ import HamburgerButton from '@/components/MobileMenu/HamburgerButton.vue';
 }
 .navbar-container {
   position: fixed;
-  z-index: 999;
+  z-index: var(--z-index-header);
   top: 0;
   right: 0;
   left: 0;
   height: var(--navbar-height);
-  background-color: var(--color-background);
+  background-color: var(--color-background-header);
+  backdrop-filter: blur(7px);
   box-shadow: 0 1px 0 var(--color-background-mute);
   transition: box-shadow 0.2s ease;
 }

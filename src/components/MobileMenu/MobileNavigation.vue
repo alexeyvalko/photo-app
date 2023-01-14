@@ -32,7 +32,7 @@ const store = useAppStore();
   height: max-content;
   border-radius: 15px 15px 0 0;
   background: var(--color-background);
-  z-index: 102;
+  z-index: var(--z-index-mobile-nav);
   display: none;
   flex-direction: column;
   justify-content: center;

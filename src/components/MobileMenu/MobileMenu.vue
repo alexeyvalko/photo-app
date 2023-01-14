@@ -24,8 +24,8 @@ const store = useAppStore();
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.5);
-  z-index: 101;
+  background: var(--color-background-overlay);
+  z-index: var(--z-index-overlay);
   display: none;
 }
 
