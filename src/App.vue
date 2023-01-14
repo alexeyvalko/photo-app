@@ -9,7 +9,11 @@ import FooterItem from '@/components/Footer/FooterItem.vue';
   <NavbarItem />
   <main class="main" id="main" tabindex="-1">
     <div class="wrapper">
-      <RouterView />
+      <router-view v-slot="{ Component, route }">
+        <transition name="fade">
+          <component :is="Component" :key="route.path" />
+        </transition>
+      </router-view>
     </div>
   </main>
   <FooterItem />
@@ -20,7 +24,7 @@ import FooterItem from '@/components/Footer/FooterItem.vue';
 /* @import '@/styles/base.css'; */
 .fade-enter-active,
 .fade-leave-active {
-  transition: opacity 0.2s ease;
+  transition: all 0.2s ease;
 }
 
 .fade-enter-from,
