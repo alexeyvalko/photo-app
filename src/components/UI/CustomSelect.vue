@@ -14,7 +14,7 @@
     <Transition name="fade" :duration="{ enter: 300, leave: 300 }">
       <div
         class="select-options"
-        :id="`content-${hashId}`"
+        :id="`content${hashId}`"
         ref="menuOptions"
         v-if="showOptions"
       >
