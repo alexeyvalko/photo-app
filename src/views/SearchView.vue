@@ -27,9 +27,11 @@ const updateHeaderAndTitle = () => {
   document.title = `Free ${decodedPageParam.value} Photos`;
 };
 
-const watcher = () => {
-  updateHeaderAndTitle();
-  getComponentData();
+const watcher = (query: string | string[]) => {
+  if (query) {
+    updateHeaderAndTitle();
+    getComponentData();
+  }
 };
 
 const threeColumns = computed(() => {
