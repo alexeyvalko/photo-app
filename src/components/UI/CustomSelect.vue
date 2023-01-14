@@ -11,29 +11,30 @@
         <IconSmallArrow class="arrow-icon" :class="{ rotate: showOptions }" />
       </span>
     </button>
-    <div
-      class="select-options"
-      :class="{ 'show-options': showOptions }"
-      :id="`content${hashId}`"
-      ref="menuOptions"
-      :hidden="!showOptions"
-    >
-      <button
-        class="button select-option"
-        v-for="option in props.options"
-        :key="option"
-        @click="handleOptionClick(option)"
+    <Transition name="fade" :duration="{ enter: 300, leave: 300 }">
+      <div
+        class="select-options"
+        :id="`content-${hashId}`"
+        ref="menuOptions"
+        v-if="showOptions"
       >
-        <span class="select-option-text">{{ option }}</span>
-      </button>
-    </div>
+        <button
+          class="button select-option"
+          v-for="option in props.options"
+          :key="option"
+          @click="handleOptionClick(option)"
+        >
+          <span class="select-option-text">{{ option }}</span>
+        </button>
+      </div>
+    </Transition>
   </div>
 </template>
 
 <script setup lang="ts">
 import { createFocusTrap, hashFromString } from '@/utils';
 import type * as focusTrap from 'focus-trap';
-import { onMounted, ref } from 'vue';
+import { ref, watch } from 'vue';
 
 const props = defineProps<{
   options: string[];
@@ -45,8 +46,13 @@ const menuOptions = ref<HTMLElement | null>(null);
 const hashId = hashFromString(props.currentOption);
 let focusTrapObj: focusTrap.FocusTrap | null = null;
 
-onMounted(() => {
-  focusTrapObj = createFocusTrap(menuOptions.value);
+watch(menuOptions, (container) => {
+  if (container) {
+    focusTrapObj = createFocusTrap(container);
+    focusTrapObj?.activate();
+  } else {
+    focusTrapObj = null;
+  }
 });
 
 const handleDocumentClick = (): void => {
@@ -57,7 +63,6 @@ const handleDocumentClick = (): void => {
 const toggleOptions = () => {
   showOptions.value = !showOptions.value;
   if (showOptions.value) {
-    focusTrapObj?.activate();
     document.addEventListener('click', handleDocumentClick);
   } else {
     document.removeEventListener('click', handleDocumentClick);
@@ -73,6 +78,7 @@ const handleOptionClick = (option: string) => {
 
 <style scoped>
 .select-container {
+  position: relative;
   display: inline-block;
   border: 1px solid var(--color-border);
   padding: 5px;
@@ -97,6 +103,7 @@ const handleOptionClick = (option: string) => {
   height: 100%;
   display: inline-flex;
   align-items: center;
+  z-index: 2;
   gap: 10px;
   justify-content: space-between;
 }
@@ -109,29 +116,29 @@ const handleOptionClick = (option: string) => {
 .select-options {
   display: flex;
   flex-direction: column;
-  visibility: hidden;
-  /* overflow: hidden; */
+  visibility: visible;
+  z-index: 100;
+  opacity: 1;
   border: 1px solid var(--color-border);
   position: absolute;
   top: 55px;
   right: 0;
-  opacity: 0;
   border-radius: 5px;
-  z-index: 0;
   background: var(--color-background);
   box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
-  transform: translate3d(50px, -50px, 0px) scale(0.5);
+  transform-origin: top right;
+  transform: scale(1);
   transition: transform 0.3s cubic-bezier(0.24, 0.22, 0.015, 1.56),
-    opacity 0.1s ease-in-out;
+    opacity 0.1s linear;
   min-width: max-content;
   width: 100%;
 }
 
 .show-options {
   visibility: visible;
-  transform: translate3d(0px, 0px, 0px) scale(1);
   z-index: 100;
   opacity: 1;
+  transform: translate3d(0px, 0px, 0px) scale(1);
 }
 .select-option {
   text-align: left;
@@ -164,5 +171,15 @@ const handleOptionClick = (option: string) => {
 
 .rotate {
   transform: rotate(180deg);
+}
+
+.fade-leave-to {
+  transition: transform 0.3s cubic-bezier(0.24, 0.22, 0.015, 1.56),
+    opacity 0.15s linear 0.05s;
+}
+.fade-leave-to,
+.fade-enter-from {
+  transform: scale(0.2);
+  opacity: 0;
 }
 </style>
