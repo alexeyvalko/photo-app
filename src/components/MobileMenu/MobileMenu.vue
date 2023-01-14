@@ -1,10 +1,12 @@
 <template>
-  <div
-    class="menu-overlay"
-    v-if="store.isMenuOpen"
-    @click="store.toggleMenu"
-    :class="{ 'is-open': store.isMenuOpen }"
-  ></div>
+  <Transition name="fade">
+    <div
+      class="menu-overlay"
+      v-if="store.isMenuOpen"
+      @click="store.toggleMenu"
+      :class="{ 'is-open': store.isMenuOpen }"
+    ></div>
+  </Transition>
   <Transition>
     <MobileNavigation />
   </Transition>
@@ -24,6 +26,7 @@ const store = useAppStore();
   left: 0;
   width: 100%;
   height: 100%;
+  backdrop-filter: blur(1px);
   background: var(--color-background-overlay);
   z-index: var(--z-index-overlay);
   display: none;
@@ -37,6 +40,16 @@ const store = useAppStore();
 .v-enter-from,
 .v-leave-to {
   transform: translateY(100%);
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: all 0.2s linear;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
 }
 @media (max-width: 768px) {
   .is-open {
