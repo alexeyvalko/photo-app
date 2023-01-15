@@ -1,14 +1,15 @@
 <template>
-  <div class="skeleton-line"></div>
+  <div class="skeleton-circle"></div>
 </template>
 
 <style>
-.skeleton-line {
-  width: 100%;
+.skeleton-circle {
+  width: 18px;
   height: 18px;
   border-radius: var(--card-border-radius);
   background-color: var(--color-background-mute);
   background: var(--skeleton-gradient);
+  flex-shrink: 0;
   background-size: 200% 200%;
   animation: animation 2s ease infinite;
 }
