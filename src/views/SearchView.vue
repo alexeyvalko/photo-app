@@ -42,10 +42,7 @@ const twoColumns = computed(() => {
 });
 
 const getComponentData = async () => {
-  if (
-    decodedPageSearchQuery.value &&
-    decodedPageSearchQuery.value !== store.query
-  ) {
+  if (decodedPageSearchQuery.value) {
     store.$patch({
       query: decodedPageSearchQuery.value,
     });
