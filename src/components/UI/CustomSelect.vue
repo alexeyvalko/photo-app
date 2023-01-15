@@ -11,7 +11,10 @@
         <IconSmallArrow class="arrow-icon" :class="{ rotate: showOptions }" />
       </span>
     </button>
-    <Transition name="fade" :duration="{ enter: 300, leave: 300 }">
+    <Transition
+      name="fade"
+      :duration="{ enter: TRANSITION_DURATION, leave: TRANSITION_DURATION }"
+    >
       <div
         class="select-options"
         :id="`content${hashId}`"
@@ -40,6 +43,7 @@ const props = defineProps<{
   options: string[];
   currentOption: string;
 }>();
+const TRANSITION_DURATION = 300;
 const emit = defineEmits(['changeOption']);
 const showOptions = ref(false);
 const menuOptions = ref<HTMLElement | null>(null);
