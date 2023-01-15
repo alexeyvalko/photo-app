@@ -8,7 +8,7 @@ export enum SERVER_ENDPOINTS {
   SEARCH_PHOTOS = 'search/photos',
 }
 
-export const DEFAULT_PAGE_TRANSITION_DURATION = 300;
+export const DEFAULT_PAGE_TRANSITION_DURATION = 200;
 
 export const LIST_ORDER_OPTIONS = ['latest', 'oldest', 'popular'];
 export const SEARCH_ORDER_OPTIONS = ['relevant', 'latest'];

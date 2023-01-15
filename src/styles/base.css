@@ -117,7 +117,7 @@ input[type='search']::-ms-reveal {
   height: 0;
 }
 
-ul {
+ul, ol {
   padding: 0;
 }
 

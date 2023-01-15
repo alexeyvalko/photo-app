@@ -1,19 +1,18 @@
 <template>
-  <div
-    class="photo-description"
-    v-if="props.photo.description || props.photo.alt_description"
-  >
+  <div class="photo-description" v-if="description">
     <h3 class="description-title">Description:</h3>
-    <p>{{ props.photo.description || props.photo.alt_description }}</p>
+    <p>{{ capitalizeFirstLetter(description) }}</p>
   </div>
 </template>
 
 <script setup lang="ts">
+import { capitalizeFirstLetter } from '@/utils';
 import type { Photo } from '@/types/photos';
 
 const props = defineProps<{
   photo: Photo;
 }>();
+const description = props.photo.description || props.photo.alt_description;
 </script>
 
 <style scoped>
