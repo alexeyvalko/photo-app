@@ -8,13 +8,11 @@ import FooterItem from '@/components/Footer/FooterItem.vue';
 <template>
   <NavbarItem />
   <main class="main" id="main" tabindex="-1">
-    <div class="wrapper">
-      <router-view v-slot="{ Component, route }">
-        <transition name="fade">
-          <component :is="Component" :key="route.path" />
-        </transition>
-      </router-view>
-    </div>
+    <router-view v-slot="{ Component, route }">
+      <transition name="fade">
+        <component :is="Component" :key="route.path" />
+      </transition>
+    </router-view>
   </main>
   <FooterItem />
   <MobileMenu />

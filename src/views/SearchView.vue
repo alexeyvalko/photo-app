@@ -57,43 +57,45 @@ watch(() => route.params.query, watcher);
 </script>
 
 <template>
-  <div class="container">
-    <div class="header-container">
-      <HeaderItem> {{ header }} photos</HeaderItem>
-    </div>
-    <div class="filter-wrapper">
-      <ColorsSelect
-        :options="COLOR_OPTIONS"
-        :currentOption="store.color || COLOR_OPTIONS.colors.any"
-        @changeOption="store.setColor"
-      />
-      <CustomSelect
-        :options="[DEFAULT_ORIENTATION_OPTION, ...ORIENTATION_OPTIONS]"
-        :currentOption="store.orientation || DEFAULT_ORIENTATION_OPTION"
-        @changeOption="store.setOrientation"
-      />
-      <CustomSelect
-        :options="SEARCH_ORDER_OPTIONS"
-        :currentOption="store.orderBy || DEFAULT_SEARCH_ORDER"
-        @changeOption="store.setOrderBy"
-      />
-    </div>
-    <Transition name="fade">
-      <PhotoList
-        v-if="store.photos.length > 0"
-        :threeColumns="threeColumns"
-        :twoColumns="twoColumns"
-        :loader="store.loadPosts"
-    /></Transition>
-    <Transition name="fade">
-      <PhotoListSkeleton :cards="27" v-if="store.isLoading" />
-    </Transition>
+  <div class="wrapper">
+    <div class="container">
+      <div class="header-container">
+        <HeaderItem> {{ header }} photos</HeaderItem>
+      </div>
+      <div class="filter-wrapper">
+        <ColorsSelect
+          :options="COLOR_OPTIONS"
+          :currentOption="store.color || COLOR_OPTIONS.colors.any"
+          @changeOption="store.setColor"
+        />
+        <CustomSelect
+          :options="[DEFAULT_ORIENTATION_OPTION, ...ORIENTATION_OPTIONS]"
+          :currentOption="store.orientation || DEFAULT_ORIENTATION_OPTION"
+          @changeOption="store.setOrientation"
+        />
+        <CustomSelect
+          :options="SEARCH_ORDER_OPTIONS"
+          :currentOption="store.orderBy || DEFAULT_SEARCH_ORDER"
+          @changeOption="store.setOrderBy"
+        />
+      </div>
+      <Transition name="fade">
+        <PhotoList
+          v-if="store.photos.length > 0"
+          :threeColumns="threeColumns"
+          :twoColumns="twoColumns"
+          :loader="store.loadPosts"
+      /></Transition>
+      <Transition name="fade">
+        <PhotoListSkeleton :cards="27" v-if="store.isLoading" />
+      </Transition>
 
-    <div
-      class="header-container"
-      v-if="!store.isLoading && store.photos.length === 0"
-    >
-      <h2>Oops, can't find anything</h2>
+      <div
+        class="header-container"
+        v-if="!store.isLoading && store.photos.length === 0"
+      >
+        <h2>Oops, can't find anything</h2>
+      </div>
     </div>
   </div>
 </template>

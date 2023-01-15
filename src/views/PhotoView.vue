@@ -21,11 +21,15 @@ onMounted(() => {
 <template>
   <div class="container">
     <div class="photo-wrapper" v-if="store.currentPhoto">
-      <TopPhotoInfo :photo="store.currentPhoto" />
+      <div class="wrapper">
+        <TopPhotoInfo :photo="store.currentPhoto" />
+      </div>
       <PhotoItem :photo="store.currentPhoto" />
-      <PhotoDescription :photo="store.currentPhoto" />
-      <BottomInfo :photo="store.currentPhoto" :is-loading="store.isLoading" />
-      <PhotoTags :photo="store.currentPhoto" v-if="store.currentPhoto.tags" />
+      <div class="wrapper">
+        <PhotoDescription :photo="store.currentPhoto" />
+        <BottomInfo :photo="store.currentPhoto" :is-loading="store.isLoading" />
+        <PhotoTags :photo="store.currentPhoto" v-if="store.currentPhoto.tags" />
+      </div>
     </div>
   </div>
 </template>
