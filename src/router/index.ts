@@ -1,3 +1,4 @@
+import { DEFAULT_PAGE_TRANSITION_DURATION } from './../common/config';
 import { createRouter, createWebHistory } from 'vue-router';
 import routes from '@/router/routes';
 
@@ -7,9 +8,17 @@ const router = createRouter({
   linkActiveClass: 'active-link',
   scrollBehavior(to, from, savedPosition) {
     if (savedPosition) {
-      return savedPosition;
+      return new Promise((resolve) => {
+        setTimeout(() => {
+          resolve(savedPosition);
+        }, DEFAULT_PAGE_TRANSITION_DURATION);
+      });
     } else {
-      return { top: 0, behavior: 'smooth' };
+      return new Promise((resolve) => {
+        setTimeout(() => {
+          resolve({ top: 0, behavior: 'smooth' });
+        }, DEFAULT_PAGE_TRANSITION_DURATION);
+      });
     }
   },
 });
