@@ -63,6 +63,6 @@
   font-weight: 600;
 }
 .about {
-  padding: 0 0 30px 0;
+  padding: 0 30px 30px 0;
 }
 </style>
