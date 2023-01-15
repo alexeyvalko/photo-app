@@ -26,7 +26,7 @@ const store = useAppStore();
   left: 0;
   width: 100%;
   height: 100%;
-  backdrop-filter: blur(1px);
+  /* backdrop-filter: blur(1px); */
   background: var(--color-background-overlay);
   z-index: var(--z-index-overlay);
   display: none;
