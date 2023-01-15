@@ -23,7 +23,8 @@ const header = ref('');
 const updateHeaderAndTitle = () => {
   const query = route.params.query as string;
   decodedPageSearchQuery.value = query ? decodeQuery(query) : '';
-  header.value = capitalizeFirstLetter(decodedPageSearchQuery.value);
+  if (decodedPageSearchQuery.value)
+    header.value = capitalizeFirstLetter(decodedPageSearchQuery.value);
   document.title = `Free ${decodedPageSearchQuery.value} Photos`;
 };
 
