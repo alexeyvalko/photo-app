@@ -77,15 +77,23 @@ export const downloadPhoto = async (url: string, filename: string) => {
 };
 
 export const encodeQuery = (query: string) => {
-  const content = query.replace(/%/g, '~~pct~~');
-  const encodedQuery = encodeURIComponent(content);
-  return encodedQuery;
+  try {
+    const content = query.replace(/%/g, '~~pct~~');
+    const encodedQuery = encodeURIComponent(content);
+    return encodedQuery;
+  } catch {
+    return '';
+  }
 };
 
 export const decodeQuery = (query: string) => {
-  const decodedQuery = decodeURIComponent(query);
-  const content = decodedQuery.replace(/~~pct~~/g, '%');
-  return content;
+  try {
+    const decodedQuery = decodeURIComponent(query);
+    const content = decodedQuery.replace(/~~pct~~/g, '%');
+    return content;
+  } catch {
+    return '';
+  }
 };
 
 export const getNavigatorLanguage = () => {

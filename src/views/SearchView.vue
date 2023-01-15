@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, onBeforeMount, onMounted, ref, watch } from 'vue';
-import { useRoute } from 'vue-router';
+import { useRoute, useRouter, type LocationQueryRaw } from 'vue-router';
 import HeaderItem from '@/components/UI/HeaderItem.vue';
 import PhotoList from '@/components/PhotoList/PhotoList.vue';
 import CustomSelect from '@/components/UI/CustomSelect.vue';
@@ -18,13 +18,13 @@ import { decodeQuery, capitalizeFirstLetter } from '@/utils';
 
 const route = useRoute();
 const store = useSearchStore();
-const decodedPageParam = ref('');
+const decodedPageSearchQuery = ref('');
 const header = ref('');
 const updateHeaderAndTitle = () => {
   const query = route.params.query as string;
-  decodedPageParam.value = query ? decodeQuery(query) : '';
-  header.value = capitalizeFirstLetter(decodedPageParam.value);
-  document.title = `Free ${decodedPageParam.value} Photos`;
+  decodedPageSearchQuery.value = query ? decodeQuery(query) : '';
+  header.value = capitalizeFirstLetter(decodedPageSearchQuery.value);
+  document.title = `Free ${decodedPageSearchQuery.value} Photos`;
 };
 
 const watcher = (query: string | string[]) => {
@@ -42,10 +42,9 @@ const twoColumns = computed(() => {
 });
 
 const getComponentData = async () => {
-  if (decodedPageParam.value && decodedPageParam.value !== store.pageParam) {
+  if (decodedPageSearchQuery.value) {
     store.$patch({
-      query: decodedPageParam.value,
-      pageParam: decodedPageParam.value,
+      query: decodedPageSearchQuery.value,
     });
     await store.searchPhotos();
   }
@@ -57,43 +56,45 @@ watch(() => route.params.query, watcher);
 </script>
 
 <template>
-  <div class="container">
-    <div class="header-container">
-      <HeaderItem> {{ header }} photos</HeaderItem>
-    </div>
-    <div class="filter-wrapper">
-      <ColorsSelect
-        :options="COLOR_OPTIONS"
-        :currentOption="store.color || COLOR_OPTIONS.colors.any"
-        @changeOption="store.setColor"
-      />
-      <CustomSelect
-        :options="[DEFAULT_ORIENTATION_OPTION, ...ORIENTATION_OPTIONS]"
-        :currentOption="store.orientation || DEFAULT_ORIENTATION_OPTION"
-        @changeOption="store.setOrientation"
-      />
-      <CustomSelect
-        :options="SEARCH_ORDER_OPTIONS"
-        :currentOption="store.orderBy || DEFAULT_SEARCH_ORDER"
-        @changeOption="store.setOrderBy"
-      />
-    </div>
-    <Transition name="fade">
-      <PhotoList
-        v-if="store.photos.length > 0"
-        :threeColumns="threeColumns"
-        :twoColumns="twoColumns"
-        :loader="store.loadPosts"
-    /></Transition>
-    <Transition name="fade">
-      <PhotoListSkeleton :cards="27" v-if="store.isLoading" />
-    </Transition>
+  <div class="wrapper">
+    <div class="container">
+      <div class="header-container">
+        <HeaderItem> {{ header }} photos</HeaderItem>
+      </div>
+      <div class="filter-wrapper">
+        <ColorsSelect
+          :options="COLOR_OPTIONS"
+          :currentOption="store.color || COLOR_OPTIONS.colors.any"
+          @changeOption="store.setColor"
+        />
+        <CustomSelect
+          :options="[DEFAULT_ORIENTATION_OPTION, ...ORIENTATION_OPTIONS]"
+          :currentOption="store.orientation || DEFAULT_ORIENTATION_OPTION"
+          @changeOption="store.setOrientation"
+        />
+        <CustomSelect
+          :options="SEARCH_ORDER_OPTIONS"
+          :currentOption="store.orderBy || DEFAULT_SEARCH_ORDER"
+          @changeOption="store.setOrderBy"
+        />
+      </div>
+      <Transition name="fade">
+        <PhotoList
+          v-if="store.photos.length > 0"
+          :threeColumns="threeColumns"
+          :twoColumns="twoColumns"
+          :loader="store.loadPosts"
+      /></Transition>
+      <Transition name="fade">
+        <PhotoListSkeleton :cards="12" v-if="store.isLoading" />
+      </Transition>
 
-    <div
-      class="header-container"
-      v-if="!store.isLoading && store.photos.length === 0"
-    >
-      <h2>Oops, can't find anything</h2>
+      <div
+        class="header-container"
+        v-if="!store.isLoading && store.photos.length === 0"
+      >
+        <h2>Oops, can't find anything</h2>
+      </div>
     </div>
   </div>
 </template>

@@ -25,31 +25,33 @@ const twoColumns = computed(() => {
 </script>
 
 <template>
-  <div class="container">
-    <div class="header-container">
-      <HeaderItem class="header-title gradient-text">
-        Free stock photos
-      </HeaderItem>
-      <p class="header-description">Stunning high-resolution photos</p>
+  <div class="wrapper">
+    <div class="container">
+      <div class="header-container">
+        <HeaderItem class="header-title gradient-text">
+          Free stock photos
+        </HeaderItem>
+        <p class="header-description">Stunning high-resolution photos</p>
+      </div>
+      <div class="filter-wrapper">
+        <CustomSelect
+          :options="LIST_ORDER_OPTIONS"
+          :currentOption="store.orderBy"
+          @changeOption="store.setOrderBy"
+        />
+      </div>
+      <Transition name="fade">
+        <PhotoList
+          v-if="store.photos.length > 0"
+          :threeColumns="threeColumns"
+          :twoColumns="twoColumns"
+          :loader="store.loadPosts"
+        />
+      </Transition>
+      <Transition name="fade">
+        <PhotoListSkeleton :cards="12" v-if="store.isLoading" />
+      </Transition>
     </div>
-    <div class="filter-wrapper">
-      <CustomSelect
-        :options="LIST_ORDER_OPTIONS"
-        :currentOption="store.orderBy"
-        @changeOption="store.setOrderBy"
-      />
-    </div>
-    <Transition name="fade">
-      <PhotoList
-        v-if="store.photos.length > 0"
-        :threeColumns="threeColumns"
-        :twoColumns="twoColumns"
-        :loader="store.loadPosts"
-      />
-    </Transition>
-    <Transition name="fade">
-      <PhotoListSkeleton :cards="12" v-if="store.isLoading" />
-    </Transition>
   </div>
 </template>
 
