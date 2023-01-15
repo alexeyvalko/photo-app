@@ -53,7 +53,7 @@
         </div>
       </div>
     </div>
-    <BottomInfoSkeleton  />
+    <BottomInfoSkeleton v-if="props.isLoading" />
   </div>
 </template>
 
