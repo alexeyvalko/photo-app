@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, onBeforeMount, onMounted, ref, watch } from 'vue';
-import { useRoute } from 'vue-router';
+import { useRoute, useRouter, type LocationQueryRaw } from 'vue-router';
 import HeaderItem from '@/components/UI/HeaderItem.vue';
 import PhotoList from '@/components/PhotoList/PhotoList.vue';
 import CustomSelect from '@/components/UI/CustomSelect.vue';
@@ -18,13 +18,13 @@ import { decodeQuery, capitalizeFirstLetter } from '@/utils';
 
 const route = useRoute();
 const store = useSearchStore();
-const decodedPageParam = ref('');
+const decodedPageSearchQuery = ref('');
 const header = ref('');
 const updateHeaderAndTitle = () => {
   const query = route.params.query as string;
-  decodedPageParam.value = query ? decodeQuery(query) : '';
-  header.value = capitalizeFirstLetter(decodedPageParam.value);
-  document.title = `Free ${decodedPageParam.value} Photos`;
+  decodedPageSearchQuery.value = query ? decodeQuery(query) : '';
+  header.value = capitalizeFirstLetter(decodedPageSearchQuery.value);
+  document.title = `Free ${decodedPageSearchQuery.value} Photos`;
 };
 
 const watcher = (query: string | string[]) => {
@@ -42,10 +42,12 @@ const twoColumns = computed(() => {
 });
 
 const getComponentData = async () => {
-  if (decodedPageParam.value && decodedPageParam.value !== store.pageParam) {
+  if (
+    decodedPageSearchQuery.value &&
+    decodedPageSearchQuery.value !== store.query
+  ) {
     store.$patch({
-      query: decodedPageParam.value,
-      pageParam: decodedPageParam.value,
+      query: decodedPageSearchQuery.value,
     });
     await store.searchPhotos();
   }
@@ -87,7 +89,7 @@ watch(() => route.params.query, watcher);
           :loader="store.loadPosts"
       /></Transition>
       <Transition name="fade">
-        <PhotoListSkeleton :cards="27" v-if="store.isLoading" />
+        <PhotoListSkeleton :cards="12" v-if="store.isLoading" />
       </Transition>
 
       <div
