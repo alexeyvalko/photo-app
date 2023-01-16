@@ -62,7 +62,7 @@ watch(() => route.params.query, watcher);
       <div class="header-container">
         <HeaderItem> {{ header }} photos</HeaderItem>
       </div>
-      <div class="filter-wrapper">
+      <div class="filter-container">
         <ColorsSelect
           :options="COLOR_OPTIONS"
           :currentOption="store.color || COLOR_OPTIONS.colors.any"
@@ -105,5 +105,14 @@ watch(() => route.params.query, watcher);
   padding-top: 30px;
   padding-bottom: 10px;
   text-align: center;
+}
+
+.filter-container {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 20px 0;
+  gap: var(--navigation-gap);
 }
 </style>
