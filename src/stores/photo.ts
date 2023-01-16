@@ -61,6 +61,12 @@ export const usePhotoStore = defineStore({
       });
     },
 
+    async trackDownloadPhoto() {
+      await axios.post(`${SERVER_URL}/photos/download`, {
+        downloadLocation: this.currentPhoto?.links.download_location,
+      });
+    },
+
     async loadPosts() {
       if (this.photos.length > 0 && this.page < this.totalPages) {
         this.page += 1;
