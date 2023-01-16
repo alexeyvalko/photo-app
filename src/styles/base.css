@@ -199,15 +199,6 @@ a {
   width: 100%;
 }
 
-.filter-wrapper {
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  flex-wrap: wrap;
-  padding: 20px 0;
-  gap: var(--navigation-gap);
-}
-
 @media (max-width: 768px) {
   .wrapper {
     padding: 0 15px;

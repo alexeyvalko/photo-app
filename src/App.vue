@@ -14,6 +14,8 @@ import { DEFAULT_PAGE_TRANSITION_DURATION } from './common/config';
         <component :is="Component" :key="route.path" />
       </transition>
     </router-view>
+
+    <!-- <router-view /> -->
   </main>
   <FooterItem />
   <MobileMenu />
