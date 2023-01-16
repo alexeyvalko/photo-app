@@ -69,7 +69,11 @@ export const usePhotoStore = defineStore({
     },
 
     async loadPosts() {
-      if (this.photos.length > 0 && this.page < this.totalPages) {
+      if (
+        this.photos.length > 0 &&
+        this.page < this.totalPages &&
+        !this.isLoading
+      ) {
         this.page += 1;
         const params = {
           page: this.page,

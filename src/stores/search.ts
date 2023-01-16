@@ -86,7 +86,11 @@ export const useSearchStore = defineStore({
       }
     },
     async loadPosts() {
-      if (this.photos.length > 0 && this.page < this.totalPages) {
+      if (
+        this.photos.length > 0 &&
+        this.page < this.totalPages &&
+        !this.isLoading
+      ) {
         this.page += 1;
         const params: ISearchOptions = {
           query: this.query,
@@ -100,8 +104,9 @@ export const useSearchStore = defineStore({
       }
     },
 
-    async searchPhotos() {
+    async searchPhotos(page?: number) {
       this.photos = [];
+      if (page) this.page = page;
       await this.fetchPhotos(SERVER_ENDPOINTS.SEARCH_PHOTOS, {
         query: this.query,
         page: this.page,
@@ -114,19 +119,19 @@ export const useSearchStore = defineStore({
 
     setOrderBy(orderBy: SearchOrderType) {
       this.orderBy = orderBy;
-      this.searchPhotos();
+      this.searchPhotos(1);
     },
     setOrientation(
       orientation: SearchOrientationType | typeof DEFAULT_ORIENTATION_OPTION,
     ) {
       this.orientation =
         orientation === DEFAULT_ORIENTATION_OPTION ? null : orientation;
-      this.searchPhotos();
+      this.searchPhotos(1);
     },
 
     setColor(color: SearchColorsType | 'any') {
       this.color = color === 'any' ? null : color;
-      this.searchPhotos();
+      this.searchPhotos(1);
     },
 
     getQueryParams(params: IQueryParams) {

@@ -28,12 +28,12 @@ const updateHeaderAndTitle = () => {
   document.title = `Free ${decodedPageSearchQuery.value} Photos`;
 };
 
-const watcher = (query: string | string[]) => {
-  if (query) {
-    updateHeaderAndTitle();
-    getComponentData();
-  }
-};
+// const watcher = (query: string | string[]) => {
+//   if (query) {
+//     updateHeaderAndTitle();
+//     getComponentData();
+//   }
+// };
 
 const threeColumns = computed(() => {
   return store.filteredThreeColumnsByRatio;
@@ -56,7 +56,7 @@ const getComponentData = async () => {
 
 onBeforeMount(updateHeaderAndTitle);
 onMounted(getComponentData);
-watch(() => route.params.query, watcher);
+// watch(() => route.params.query, watcher);
 </script>
 
 <template>
