@@ -65,15 +65,6 @@ const twoColumns = computed(() => {
   padding-bottom: 10px;
 }
 
-.filter-container {
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  flex-wrap: wrap;
-  padding: 20px 0;
-  gap: var(--navigation-gap);
-}
-
 .header-title {
   color: transparent;
   font-weight: 700;

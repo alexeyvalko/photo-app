@@ -72,3 +72,10 @@ export interface ITag {
   type: string;
   title: string;
 }
+
+export interface IQueryParams {
+  orientation?: SearchOrientationType;
+  color?: SearchColorsType;
+  order_by?: OrderByListType;
+  page?: number;
+}

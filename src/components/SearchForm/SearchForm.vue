@@ -6,7 +6,7 @@ import { useSearchStore } from '@/stores/search';
 import { useRouter } from 'vue-router';
 import { encodeQuery } from '@/utils';
 
-const searchStore = useSearchStore();
+const store = useSearchStore();
 const router = useRouter();
 const isFocused = ref(false);
 const isBlurred = ref(!isFocused.value);
@@ -16,9 +16,10 @@ const handleFocus = (newValue: boolean): void => {
 };
 
 const handleSubmit = (): void => {
-  if (searchStore.query) {
+  if (store.query) {
     isBlurred.value = true;
-    const query = encodeQuery(searchStore.query);
+    store.page = 1;
+    const query = encodeQuery(store.query);
     router.push(`/search/photos/${query}`);
   }
 };

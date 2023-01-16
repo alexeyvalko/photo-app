@@ -59,6 +59,7 @@ export const deleteFalsyKeys = <T extends Record<string, unknown>>(
 ) => {
   const asArray = Object.entries(object);
   const filtered = asArray.filter(([, value]) => !!value);
+  if (!filtered.length) return null;
   const filteredObject = Object.fromEntries(filtered);
   return filteredObject;
 };

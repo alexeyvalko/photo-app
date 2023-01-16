@@ -12,6 +12,19 @@ export const DEFAULT_PAGE_TRANSITION_DURATION = 200;
 
 export const LIST_ORDER_OPTIONS = ['latest', 'oldest', 'popular'];
 export const SEARCH_ORDER_OPTIONS = ['relevant', 'latest'];
+export const SEARCH_COLOR_OPTIONS = [
+  'black_and_white',
+  'black',
+  'white',
+  'yellow',
+  'orange',
+  'red',
+  'purple',
+  'magenta',
+  'green',
+  'teal',
+  'blue',
+];
 export const ORIENTATION_OPTIONS = ['landscape', 'portrait', 'squarish'];
 export const DEFAULT_ORIENTATION_OPTION = 'All orientations';
 export const DEFAULT_SEARCH_ORDER = 'relevant';

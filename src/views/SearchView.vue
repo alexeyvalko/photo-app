@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, onBeforeMount, onMounted, ref, watch } from 'vue';
-import { useRoute, useRouter, type LocationQueryRaw } from 'vue-router';
+import { useRoute } from 'vue-router';
 import HeaderItem from '@/components/UI/HeaderItem.vue';
 import PhotoList from '@/components/PhotoList/PhotoList.vue';
 import CustomSelect from '@/components/UI/CustomSelect.vue';
@@ -43,6 +43,9 @@ const twoColumns = computed(() => {
 });
 
 const getComponentData = async () => {
+  if (route.query) {
+    store.getQueryParams(route.query);
+  }
   if (decodedPageSearchQuery.value) {
     store.$patch({
       query: decodedPageSearchQuery.value,
@@ -105,14 +108,5 @@ watch(() => route.params.query, watcher);
   padding-top: 30px;
   padding-bottom: 10px;
   text-align: center;
-}
-
-.filter-container {
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  flex-wrap: wrap;
-  padding: 20px 0;
-  gap: var(--navigation-gap);
 }
 </style>

@@ -199,6 +199,15 @@ a {
   width: 100%;
 }
 
+.filter-container {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 20px 0;
+  gap: var(--navigation-gap);
+}
+
 @media (max-width: 768px) {
   .wrapper {
     padding: 0 15px;
@@ -208,7 +217,7 @@ a {
     padding: 0;
   }
 
-  .filter-wrapper {
+  .filter-container {
     flex-direction: column;
     gap: 10px;
     align-items: stretch;
