@@ -15,7 +15,10 @@
       :href="`${props.photo.urls.raw}&dl=${props.photo.user.username}-${props.photo.id}.jpg`"
       :download="`${props.photo.user.username}-${props.photo.id}.jpg`"
       rel="nofollow"
-      ><button class="button download-button" @click="store.trackDownloadPhoto">
+      ><button
+        class="button download-button"
+        @click="() => store.trackDownloadPhoto()"
+      >
         Free download
       </button></a
     >
