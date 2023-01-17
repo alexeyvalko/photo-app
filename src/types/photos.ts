@@ -2,6 +2,12 @@ import type { Nullable } from './helpers';
 import type { ITag } from './interfaces';
 import type { UserBasic } from './user';
 
+interface Collection {
+  id: number;
+  title: string;
+  cover_photo: Photo;
+  preview_photos: PhotoVeryBasic[];
+}
 interface StatValue {
   value: number;
   date: string;
@@ -84,4 +90,8 @@ export interface Photo extends PhotoBasic {
   views: number;
   downloads: number;
   topics: string[];
+  related_collections: {
+    total: number;
+    results: Collection[];
+  };
 }
