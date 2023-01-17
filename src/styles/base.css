@@ -199,7 +199,7 @@ a {
   width: 100%;
 }
 
-.filter-wrapper {
+.filter-container {
   display: flex;
   justify-content: flex-end;
   align-items: center;
@@ -217,7 +217,7 @@ a {
     padding: 0;
   }
 
-  .filter-wrapper {
+  .filter-container {
     flex-direction: column;
     gap: 10px;
     align-items: stretch;

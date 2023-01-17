@@ -1,11 +1,19 @@
 import {
   DEFAULT_ORIENTATION_OPTION,
   SERVER_ENDPOINTS,
+  ORIENTATION_OPTIONS,
   SERVER_URL,
+  SEARCH_ORDER_OPTIONS,
+  DEFAULT_SEARCH_ORDER,
+  SEARCH_COLOR_OPTIONS,
 } from '@/common/config';
 import type { Photo } from '@/types/photos';
 import { deleteFalsyKeys, filterPhotosByRatio } from '@/utils';
-import type { IResponsePhotos, ISearchOptions } from '@/types/interfaces';
+import type {
+  IQueryParams,
+  IResponsePhotos,
+  ISearchOptions,
+} from '@/types/interfaces';
 import axios from 'axios';
 import { defineStore } from 'pinia';
 import type {
@@ -33,12 +41,12 @@ export const useSearchStore = defineStore({
   }),
 
   getters: {
-    pageQueryParams: (state) => {
+    searchQueryParams: (state): IQueryParams | null => {
       const queries = {
         orientation: state.orientation,
         color: state.color,
         order_by: state.orderBy,
-        page: state.page,
+        page: state.page === 1 ? null : state.page,
       };
       const filteredQueries = deleteFalsyKeys(queries);
       return filteredQueries;
@@ -78,7 +86,11 @@ export const useSearchStore = defineStore({
       }
     },
     async loadPosts() {
-      if (this.photos.length > 0 && this.page < this.totalPages) {
+      if (
+        this.photos.length > 0 &&
+        this.page < this.totalPages &&
+        !this.isLoading
+      ) {
         this.page += 1;
         const params: ISearchOptions = {
           query: this.query,
@@ -92,9 +104,9 @@ export const useSearchStore = defineStore({
       }
     },
 
-    async searchPhotos() {
+    async searchPhotos(page?: number) {
       this.photos = [];
-      this.page = 1;
+      if (page) this.page = page;
       await this.fetchPhotos(SERVER_ENDPOINTS.SEARCH_PHOTOS, {
         query: this.query,
         page: this.page,
@@ -107,19 +119,45 @@ export const useSearchStore = defineStore({
 
     setOrderBy(orderBy: SearchOrderType) {
       this.orderBy = orderBy;
-      this.searchPhotos();
+      this.searchPhotos(1);
     },
     setOrientation(
       orientation: SearchOrientationType | typeof DEFAULT_ORIENTATION_OPTION,
     ) {
       this.orientation =
         orientation === DEFAULT_ORIENTATION_OPTION ? null : orientation;
-      this.searchPhotos();
+      this.searchPhotos(1);
     },
 
     setColor(color: SearchColorsType | 'any') {
       this.color = color === 'any' ? null : color;
-      this.searchPhotos();
+      this.searchPhotos(1);
+    },
+
+    getQueryParams(params: IQueryParams) {
+      const paramEntries = Object.entries(params);
+      paramEntries.forEach((entry) => {
+        switch (entry[0]) {
+          case 'orientation':
+            this.orientation = ORIENTATION_OPTIONS.includes(entry[1])
+              ? entry[1]
+              : null;
+            break;
+          case 'order_by':
+            this.orderBy = SEARCH_ORDER_OPTIONS.includes(entry[1])
+              ? entry[1]
+              : null;
+            break;
+          case 'page':
+            this.page = Number(entry[1]) || 1;
+            break;
+          case 'color':
+            this.color = SEARCH_COLOR_OPTIONS.includes(entry[1])
+              ? entry[1]
+              : null;
+            break;
+        }
+      });
     },
   },
 });

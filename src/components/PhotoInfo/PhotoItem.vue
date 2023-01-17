@@ -14,10 +14,9 @@
         :width="`${props.photo.width}`"
         :height="`${props.photo.height}`"
         :srcset="`${props.photo.urls.small_s3} 100w, ${props.photo.urls.thumb} 200w, ${props.photo.urls.small} 400w, ${props.photo.urls.medium} 600w, ${props.photo.urls.regular}  1024w, ${props.photo.urls.full} 1200w`"
-        sizes="(max-width: 480px) calc(100vw - 60px) (max-width: 768px) calc(100vw - 120px), (max-width: 1200px) calc(100vw - 300px) (max-width: 1920px) calc(100vw - 900px), calc(100vw - 120px)"
+        sizes="(max-width: 480px) calc(100vw - 60px) (max-width: 768px) calc(100vw - 120px), (max-width: 1200px) calc(100vw - 300px) (max-width: 1920px) calc(100vw - 900px), calc(100vw - 900px)"
         :alt="altDescription"
         class="photo-image"
-        loading="lazy"
       />
     </div>
   </div>

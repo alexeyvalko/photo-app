@@ -1,34 +1,26 @@
 <template>
-  <div class="photo-tags">
-    <div
-      class="tag"
-      v-for="tag in props.photo.tags"
-      :key="tag.title"
-      @click="
-        router.push({
-          name: 'search',
-          params: { query: tag.title },
-        })
-      "
-    >
-      {{ tag.title }}
-    </div>
-  </div>
+  <ul class="tag-list">
+    <li class="tag" v-for="tag in tags" :key="tag.title">
+      <a :href="`/search/photos/${tag.title}`" class="tag-link">
+        {{ tag.title }}
+      </a>
+    </li>
+  </ul>
 </template>
 
 <script setup lang="ts">
 import type { Photo } from '@/types/photos';
-import { useRouter } from 'vue-router';
 
 const props = defineProps<{
   photo: Photo;
 }>();
-
-const router = useRouter();
+const tags = props.photo.tags && props.photo.tags.slice(0, 10);
 </script>
 
 <style scoped>
-.photo-tags {
+.tag-list {
+  padding: 0;
+  list-style: none;
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-start;
@@ -38,7 +30,7 @@ const router = useRouter();
 .tag {
   display: inline-block;
   border: 1px solid var(--color-border);
-  padding: 8px 20px 10px 20px;
+  padding: 7px 20px 10px 20px;
   line-height: 1.2;
   background: var(--color-background);
   border-radius: 5px;
@@ -46,7 +38,14 @@ const router = useRouter();
   font-size: 1.6rem;
   cursor: pointer;
 }
+
 .tag:hover {
   background: var(--color-background-mute);
 }
+
+.tag-link {
+  text-decoration: none;
+  color: var(--color-text);
+}
+
 </style>

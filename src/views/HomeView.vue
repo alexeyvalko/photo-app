@@ -27,19 +27,19 @@ const twoColumns = computed(() => {
 <template>
   <div class="wrapper">
     <div class="container">
-      <div class="header-container">
+      <section class="header-container">
         <HeaderItem class="header-title gradient-text">
           Free stock photos
         </HeaderItem>
         <p class="header-description">Stunning high-resolution photos</p>
-      </div>
-      <div class="filter-wrapper">
+      </section>
+      <section class="filter-container">
         <CustomSelect
           :options="LIST_ORDER_OPTIONS"
           :currentOption="store.orderBy"
           @changeOption="store.setOrderBy"
         />
-      </div>
+      </section>
       <Transition name="fade">
         <PhotoList
           v-if="store.photos.length > 0"

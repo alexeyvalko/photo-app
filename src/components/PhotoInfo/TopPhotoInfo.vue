@@ -15,17 +15,21 @@
       :href="`${props.photo.urls.raw}&dl=${props.photo.user.username}-${props.photo.id}.jpg`"
       :download="`${props.photo.user.username}-${props.photo.id}.jpg`"
       rel="nofollow"
-      ><button class="button download-button">Free download</button></a
+      ><button class="button download-button" @click="store.trackDownloadPhoto">
+        Free download
+      </button></a
     >
   </div>
 </template>
 
 <script setup lang="ts">
+import { usePhotoStore } from '@/stores/photo';
 import type { Photo } from '@/types/photos';
 
 const props = defineProps<{
   photo: Photo;
 }>();
+const store = usePhotoStore();
 </script>
 
 <style scoped>

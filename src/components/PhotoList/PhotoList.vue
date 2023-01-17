@@ -16,11 +16,11 @@ const props = defineProps<{
 </script>
 
 <template>
-  <div class="list-container">
+  <section class="list-container">
     <ThreeColumns :columns="props.threeColumns" />
     <TwoColumns :columns="props.twoColumns" />
     <ObserverItem :callback="props.loader" />
-  </div>
+  </section>
 </template>
 
 <style>

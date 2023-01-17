@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, onBeforeMount, onMounted, ref, watch } from 'vue';
-import { useRoute, useRouter, type LocationQueryRaw } from 'vue-router';
+import { useRoute } from 'vue-router';
 import HeaderItem from '@/components/UI/HeaderItem.vue';
 import PhotoList from '@/components/PhotoList/PhotoList.vue';
 import CustomSelect from '@/components/UI/CustomSelect.vue';
@@ -28,12 +28,12 @@ const updateHeaderAndTitle = () => {
   document.title = `Free ${decodedPageSearchQuery.value} Photos`;
 };
 
-const watcher = (query: string | string[]) => {
-  if (query) {
-    updateHeaderAndTitle();
-    getComponentData();
-  }
-};
+// const watcher = (query: string | string[]) => {
+//   if (query) {
+//     updateHeaderAndTitle();
+//     getComponentData();
+//   }
+// };
 
 const threeColumns = computed(() => {
   return store.filteredThreeColumnsByRatio;
@@ -43,6 +43,9 @@ const twoColumns = computed(() => {
 });
 
 const getComponentData = async () => {
+  if (route.query) {
+    store.getQueryParams(route.query);
+  }
   if (decodedPageSearchQuery.value) {
     store.$patch({
       query: decodedPageSearchQuery.value,
@@ -53,7 +56,7 @@ const getComponentData = async () => {
 
 onBeforeMount(updateHeaderAndTitle);
 onMounted(getComponentData);
-watch(() => route.params.query, watcher);
+// watch(() => route.params.query, watcher);
 </script>
 
 <template>
@@ -62,7 +65,7 @@ watch(() => route.params.query, watcher);
       <div class="header-container">
         <HeaderItem> {{ header }} photos</HeaderItem>
       </div>
-      <div class="filter-wrapper">
+      <div class="filter-container">
         <ColorsSelect
           :options="COLOR_OPTIONS"
           :currentOption="store.color || COLOR_OPTIONS.colors.any"

@@ -48,18 +48,21 @@ const store = usePhotoStore();
 .photo-card {
   overflow: hidden;
   width: 100%;
+  height: 100%;
   position: relative;
   border-radius: var(--card-border-radius);
 }
 
 .photo-card__image {
   width: 100%;
-  height: auto;
+  height: 100%;
+  object-fit: cover;
 }
 
 .card-link {
-  position: absolute;
-  display: inline-block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 100%;
   height: 100%;
 }
