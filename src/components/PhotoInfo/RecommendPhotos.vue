@@ -38,7 +38,7 @@ watch(() => props.photo, getPhotos);
 
 <style scoped>
 .recommend {
-  margin: var(--column-gutter) 0;
+  margin-bottom: var(--column-gutter);
   padding: 0 10px;
 }
 .recommend__list {
