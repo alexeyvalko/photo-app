@@ -1,7 +1,7 @@
 <template>
   <div
     class="skeleton-card"
-    :style="` padding-top: calc(100% / ${ratio || 1.2});`"
+    :style="`padding-top: calc(100% / ${ratio || 1.2});`"
   ></div>
 </template>
 

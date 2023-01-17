@@ -84,7 +84,7 @@ const photoLocation = computed(
 .info-container {
   display: flex;
   flex-direction: column;
-  gap: 5px;
+  gap: 8px;
 }
 .info-item {
   display: flex;
