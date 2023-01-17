@@ -8,7 +8,7 @@ import { DEFAULT_PAGE_TRANSITION_DURATION } from './common/config';
 
 <template>
   <NavbarItem />
-  <main class="main" id="main" tabindex="-1">
+  <main class="main wrapper" id="main" tabindex="-1">
     <router-view v-slot="{ Component, route }">
       <transition name="fade" :duration="DEFAULT_PAGE_TRANSITION_DURATION">
         <component :is="Component" :key="route.path" />

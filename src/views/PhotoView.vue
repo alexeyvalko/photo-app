@@ -8,6 +8,7 @@ import PhotoItem from '@/components/PhotoInfo/PhotoItem.vue';
 import PhotoDescription from '@/components/PhotoInfo/PhotoDescription.vue';
 import PhotoTags from '../components/PhotoInfo/PhotoTags.vue';
 import RecommendPhotos from '@/components/PhotoInfo/RecommendPhotos.vue';
+
 const store = usePhotoStore();
 const route = useRoute();
 
@@ -20,21 +21,19 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="container">
-    <div class="photo-wrapper" v-if="store.currentPhoto">
-      <div class="wrapper">
-        <TopPhotoInfo :photo="store.currentPhoto" />
-      </div>
-      <PhotoItem :photo="store.currentPhoto" />
-      <div class="wrapper">
-        <PhotoDescription :photo="store.currentPhoto" />
-        <BottomInfo :photo="store.currentPhoto" :is-loading="store.isLoading" />
-        <PhotoTags :photo="store.currentPhoto" v-if="store.currentPhoto.tags" />
-        <RecommendPhotos
-          :photo="store.currentPhoto"
-          :is-loading="store.isLoading"
-        />
-      </div>
+  <div class="photo-wrapper" v-if="store.currentPhoto">
+    <div class="container">
+      <TopPhotoInfo :photo="store.currentPhoto" />
+    </div>
+    <PhotoItem :photo="store.currentPhoto" />
+    <div class="container">
+      <PhotoDescription :photo="store.currentPhoto" />
+      <BottomInfo :photo="store.currentPhoto" :is-loading="store.isLoading" />
+      <PhotoTags :photo="store.currentPhoto" v-if="store.currentPhoto.tags" />
+      <RecommendPhotos
+        :photo="store.currentPhoto"
+        :is-loading="store.isLoading"
+      />
     </div>
   </div>
 </template>

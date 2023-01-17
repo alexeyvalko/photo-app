@@ -26,10 +26,11 @@ const props = defineProps<{
 const photos = ref<null | Photo[]>(null);
 
 const getPhotos = () => {
-  if (props.photo.related_collections)
+  if (props.photo.related_collections) {
     photos.value = props.photo.related_collections.results.map(
       ({ cover_photo }) => cover_photo,
     );
+  }
 };
 
 onBeforeMount(getPhotos);

@@ -50,7 +50,7 @@
 
   --navigation-gap: 50px;
   --navbar-height: 80px;
-  --card-border-radius: 20px;
+  --card-border-radius: 15px;
   --column-gutter: 30px;
   --columns: 3;
   --columns-tablet: 2;
@@ -173,7 +173,12 @@ a {
   margin: 0 auto;
   width: 100%;
   max-width: 1440px;
-  padding: 0 30px;
+}
+
+.container {
+  position: relative;
+  padding: 0 var(--column-gutter);
+  width: 100%;
 }
 
 .button {
@@ -193,12 +198,6 @@ a {
   fill: var(--primary-color);
 }
 
-.container {
-  position: relative;
-  padding: 0 var(--column-gutter);
-  width: 100%;
-}
-
 .filter-container {
   display: flex;
   justify-content: flex-end;
@@ -209,12 +208,8 @@ a {
 }
 
 @media (max-width: 768px) {
-  .wrapper {
-    padding: 0 15px;
-  }
-
   .container {
-    padding: 0;
+    padding: 0 calc(var(--column-gutter) / 2);
   }
 
   .filter-container {

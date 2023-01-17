@@ -6,7 +6,7 @@ import type {
   SearchOrderType,
   SearchOrientationType,
 } from '@/types/helpers';
-import type { PhotoBasic } from './photos';
+import type { PhotoBasic, Photo } from './photos';
 
 export interface IResponsePhotos<T> {
   type: ResponseTypeUnsplash;
@@ -71,6 +71,9 @@ export interface IResponsePhoto<T> {
 export interface ITag {
   type: string;
   title: string;
+  source: {
+    cover_photo: Photo;
+  };
 }
 
 export interface IQueryParams {

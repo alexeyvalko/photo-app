@@ -35,6 +35,11 @@ import HamburgerButton from '@/components/MobileMenu/HamburgerButton.vue';
 .logo {
   line-height: 0;
 }
+
+.navbar {
+  padding: 0 calc(var(--column-gutter) / 2);
+}
+
 .navigation,
 .navbar__left {
   display: flex;
@@ -78,7 +83,6 @@ import HamburgerButton from '@/components/MobileMenu/HamburgerButton.vue';
   .navigation {
     display: none;
   }
-
   .navbar__left {
     gap: calc(var(--navigation-gap) / 3);
   }
