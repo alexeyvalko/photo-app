@@ -37,7 +37,7 @@
 <script setup lang="ts">
 import { createFocusTrap, hashFromString } from '@/utils';
 import type * as focusTrap from 'focus-trap';
-import { ref, watch } from 'vue';
+import { onMounted, ref, watch } from 'vue';
 
 const props = defineProps<{
   options: string[];
@@ -50,14 +50,18 @@ const menuOptions = ref<HTMLElement | null>(null);
 const hashId = hashFromString(props.currentOption);
 let focusTrapObj: focusTrap.FocusTrap | null = null;
 
-watch(menuOptions, (container) => {
-  if (container) {
-    focusTrapObj = createFocusTrap(container);
-    focusTrapObj?.activate();
-  } else {
-    focusTrapObj = null;
-  }
+onMounted(() => {
+  if (menuOptions.value) focusTrapObj = createFocusTrap(menuOptions.value);
 });
+
+// watch(menuOptions, (container) => {
+//   if (container) {
+//     focusTrapObj = createFocusTrap(container);
+//     focusTrapObj?.activate();
+//   } else {
+//     focusTrapObj = null;
+//   }
+// });
 
 const handleDocumentClick = (): void => {
   showOptions.value = false;
@@ -67,6 +71,7 @@ const handleDocumentClick = (): void => {
 const toggleOptions = () => {
   showOptions.value = !showOptions.value;
   if (showOptions.value) {
+    focusTrapObj?.activate();
     document.addEventListener('click', handleDocumentClick);
   } else {
     document.removeEventListener('click', handleDocumentClick);
