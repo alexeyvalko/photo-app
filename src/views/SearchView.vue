@@ -12,6 +12,7 @@ import {
   DEFAULT_ORIENTATION_OPTION,
   DEFAULT_SEARCH_ORDER,
   COLOR_OPTIONS,
+DEFAULT_TITLE,
 } from '@/common/config';
 import { useSearchStore } from '@/stores/search';
 import { decodeQuery, capitalizeFirstLetter } from '@/utils';
@@ -25,7 +26,7 @@ const updateHeaderAndTitle = () => {
   searchQuery.value = query ? decodeQuery(query) : '';
   if (searchQuery.value)
     header.value = capitalizeFirstLetter(searchQuery.value);
-  document.title = `Free ${searchQuery.value} Photos`;
+  document.title = `Free ${searchQuery.value} photos - ${DEFAULT_TITLE}`;
 };
 
 // const watcher = (query: string | string[]) => {

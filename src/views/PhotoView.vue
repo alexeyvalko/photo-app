@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { usePhotoStore } from '@/stores/photo';
-import { computed, onMounted } from 'vue';
+import { onBeforeMount, ref, watch } from 'vue';
 import { useRoute } from 'vue-router';
 import TopPhotoInfo from '@/components/PhotoInfo/TopPhotoInfo.vue';
 import BottomInfo from '@/components/PhotoInfo/BottomInfo.vue';
@@ -12,23 +12,32 @@ import { capitalizeFirstLetter } from '@/utils';
 import { DEFAULT_TITLE } from '@/common/config';
 const store = usePhotoStore();
 const route = useRoute();
-const title = computed(() => {
-  const description =
-    store.currentPhoto?.alt_description ||
-    store.currentPhoto?.description ||
-    'Stock';
-  return capitalizeFirstLetter(
-    `${description} photo by ${store.currentPhoto?.user.name} - ${DEFAULT_TITLE}`,
-  );
-});
 
-document.title = title.value;
+const getDocumentTitle = () => {
+  if (store.currentPhoto) {
+    const description =
+      store.currentPhoto?.alt_description ||
+      store.currentPhoto?.description ||
+      'Stock';
+    return capitalizeFirstLetter(
+      `${description} photo by ${store.currentPhoto?.user.name} - ${DEFAULT_TITLE}`,
+    );
+  }
+  return capitalizeFirstLetter(DEFAULT_TITLE);
+};
 
-onMounted(() => {
+watch(
+  () => store.currentPhoto,
+  () => {
+    document.title = getDocumentTitle();
+  },
+);
+onBeforeMount(() => {
   const photoId = route.params.photoId as string;
   if (photoId) {
     store.fetchPhoto(photoId);
   }
+  document.title = getDocumentTitle();
 });
 </script>
 
