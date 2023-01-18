@@ -80,7 +80,8 @@ const twoColumns = computed(() => {
 }
 
 .header-description {
-  font-size: 2.5rem;
+  font-size: 3rem;
+  font-weight: 600;
 }
 
 @media (max-width: 768px) {

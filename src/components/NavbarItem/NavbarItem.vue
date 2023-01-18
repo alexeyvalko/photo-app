@@ -47,6 +47,11 @@ import HamburgerButton from '@/components/MobileMenu/HamburgerButton.vue';
   gap: 20px;
 }
 
+.navigation {
+  max-width: 300px;
+  flex-wrap: wrap;
+}
+
 .navbar__left {
   gap: var(--navigation-gap);
   flex: 1;
