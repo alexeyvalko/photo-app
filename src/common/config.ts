@@ -15,6 +15,7 @@ export const DEFAULT_PAGE_TRANSITION_DURATION = 200;
 
 export const LIST_ORDER_OPTIONS = ['latest', 'oldest', 'popular'];
 export const SEARCH_ORDER_OPTIONS = ['relevant', 'latest'];
+export const ORIENTATION_OPTIONS = ['landscape', 'portrait', 'squarish'];
 export const SEARCH_COLOR_OPTIONS = [
   'black_and_white',
   'black',
@@ -28,7 +29,7 @@ export const SEARCH_COLOR_OPTIONS = [
   'teal',
   'blue',
 ];
-export const ORIENTATION_OPTIONS = ['landscape', 'portrait', 'squarish'];
+
 export const DEFAULT_ORIENTATION_OPTION = 'All orientations';
 export const DEFAULT_SEARCH_ORDER = 'relevant';
 export const MENU_LINKS = [
