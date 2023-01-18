@@ -120,20 +120,29 @@ export const useSearchStore = defineStore({
     },
 
     setOrderBy(orderBy: SearchOrderType) {
-      this.orderBy = orderBy;
-      this.searchPhotos(1);
+      const newOrderBy = orderBy === DEFAULT_SEARCH_ORDER ? null : orderBy;
+      if (newOrderBy !== this.orderBy) {
+        this.orderBy = newOrderBy;
+        this.searchPhotos(1);
+      }
     },
     setOrientation(
       orientation: SearchOrientationType | typeof DEFAULT_ORIENTATION_OPTION,
     ) {
-      this.orientation =
+      const newOrientation =
         orientation === DEFAULT_ORIENTATION_OPTION ? null : orientation;
-      this.searchPhotos(1);
+      if (newOrientation !== this.orientation) {
+        this.orientation = newOrientation;
+        this.searchPhotos(1);
+      }
     },
 
     setColor(color: SearchColorsType | 'any') {
-      this.color = color === 'any' ? null : color;
-      this.searchPhotos(1);
+      const newColor = color === 'any' ? null : color;
+      if (this.color !== newColor) {
+        this.color = newColor;
+        this.searchPhotos(1);
+      }
     },
 
     getQueryParams(params: IQueryParams) {
