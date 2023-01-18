@@ -16,7 +16,7 @@
         class="select-options"
         :id="`content${hashId}`"
         ref="menuOptions"
-        v-if="showOptions"
+        v-show="showOptions"
       >
         <button
           class="button select-option"

@@ -1,4 +1,5 @@
 import IconSearch from '@/components/icons/IconSearch.vue';
+import IconSmallArrow from '@/components/icons/IconSmallArrow.vue';
 import { defineAsyncComponent } from 'vue';
 
 export default [
@@ -14,9 +15,7 @@ export default [
   },
   {
     name: 'IconSmallArrow',
-    component: defineAsyncComponent(
-      () => import('@/components/icons/IconSmallArrow.vue'),
-    ),
+    component: IconSmallArrow,
   },
   {
     name: 'IconLocation',

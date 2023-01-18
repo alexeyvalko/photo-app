@@ -13,17 +13,18 @@
         <div class="author-name">{{ props.photo.user.name }}</div>
       </div>
       <a
+        role="button"
         :href="`${props.photo.urls.raw}&dl=${props.photo.user.username}-${props.photo.id}.jpg`"
         :download="`${props.photo.user.username}-${props.photo.id}.jpg`"
         rel="nofollow"
       >
-        <button class="download-button">
+        <span class="download-button">
           <IconDownload class="info-icon" />
           <span class="visually-hidden">
             Download {{ props.photo.alt_description }} photo by
             {{ props.photo.user.name }}
           </span>
-        </button>
+        </span>
       </a>
     </div>
   </div>
@@ -63,7 +64,6 @@ const props = defineProps<{
   flex-shrink: 0;
   background-color: var(--white-mute);
   border: none;
-  padding: 0;
   margin: 0;
   font-size: 1.6rem;
   line-height: 0;
@@ -73,6 +73,7 @@ const props = defineProps<{
   cursor: pointer;
   display: flex;
   align-items: center;
+  flex-shrink: 0;
   justify-content: center;
 }
 .info-container {
