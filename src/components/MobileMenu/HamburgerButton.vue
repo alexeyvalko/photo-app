@@ -1,11 +1,11 @@
 <template>
-  <div
+  <button
     class="hamburger"
     @click="store.toggleMenu"
     :class="{ crest: store.isMenuOpen }"
   >
     <div class="hamburger-line"></div>
-  </div>
+  </button>
 </template>
 
 <script setup lang="ts">
@@ -16,8 +16,12 @@ const store = useAppStore();
 
 <style scoped>
 .hamburger {
+  flex-shrink: 0;
   cursor: pointer;
   position: relative;
+  background: none;
+  border: none;
+  padding: 0;
   width: 31px;
   height: 25px;
   z-index: 15;
@@ -32,7 +36,7 @@ const store = useAppStore();
   background: var(--color-text);
   border-radius: 5px;
   z-index: 2;
-
+  transform-origin: left center;
   transition: all 0.3s ease-in-out;
 }
 
@@ -66,11 +70,11 @@ const store = useAppStore();
 }
 .hamburger.crest > .hamburger-line::before {
   background: var(--color-text);
-  transform: rotate(45deg) translate(0px, 11px);
+  transform: rotate(45deg) translate(5px, 6px);
 }
 .hamburger.crest > .hamburger-line::after {
   background: var(--color-text);
-  transform: rotate(-45deg) translate(0px, -11px);
+  transform: rotate(-45deg) translate(5px, -6px);
 }
 
 @media (max-width: 768px) {
