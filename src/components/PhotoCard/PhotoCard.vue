@@ -37,7 +37,6 @@
 import type { Photo } from '@/types/photos';
 import CardOverlay from '@/components/PhotoCard/CardOverlay.vue';
 import { usePhotoStore } from '@/stores/photo';
-
 const props = defineProps<{
   photo: Photo;
 }>();
