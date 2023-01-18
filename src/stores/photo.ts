@@ -85,8 +85,10 @@ export const usePhotoStore = defineStore({
     },
 
     setOrderBy(orderBy: OrderByListType) {
-      this.orderBy = orderBy;
-      this.getPhotoList();
+      if (orderBy !== this.orderBy) {
+        this.orderBy = orderBy;
+        this.getPhotoList();
+      }
     },
 
     async fetchPhoto(photoId: string) {
