@@ -16,25 +16,21 @@
 <script setup lang="ts">
 import type { Photo } from '@/types/photos';
 import PhotoCardRecommend from '@/components/PhotoCard/PhotoCardRecommend.vue';
-import { onBeforeMount, ref, watch } from 'vue';
+import { computed } from 'vue';
 
 const props = defineProps<{
   photo: Photo;
   isLoading: boolean;
 }>();
 
-const photos = ref<null | Photo[]>(null);
-
-const getPhotos = () => {
+const photos = computed(() => {
   if (props.photo.related_collections) {
-    photos.value = props.photo.related_collections.results.map(
+    return props.photo.related_collections.results.map(
       ({ cover_photo }) => cover_photo,
     );
   }
-};
-
-onBeforeMount(getPhotos);
-watch(() => props.photo, getPhotos);
+  return null;
+});
 </script>
 
 <style scoped>

@@ -1,8 +1,8 @@
 <template>
-  <div class="container">
+  <section class="container">
     <h2 class="title"><span class="colored-word">Not</span> found</h2>
     <p class="description">The page you are looking for does not exist.</p>
-  </div>
+  </section>
 </template>
 
 <style scoped>

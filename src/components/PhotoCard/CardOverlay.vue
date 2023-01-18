@@ -19,7 +19,10 @@
       >
         <button class="download-button">
           <IconDownload class="info-icon" />
-          <span class="visually-hidden">Download</span>
+          <span class="visually-hidden">
+            Download {{ props.photo.alt_description }} photo by
+            {{ props.photo.user.name }}
+          </span>
         </button>
       </a>
     </div>
