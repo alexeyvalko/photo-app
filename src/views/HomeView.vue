@@ -3,11 +3,12 @@ import PhotoList from '@/components/PhotoList/PhotoList.vue';
 import HeaderItem from '@/components/UI/HeaderItem.vue';
 import CustomSelect from '@/components/UI/CustomSelect.vue';
 import PhotoListSkeleton from '@/components/Skeleton/PhotoListSkeleton.vue';
-import { LIST_ORDER_OPTIONS } from '@/common/config';
+import { DEFAULT_TITLE, LIST_ORDER_OPTIONS } from '@/common/config';
 import { usePhotoStore } from '@/stores/photo';
-import { onMounted, computed } from 'vue';
+import { onMounted, computed, Transition } from 'vue';
+import { capitalizeFirstLetter } from '@/utils';
 
-document.title = `Free Stock Photos`;
+document.title = capitalizeFirstLetter(`${DEFAULT_TITLE}`);
 
 const store = usePhotoStore();
 onMounted(async () => {

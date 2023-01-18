@@ -50,7 +50,11 @@
     </ol>
   </div>
 </template>
+<script setup lang="ts">
+import { DEFAULT_TITLE } from '@/common/config';
 
+document.title = `About page - ${DEFAULT_TITLE}`;
+</script>
 <style>
 .about-title {
   padding: 30px 0;

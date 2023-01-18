@@ -4,7 +4,11 @@
     <p class="description">The page you are looking for does not exist.</p>
   </section>
 </template>
+<script setup lang="ts">
+import { DEFAULT_TITLE } from '@/common/config';
 
+document.title = `Not found - ${DEFAULT_TITLE}`;
+</script>
 <style scoped>
 .title {
   font-size: 5rem;
