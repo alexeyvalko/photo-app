@@ -32,13 +32,13 @@ const twoColumns = computed(() => {
       </HeaderItem>
       <p class="header-description">Stunning high-resolution photos</p>
     </section>
-    <section class="filter-container">
+    <div class="filter-container">
       <CustomSelect
         :options="LIST_ORDER_OPTIONS"
         :currentOption="store.orderBy"
         @changeOption="store.setOrderBy"
       />
-    </section>
+    </div>
     <Transition name="fade">
       <PhotoList
         v-if="store.photos.length > 0"

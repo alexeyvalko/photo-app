@@ -13,6 +13,7 @@
         <div class="author-name">{{ props.photo.user.name }}</div>
       </div>
       <a
+        role="button"
         :href="`${props.photo.urls.raw}&dl=${props.photo.user.username}-${props.photo.id}.jpg`"
         :download="`${props.photo.user.username}-${props.photo.id}.jpg`"
         rel="nofollow"

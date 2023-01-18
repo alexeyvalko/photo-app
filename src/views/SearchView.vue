@@ -70,7 +70,7 @@ onMounted(getComponentData);
     >
       <h2>Oops, can't find anything</h2>
     </section>
-    <section class="filter-container">
+    <div class="filter-container">
       <ColorsSelect
         :options="COLOR_OPTIONS"
         :currentOption="store.color || COLOR_OPTIONS.colors.any"
@@ -86,7 +86,7 @@ onMounted(getComponentData);
         :currentOption="store.orderBy || DEFAULT_SEARCH_ORDER"
         @changeOption="store.setOrderBy"
       />
-    </section>
+    </div>
     <Transition name="fade">
       <PhotoList
         v-if="store.photos.length > 0"
