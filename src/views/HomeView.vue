@@ -60,7 +60,7 @@ const twoColumns = computed(() => {
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  padding-top: 50px;
+  padding-top: 30px;
   padding-bottom: 10px;
 }
 

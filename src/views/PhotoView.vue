@@ -17,7 +17,7 @@ const getDocumentTitle = () => {
   if (store.currentPhoto) {
     const description =
       store.currentPhoto?.alt_description ||
-      store.currentPhoto?.description ||
+      store.currentPhoto?.tags[0]?.title ||
       'Stock';
     return capitalizeFirstLetter(
       `${description} photo by ${store.currentPhoto?.user.name} - ${DEFAULT_TITLE}`,

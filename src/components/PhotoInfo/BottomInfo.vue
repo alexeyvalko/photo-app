@@ -108,7 +108,6 @@ const queryLocation = computed(
   width: 20px;
   height: 20px;
   fill: var(--color-text);
-
   transition: all 0.3s ease;
 }
 
@@ -141,7 +140,7 @@ const queryLocation = computed(
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
-  padding: 20px 0;
+  padding: 20px 0 0 0;
   gap: 20px;
 }
 

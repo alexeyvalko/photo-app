@@ -70,5 +70,9 @@ const photos = computed(() => {
   .recommend__list {
     grid-template-columns: 1fr;
   }
+
+  .recommend__list {
+    gap: calc(var(--column-gutter) / 2);
+  }
 }
 </style>

@@ -36,6 +36,7 @@ export const useSearchStore = defineStore({
     collectionIds: [],
     lang: 'en',
     totalPages: 1,
+    total: 0,
     photos: [] as Photo[],
     isLoading: false,
   }),
@@ -77,7 +78,8 @@ export const useSearchStore = defineStore({
             params: filteredParams,
           },
         );
-        this.totalPages = response.data.total_pages;
+        this.totalPages = Number(response.data.total_pages);
+        this.total = Number(response.data.total);
         this.photos = [...this.photos, ...response.data.results];
       } catch {
         console.error(`Failed to fetch ${this.orderBy} photos`);
