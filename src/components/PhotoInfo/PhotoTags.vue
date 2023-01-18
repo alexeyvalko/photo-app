@@ -26,7 +26,7 @@ const tags = computed(
 
 <style scoped>
 .tag-list {
-  padding: 0;
+  padding: 20px 0 0 0;
   list-style: none;
   display: flex;
   flex-wrap: wrap;
