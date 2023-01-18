@@ -1,20 +1,27 @@
 <template>
-  <ul class="tag-list">
+  <ul class="tag-list" v-if="tags">
     <li class="tag" v-for="tag in tags" :key="tag.title">
-      <a :href="`/search/photos/${tag.title}`" class="tag-link">
+      <router-link
+        :to="`/search/photos/${encodeQuery(tag.title)}`"
+        class="tag-link"
+      >
         {{ tag.title }}
-      </a>
+      </router-link>
     </li>
   </ul>
 </template>
 
 <script setup lang="ts">
 import type { Photo } from '@/types/photos';
+import { encodeQuery } from '@/utils';
+import { computed } from 'vue';
 
 const props = defineProps<{
   photo: Photo;
 }>();
-const tags = props.photo.tags && props.photo.tags.slice(0, 10);
+const tags = computed(
+  () => props.photo.tags.length && props.photo.tags.slice(0, 10),
+);
 </script>
 
 <style scoped>
@@ -47,5 +54,4 @@ const tags = props.photo.tags && props.photo.tags.slice(0, 10);
   text-decoration: none;
   color: var(--color-text);
 }
-
 </style>

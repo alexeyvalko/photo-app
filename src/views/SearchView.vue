@@ -18,14 +18,14 @@ import { decodeQuery, capitalizeFirstLetter } from '@/utils';
 
 const route = useRoute();
 const store = useSearchStore();
-const decodedPageSearchQuery = ref('');
+const searchQuery = ref('');
 const header = ref('');
 const updateHeaderAndTitle = () => {
   const query = route.params.query as string;
-  decodedPageSearchQuery.value = query ? decodeQuery(query) : '';
-  if (decodedPageSearchQuery.value)
-    header.value = capitalizeFirstLetter(decodedPageSearchQuery.value);
-  document.title = `Free ${decodedPageSearchQuery.value} Photos`;
+  searchQuery.value = query ? decodeQuery(query) : '';
+  if (searchQuery.value)
+    header.value = capitalizeFirstLetter(searchQuery.value);
+  document.title = `Free ${searchQuery.value} Photos`;
 };
 
 // const watcher = (query: string | string[]) => {
@@ -46,9 +46,9 @@ const getComponentData = async () => {
   if (route.query) {
     store.getQueryParams(route.query);
   }
-  if (decodedPageSearchQuery.value) {
+  if (searchQuery.value) {
     store.$patch({
-      query: decodedPageSearchQuery.value,
+      query: searchQuery.value,
     });
     await store.searchPhotos();
   }
@@ -61,10 +61,16 @@ onMounted(getComponentData);
 
 <template>
   <div class="container">
-    <div class="header-container">
+    <section class="header-container">
       <HeaderItem> {{ header }} photos</HeaderItem>
-    </div>
-    <div class="filter-container">
+    </section>
+    <section
+      class="header-container"
+      v-if="!store.isLoading && store.photos.length === 0"
+    >
+      <h2>Oops, can't find anything</h2>
+    </section>
+    <section class="filter-container">
       <ColorsSelect
         :options="COLOR_OPTIONS"
         :currentOption="store.color || COLOR_OPTIONS.colors.any"
@@ -80,7 +86,7 @@ onMounted(getComponentData);
         :currentOption="store.orderBy || DEFAULT_SEARCH_ORDER"
         @changeOption="store.setOrderBy"
       />
-    </div>
+    </section>
     <Transition name="fade">
       <PhotoList
         v-if="store.photos.length > 0"
@@ -91,13 +97,6 @@ onMounted(getComponentData);
     <Transition name="fade">
       <PhotoListSkeleton :cards="12" v-if="store.isLoading" />
     </Transition>
-
-    <div
-      class="header-container"
-      v-if="!store.isLoading && store.photos.length === 0"
-    >
-      <h2>Oops, can't find anything</h2>
-    </div>
   </div>
 </template>
 

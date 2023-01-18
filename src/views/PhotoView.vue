@@ -8,7 +8,6 @@ import PhotoItem from '@/components/PhotoInfo/PhotoItem.vue';
 import PhotoDescription from '@/components/PhotoInfo/PhotoDescription.vue';
 import PhotoTags from '../components/PhotoInfo/PhotoTags.vue';
 import RecommendPhotos from '@/components/PhotoInfo/RecommendPhotos.vue';
-
 const store = usePhotoStore();
 const route = useRoute();
 

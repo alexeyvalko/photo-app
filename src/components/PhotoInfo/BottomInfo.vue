@@ -2,19 +2,15 @@
   <div class="bottom-wrapper">
     <div class="bottom-info" v-if="!props.isLoading">
       <div class="info-container">
-        <div
-          v-if="photoLocation"
+        <router-link
+          :to="`/search/photos/${queryLocation}`"
           class="info-item location-info"
-          @click="
-            router.push({
-              name: 'search',
-              params: { query: photoLocation },
-            })
-          "
+          v-if="queryLocation"
         >
           <IconLocation class="info-icon" />
           <span class="info-text"> {{ photoLocation }}</span>
-        </div>
+        </router-link>
+
         <div class="info-item">
           <IconCalendar class="info-icon" />
           <div class="info-description">
@@ -59,17 +55,15 @@
 
 <script setup lang="ts">
 import type { Photo } from '@/types/photos';
-import { getNavigatorLanguage } from '@/utils';
-import { useRouter } from 'vue-router';
+import { getNavigatorLanguage, encodeQuery } from '@/utils';
 import BottomInfoSkeleton from '@/components/Skeleton/BottomInfoSkeleton.vue';
 import { computed } from '@vue/reactivity';
-const router = useRouter();
+
 const props = defineProps<{
   photo: Photo;
   isLoading: boolean;
 }>();
 const lang = getNavigatorLanguage();
-
 const photoLocation = computed(
   () =>
     props.photo?.location?.title ||
@@ -77,6 +71,9 @@ const photoLocation = computed(
     props.photo?.location?.city ||
     props.photo?.location?.country ||
     null,
+);
+const queryLocation = computed(
+  () => photoLocation.value && encodeQuery(photoLocation.value),
 );
 </script>
 
@@ -129,6 +126,8 @@ const photoLocation = computed(
 
 .location-info {
   cursor: pointer;
+  color: var(--color-text);
+  text-decoration: none;
 }
 
 .location-info:hover .info-icon {

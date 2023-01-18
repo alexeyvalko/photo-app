@@ -8,11 +8,14 @@
 <script setup lang="ts">
 import { capitalizeFirstLetter } from '@/utils';
 import type { Photo } from '@/types/photos';
+import { computed } from 'vue';
 
 const props = defineProps<{
   photo: Photo;
 }>();
-const description = props.photo.description || props.photo.alt_description;
+const description = computed(
+  () => props.photo.description || props.photo.alt_description,
+);
 </script>
 
 <style scoped>

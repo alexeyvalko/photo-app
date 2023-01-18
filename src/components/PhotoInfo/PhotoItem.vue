@@ -24,15 +24,18 @@
 
 <script setup lang="ts">
 import type { Photo } from '@/types/photos';
+import { computed } from 'vue';
 
 const props = defineProps<{
   photo: Photo;
 }>();
 
-const altDescription =
-  props.photo?.alt_description ||
-  props.photo?.description ||
-  `${props.photo?.user.name}'s photo`;
+const altDescription = computed(
+  () =>
+    props.photo?.alt_description ||
+    props.photo?.description ||
+    `${props.photo?.user.name}'s photo`,
+);
 </script>
 
 <style scoped>
