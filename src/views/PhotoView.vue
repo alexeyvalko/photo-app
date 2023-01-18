@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { usePhotoStore } from '@/stores/photo';
-import { onMounted } from 'vue';
+import { computed, onMounted } from 'vue';
 import { useRoute } from 'vue-router';
 import TopPhotoInfo from '@/components/PhotoInfo/TopPhotoInfo.vue';
 import BottomInfo from '@/components/PhotoInfo/BottomInfo.vue';
@@ -8,8 +8,21 @@ import PhotoItem from '@/components/PhotoInfo/PhotoItem.vue';
 import PhotoDescription from '@/components/PhotoInfo/PhotoDescription.vue';
 import PhotoTags from '../components/PhotoInfo/PhotoTags.vue';
 import RecommendPhotos from '@/components/PhotoInfo/RecommendPhotos.vue';
+import { capitalizeFirstLetter } from '@/utils';
+import { DEFAULT_TITLE } from '@/common/config';
 const store = usePhotoStore();
 const route = useRoute();
+const title = computed(() => {
+  const description =
+    store.currentPhoto?.alt_description ||
+    store.currentPhoto?.description ||
+    'Stock';
+  return capitalizeFirstLetter(
+    `${description} photo by ${store.currentPhoto?.user.name} - ${DEFAULT_TITLE}`,
+  );
+});
+
+document.title = title.value;
 
 onMounted(() => {
   const photoId = route.params.photoId as string;

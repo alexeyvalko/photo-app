@@ -1,5 +1,8 @@
 import type { IColorsOptions } from '@/types/interfaces';
 
+
+export const DEFAULT_TITLE = 'free high-resolution photos';
+
 export const SERVER_URL =
   import.meta.env.VITE_SERVER_URL || 'http://localhost:5000';
 
