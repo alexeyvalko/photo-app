@@ -7,7 +7,7 @@
         :key="photo.id + 'recommend'"
         class="list_item"
       >
-        <PhotoCardRecommend :photo="photo" />
+        <PhotoCard :photo="photo" :full-height="true" />
       </li>
     </ul>
   </section>
@@ -15,7 +15,7 @@
 
 <script setup lang="ts">
 import type { Photo } from '@/types/photos';
-import PhotoCardRecommend from '@/components/PhotoCard/PhotoCardRecommend.vue';
+import PhotoCard from '@/components/PhotoCard/PhotoCard.vue';
 import { computed } from 'vue';
 
 const props = defineProps<{
