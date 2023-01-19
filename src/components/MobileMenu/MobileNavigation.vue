@@ -1,5 +1,5 @@
 <template>
-  <div class="mobile-menu" v-if="store.isMenuOpen">
+  <div class="mobile-menu" v-if="store.isMenuOpen" ref="menu" tabindex="-1">
     <ul class="mobile-navigation">
       <li
         class="mobile-navigation__link"
@@ -20,7 +20,15 @@
 <script setup lang="ts">
 import { MENU_LINKS } from '@/common/config';
 import { useAppStore } from '@/stores/app';
+import { ref, watch } from 'vue';
+import { RouterLink } from 'vue-router';
 const store = useAppStore();
+
+const menu = ref<HTMLElement | null>(null);
+
+watch(menu, (element) => {
+  element?.focus();
+});
 </script>
 
 <style scoped>
@@ -58,6 +66,8 @@ const store = useAppStore();
   width: 100%;
   border-radius: 10px;
 }
+
+.link:focus,
 .mobile-navigation__link:hover {
   background: var(--color-background-mute);
 }

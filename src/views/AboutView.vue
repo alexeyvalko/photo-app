@@ -1,5 +1,5 @@
 <template>
-  <div class="container about">
+  <section class="container about">
     <h2 class="about-title">Used resources</h2>
 
     <ol>
@@ -48,7 +48,7 @@
         - github repository.
       </li>
     </ol>
-  </div>
+  </section>
 </template>
 <script setup lang="ts">
 import { DEFAULT_TITLE } from '@/common/config';
@@ -62,6 +62,6 @@ document.title = `About page - ${DEFAULT_TITLE}`;
   font-weight: 600;
 }
 .about {
-  padding: 30px 60px;
+  padding: 0 60px 30px 60px;
 }
 </style>

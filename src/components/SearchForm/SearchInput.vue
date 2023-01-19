@@ -3,7 +3,7 @@ import { useSearchStore } from '@/stores/search';
 import { ref, watch } from 'vue';
 const searchStore = useSearchStore();
 
-const input = ref(null);
+const input = ref<HTMLInputElement | null>(null);
 const props = defineProps<{
   isBlurred: boolean;
 }>();
@@ -12,8 +12,7 @@ watch(
   () => props.isBlurred,
   () => {
     if (input.value && props.isBlurred) {
-      const inputElement = input.value as HTMLInputElement;
-      inputElement.blur();
+      input.value.blur();
     }
   },
 );
