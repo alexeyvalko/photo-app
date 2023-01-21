@@ -4,7 +4,8 @@
     @click="store.toggleMenu"
     :class="{ crest: store.isMenuOpen }"
   >
-    <div class="hamburger-line"></div>
+    <span class="hamburger-line"></span>
+    <span class="visually-hidden">Navigation menu</span>
   </button>
 </template>
 

@@ -26,13 +26,13 @@ const twoColumns = computed(() => {
 </script>
 
 <template>
-  <div class="container">
-    <section class="header-container">
+  <section class="container">
+    <div class="header-container">
       <HeaderItem class="header-title gradient-text">
         Free stock photos
       </HeaderItem>
       <p class="header-description">Stunning high-resolution photos</p>
-    </section>
+    </div>
     <div class="filter-container">
       <CustomSelect
         :options="LIST_ORDER_OPTIONS"
@@ -51,7 +51,7 @@ const twoColumns = computed(() => {
     <Transition name="fade">
       <PhotoListSkeleton :cards="12" v-if="store.isLoading" />
     </Transition>
-  </div>
+  </section>
 </template>
 
 <style>
