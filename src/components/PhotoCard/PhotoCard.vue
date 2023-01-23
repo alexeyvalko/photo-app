@@ -29,4 +29,12 @@ const props = defineProps<{
 .full-height {
   height: 100%;
 }
+
+@media (hover: hover) {
+  .photo-card:hover .overlay {
+    opacity: 1;
+    display: block;
+    visibility: visible;
+  }
+}
 </style>
