@@ -150,6 +150,11 @@ const props = defineProps<{
 }
 
 @media (hover: hover) {
+  .overlay {
+    opacity: 0;
+    display: block;
+    visibility: visible;
+  }
   .overlay:hover {
     opacity: 1;
     display: block;
