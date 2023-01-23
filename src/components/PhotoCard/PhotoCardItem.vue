@@ -54,8 +54,6 @@ const store = usePhotoStore();
 @media (hover: hover) {
   .card-link:hover ~ .overlay {
     opacity: 1;
-    display: block;
-    visibility: visible;
   }
 }
 </style>
