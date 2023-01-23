@@ -24,8 +24,8 @@
       class="photo-card__image"
       loading="lazy"
     />
-    <CardOverlay :photo="props.photo" />
   </RouterLink>
+  <CardOverlay :photo="props.photo" />
 </template>
 
 <script setup lang="ts">
@@ -52,8 +52,10 @@ const store = usePhotoStore();
 }
 
 @media (hover: hover) {
-  .card-link:hover .overlay {
+  .card-link:hover ~ .overlay {
     opacity: 1;
+    display: block;
+    visibility: visible;
   }
 }
 </style>
