@@ -12,7 +12,7 @@ import {
   DEFAULT_ORIENTATION_OPTION,
   DEFAULT_SEARCH_ORDER,
   COLOR_OPTIONS,
-DEFAULT_TITLE,
+  DEFAULT_TITLE,
 } from '@/common/config';
 import { useSearchStore } from '@/stores/search';
 import { decodeQuery, capitalizeFirstLetter } from '@/utils';
@@ -65,12 +65,6 @@ onMounted(getComponentData);
     <section class="header-container">
       <HeaderItem> {{ header }} photos</HeaderItem>
     </section>
-    <section
-      class="header-container"
-      v-if="!store.isLoading && store.photos.length === 0"
-    >
-      <h2>Oops, can't find anything</h2>
-    </section>
     <div class="filter-container">
       <ColorsSelect
         :options="COLOR_OPTIONS"
@@ -94,7 +88,14 @@ onMounted(getComponentData);
         :threeColumns="threeColumns"
         :twoColumns="twoColumns"
         :loader="store.loadPosts"
-    /></Transition>
+      />
+      <section
+        class="header-container"
+        v-if="!store.isLoading && store.photos.length === 0"
+      >
+        <h2>Oops, can't find anything</h2>
+      </section>
+    </Transition>
     <Transition name="fade">
       <PhotoListSkeleton :cards="12" v-if="store.isLoading" />
     </Transition>
