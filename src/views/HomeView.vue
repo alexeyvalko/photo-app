@@ -5,7 +5,7 @@ import CustomSelect from '@/components/UI/CustomSelect.vue';
 import PhotoListSkeleton from '@/components/Skeleton/PhotoListSkeleton.vue';
 import { DEFAULT_TITLE, LIST_ORDER_OPTIONS } from '@/common/config';
 import { usePhotoStore } from '@/stores/photo';
-import { onMounted, computed, Transition } from 'vue';
+import { onMounted, computed } from 'vue';
 import { capitalizeFirstLetter } from '@/utils';
 
 document.title = capitalizeFirstLetter(`${DEFAULT_TITLE}`);

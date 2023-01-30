@@ -12,7 +12,7 @@ import {
   DEFAULT_ORIENTATION_OPTION,
   DEFAULT_SEARCH_ORDER,
   COLOR_OPTIONS,
-DEFAULT_TITLE,
+  DEFAULT_TITLE,
 } from '@/common/config';
 import { useSearchStore } from '@/stores/search';
 import { decodeQuery, capitalizeFirstLetter } from '@/utils';
@@ -29,12 +29,12 @@ const updateHeaderAndTitle = () => {
   document.title = `Free ${searchQuery.value} photos - ${DEFAULT_TITLE}`;
 };
 
-// const watcher = (query: string | string[]) => {
-//   if (query) {
-//     updateHeaderAndTitle();
-//     getComponentData();
-//   }
-// };
+const watcher = (query: string | string[]) => {
+  if (query) {
+    updateHeaderAndTitle();
+    getComponentData();
+  }
+};
 
 const threeColumns = computed(() => {
   return store.filteredThreeColumnsByRatio;
@@ -43,7 +43,7 @@ const twoColumns = computed(() => {
   return store.filteredTwoColumnsByRatio;
 });
 
-const getComponentData = async () => {
+const getComponentData = () => {
   if (route.query) {
     store.getQueryParams(route.query);
   }
@@ -51,25 +51,19 @@ const getComponentData = async () => {
     store.$patch({
       query: searchQuery.value,
     });
-    await store.searchPhotos();
+    store.searchPhotos();
   }
 };
 
 onBeforeMount(updateHeaderAndTitle);
 onMounted(getComponentData);
-// watch(() => route.params.query, watcher);
+watch(() => route.params.query, watcher);
 </script>
 
 <template>
   <div class="container">
     <section class="header-container">
       <HeaderItem> {{ header }} photos</HeaderItem>
-    </section>
-    <section
-      class="header-container"
-      v-if="!store.isLoading && store.photos.length === 0"
-    >
-      <h2>Oops, can't find anything</h2>
     </section>
     <div class="filter-container">
       <ColorsSelect
@@ -94,7 +88,16 @@ onMounted(getComponentData);
         :threeColumns="threeColumns"
         :twoColumns="twoColumns"
         :loader="store.loadPosts"
-    /></Transition>
+      />
+    </Transition>
+    <Transition name="fade">
+      <section
+        class="header-container"
+        v-if="!store.isLoading && store.photos.length === 0"
+      >
+        <h2>Oops, can't find anything</h2>
+      </section>
+    </Transition>
     <Transition name="fade">
       <PhotoListSkeleton :cards="12" v-if="store.isLoading" />
     </Transition>

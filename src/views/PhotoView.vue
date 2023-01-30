@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { usePhotoStore } from '@/stores/photo';
-import { onBeforeMount, ref, watch } from 'vue';
+import { onBeforeMount, ref, watch, type Ref } from 'vue';
 import { useRoute } from 'vue-router';
 import TopPhotoInfo from '@/components/PhotoInfo/TopPhotoInfo.vue';
 import BottomInfo from '@/components/PhotoInfo/BottomInfo.vue';
@@ -10,6 +10,7 @@ import PhotoTags from '../components/PhotoInfo/PhotoTags.vue';
 import RecommendPhotos from '@/components/PhotoInfo/RecommendPhotos.vue';
 import { capitalizeFirstLetter } from '@/utils';
 import { DEFAULT_TITLE } from '@/common/config';
+
 const store = usePhotoStore();
 const route = useRoute();
 
@@ -17,7 +18,7 @@ const getDocumentTitle = () => {
   if (store.currentPhoto) {
     const description =
       store.currentPhoto?.alt_description ||
-      store.currentPhoto?.tags[0]?.title ||
+      (store.currentPhoto.tags?.length && store.currentPhoto.tags[0].title) ||
       'Stock';
     return capitalizeFirstLetter(
       `${description} photo by ${store.currentPhoto?.user.name} - ${DEFAULT_TITLE}`,
@@ -26,19 +27,24 @@ const getDocumentTitle = () => {
   return capitalizeFirstLetter(DEFAULT_TITLE);
 };
 
-watch(
-  () => store.currentPhoto,
-  () => {
-    document.title = getDocumentTitle();
-  },
-);
-onBeforeMount(() => {
+const updateTitle = () => {
+  const newTitle = getDocumentTitle();
+  if (newTitle !== document.title) {
+    document.title = newTitle;
+  }
+};
+
+const watcher = () => {
   const photoId = route.params.photoId as string;
   if (photoId) {
-    store.fetchPhoto(photoId);
+    store.fetchPhoto(photoId).then(updateTitle);
+    updateTitle();
   }
-  document.title = getDocumentTitle();
-});
+};
+
+watch(() => route.params.photoId, watcher);
+
+onBeforeMount(watcher);
 </script>
 
 <template>
@@ -57,6 +63,13 @@ onBeforeMount(() => {
       />
     </div>
   </div>
+
+  <section
+    class="header-container"
+    v-if="!store.currentPhoto && !store.isLoading"
+  >
+    <h2>Not Found</h2>
+  </section>
 </template>
 
 <style scoped>

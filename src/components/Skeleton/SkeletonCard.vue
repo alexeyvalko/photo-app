@@ -15,23 +15,31 @@ defineProps<{
 .skeleton-card {
   width: 100%;
   height: 100%;
-  /* padding-top: calc(100% / 1.2); */
   border-radius: var(--card-border-radius);
-  background-color: var(--color-background-mute);
-  background: var(--skeleton-gradient);
-  background-size: 200% 200%;
-  animation: animation 2s ease infinite;
+  animation-name: animation-skeleton;
+  animation-duration: 1.6s;
+  animation-delay: 85ms;
+  animation-iteration-count: infinite;
+  animation-timing-function: cubic-bezier(0.34, 0, 0.21, 1);
+  background-attachment: fixed;
+  background-color: hsla(0, 0%, 100%, 0.12);
+  background-repeat: no-repeat;
+  background-image: linear-gradient(
+    120deg,
+    transparent 40%,
+    hsla(0, 0%, 100%, 0.12) 50%,
+    transparent 60%
+  );
+  background-size: 100vw 100vh;
 }
 
-@keyframes animation {
+@keyframes animation-skeleton {
   0% {
-    background-position: 80% 0%;
+    background-position: -66vw 0;
   }
-  50% {
-    background-position: 20% 100%;
-  }
-  100% {
-    background-position: 80% 0%;
+
+  to {
+    background-position: 66vw 0;
   }
 }
 </style>
