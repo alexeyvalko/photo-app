@@ -37,12 +37,9 @@ const tags = computed(
 .tag {
   display: inline-block;
   border: 1px solid var(--color-border);
-  padding: 7px 20px 10px 20px;
-  line-height: 1.2;
   background: var(--color-background);
   border-radius: 5px;
   transition: var(--primary-transition);
-  font-size: 1.6rem;
   cursor: pointer;
 }
 
@@ -51,6 +48,10 @@ const tags = computed(
 }
 
 .tag-link {
+  display: block;
+  font-size: 1.6rem;
+  line-height: 1.2;
+  padding: 7px 20px 10px 20px;
   text-decoration: none;
   color: var(--color-text);
 }
