@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { usePhotoStore } from '@/stores/photo';
-import { onBeforeMount, ref, watch } from 'vue';
+import { onBeforeMount, watch } from 'vue';
 import { useRoute } from 'vue-router';
 import TopPhotoInfo from '@/components/PhotoInfo/TopPhotoInfo.vue';
 import BottomInfo from '@/components/PhotoInfo/BottomInfo.vue';
@@ -25,19 +25,18 @@ const getDocumentTitle = () => {
   }
   return capitalizeFirstLetter(DEFAULT_TITLE);
 };
+const updateTitle = () => {
+  document.title = getDocumentTitle();
+};
 
-watch(
-  () => store.currentPhoto,
-  () => {
-    document.title = getDocumentTitle();
-  },
-);
+watch(() => store.currentPhoto, updateTitle);
+
 onBeforeMount(() => {
   const photoId = route.params.photoId as string;
   if (photoId) {
     store.fetchPhoto(photoId);
   }
-  document.title = getDocumentTitle();
+  updateTitle();
 });
 </script>
 
@@ -57,6 +56,13 @@ onBeforeMount(() => {
       />
     </div>
   </div>
+
+  <section
+    class="header-container"
+    v-if="!store.currentPhoto && !store.isLoading"
+  >
+    <h2>Not Found</h2>
+  </section>
 </template>
 
 <style scoped>

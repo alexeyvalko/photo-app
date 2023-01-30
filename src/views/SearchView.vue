@@ -29,12 +29,12 @@ const updateHeaderAndTitle = () => {
   document.title = `Free ${searchQuery.value} photos - ${DEFAULT_TITLE}`;
 };
 
-// const watcher = (query: string | string[]) => {
-//   if (query) {
-//     updateHeaderAndTitle();
-//     getComponentData();
-//   }
-// };
+const watcher = (query: string | string[]) => {
+  if (query) {
+    updateHeaderAndTitle();
+    getComponentData();
+  }
+};
 
 const threeColumns = computed(() => {
   return store.filteredThreeColumnsByRatio;
@@ -43,7 +43,7 @@ const twoColumns = computed(() => {
   return store.filteredTwoColumnsByRatio;
 });
 
-const getComponentData = async () => {
+const getComponentData = () => {
   if (route.query) {
     store.getQueryParams(route.query);
   }
@@ -51,13 +51,13 @@ const getComponentData = async () => {
     store.$patch({
       query: searchQuery.value,
     });
-    await store.searchPhotos();
+    store.searchPhotos();
   }
 };
 
 onBeforeMount(updateHeaderAndTitle);
 onMounted(getComponentData);
-// watch(() => route.params.query, watcher);
+watch(() => route.params.query, watcher);
 </script>
 
 <template>
@@ -89,6 +89,8 @@ onMounted(getComponentData);
         :twoColumns="twoColumns"
         :loader="store.loadPosts"
       />
+    </Transition>
+    <Transition name="fade">
       <section
         class="header-container"
         v-if="!store.isLoading && store.photos.length === 0"
