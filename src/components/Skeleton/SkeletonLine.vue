@@ -1,5 +1,5 @@
 <template>
-  <div class="skeleton-line"></div>
+  <div class="skeleton skeleton-line"></div>
 </template>
 
 <style scoped>
