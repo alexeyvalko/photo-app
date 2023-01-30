@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { usePhotoStore } from '@/stores/photo';
-import { onBeforeMount, watch } from 'vue';
+import { onBeforeMount, ref, watch, type Ref } from 'vue';
 import { useRoute } from 'vue-router';
 import TopPhotoInfo from '@/components/PhotoInfo/TopPhotoInfo.vue';
 import BottomInfo from '@/components/PhotoInfo/BottomInfo.vue';
@@ -13,13 +13,12 @@ import { DEFAULT_TITLE } from '@/common/config';
 
 const store = usePhotoStore();
 const route = useRoute();
-const photoId = route.params.photoId as string;
 
 const getDocumentTitle = () => {
   if (store.currentPhoto) {
     const description =
       store.currentPhoto?.alt_description ||
-      store.currentPhoto?.tags[0]?.title ||
+      (store.currentPhoto.tags?.length && store.currentPhoto.tags[0].title) ||
       'Stock';
     return capitalizeFirstLetter(
       `${description} photo by ${store.currentPhoto?.user.name} - ${DEFAULT_TITLE}`,
@@ -27,6 +26,7 @@ const getDocumentTitle = () => {
   }
   return capitalizeFirstLetter(DEFAULT_TITLE);
 };
+
 const updateTitle = () => {
   const newTitle = getDocumentTitle();
   if (newTitle !== document.title) {
@@ -34,12 +34,17 @@ const updateTitle = () => {
   }
 };
 
-watch(() => store.currentPhoto, updateTitle);
+const watcher = () => {
+  const photoId = route.params.photoId as string;
+  if (photoId) {
+    store.fetchPhoto(photoId).then(updateTitle);
+    updateTitle();
+  }
+};
 
-onBeforeMount(() => {
-  store.fetchPhoto(photoId);
-  updateTitle();
-});
+watch(() => route.params.photoId, watcher);
+
+onBeforeMount(watcher);
 </script>
 
 <template>
