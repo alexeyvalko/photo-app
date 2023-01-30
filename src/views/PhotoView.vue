@@ -10,8 +10,10 @@ import PhotoTags from '../components/PhotoInfo/PhotoTags.vue';
 import RecommendPhotos from '@/components/PhotoInfo/RecommendPhotos.vue';
 import { capitalizeFirstLetter } from '@/utils';
 import { DEFAULT_TITLE } from '@/common/config';
+
 const store = usePhotoStore();
 const route = useRoute();
+const photoId = route.params.photoId as string;
 
 const getDocumentTitle = () => {
   if (store.currentPhoto) {
@@ -26,16 +28,16 @@ const getDocumentTitle = () => {
   return capitalizeFirstLetter(DEFAULT_TITLE);
 };
 const updateTitle = () => {
-  document.title = getDocumentTitle();
+  const newTitle = getDocumentTitle();
+  if (newTitle !== document.title) {
+    document.title = newTitle;
+  }
 };
 
 watch(() => store.currentPhoto, updateTitle);
 
 onBeforeMount(() => {
-  const photoId = route.params.photoId as string;
-  if (photoId) {
-    store.fetchPhoto(photoId);
-  }
+  store.fetchPhoto(photoId);
   updateTitle();
 });
 </script>
