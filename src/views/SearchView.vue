@@ -1,5 +1,12 @@
 <script setup lang="ts">
-import { computed, onBeforeMount, onMounted, ref, watch } from 'vue';
+import {
+  computed,
+  onBeforeMount,
+  onMounted,
+  ref,
+  watch,
+  watchEffect,
+} from 'vue';
 import { useRoute } from 'vue-router';
 import HeaderItem from '@/components/UI/HeaderItem.vue';
 import PhotoList from '@/components/PhotoList/PhotoList.vue';
@@ -20,24 +27,10 @@ import LoaderItem from '@/components/UI/LoaderItem.vue';
 
 const route = useRoute();
 const store = useSearchStore();
-const searchQuery = ref('');
-const header = ref('');
-
-const getSearchQUery = () => {
-  const query = route.params.query as string;
-  searchQuery.value = query ? decodeQuery(query) : '';
-};
-const updateHeaderAndTitle = () => {
-  if (searchQuery.value)
-    header.value = capitalizeFirstLetter(searchQuery.value);
-  document.title = `Free ${searchQuery.value} photos - ${DEFAULT_TITLE}`;
-};
-
-const watcher = () => {
-  getSearchQUery();
-  updateHeaderAndTitle();
-  getComponentData();
-};
+const searchQuery = computed(() =>
+  route.params.query ? decodeQuery(route.params.query as string) : '',
+);
+const header = computed(() => capitalizeFirstLetter(searchQuery.value));
 
 const threeColumns = computed(() => {
   return store.filteredThreeColumnsByRatio;
@@ -55,6 +48,14 @@ const getComponentData = () => {
     store.searchPhotos();
   }
 };
+
+const watcher = () => {
+  getComponentData();
+};
+
+watchEffect(() => {
+  document.title = `Free ${searchQuery.value} photos - ${DEFAULT_TITLE}`;
+});
 
 onBeforeMount(watcher);
 // onMounted(getComponentData);
