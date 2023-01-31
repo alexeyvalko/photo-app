@@ -1,12 +1,5 @@
 <script setup lang="ts">
-import {
-  computed,
-  onBeforeMount,
-  onMounted,
-  ref,
-  watch,
-  watchEffect,
-} from 'vue';
+import { computed, onBeforeMount, watch } from 'vue';
 import { useRoute } from 'vue-router';
 import HeaderItem from '@/components/UI/HeaderItem.vue';
 import PhotoList from '@/components/PhotoList/PhotoList.vue';
@@ -50,16 +43,12 @@ const getComponentData = () => {
 };
 
 const watcher = () => {
+  document.title = `Free ${searchQuery.value} photos - ${DEFAULT_TITLE}`;
   getComponentData();
 };
 
-watchEffect(() => {
-  document.title = `Free ${searchQuery.value} photos - ${DEFAULT_TITLE}`;
-});
-
 onBeforeMount(watcher);
-// onMounted(getComponentData);
-watch(() => route.params.query, watcher);
+watch(searchQuery, watcher);
 </script>
 
 <template>
