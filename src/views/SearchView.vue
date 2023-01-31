@@ -22,19 +22,21 @@ const route = useRoute();
 const store = useSearchStore();
 const searchQuery = ref('');
 const header = ref('');
-const updateHeaderAndTitle = () => {
+
+const getSearchQUery = () => {
   const query = route.params.query as string;
   searchQuery.value = query ? decodeQuery(query) : '';
+};
+const updateHeaderAndTitle = () => {
   if (searchQuery.value)
     header.value = capitalizeFirstLetter(searchQuery.value);
   document.title = `Free ${searchQuery.value} photos - ${DEFAULT_TITLE}`;
 };
 
-const watcher = (query: string | string[]) => {
-  if (query) {
-    updateHeaderAndTitle();
-    getComponentData();
-  }
+const watcher = () => {
+  getSearchQUery();
+  updateHeaderAndTitle();
+  getComponentData();
 };
 
 const threeColumns = computed(() => {
@@ -54,10 +56,7 @@ const getComponentData = () => {
   }
 };
 
-onBeforeMount(() => {
-  updateHeaderAndTitle();
-  getComponentData();
-});
+onBeforeMount(watcher);
 // onMounted(getComponentData);
 watch(() => route.params.query, watcher);
 </script>
