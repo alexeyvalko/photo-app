@@ -211,7 +211,7 @@ a {
 .skeleton {
   animation-name: animation-skeleton;
   animation-duration: 1.6s;
-  animation-delay: 85ms;
+  animation-delay: 100ms;
   animation-iteration-count: infinite;
   animation-timing-function: cubic-bezier(0.34, 0, 0.21, 1);
   background-attachment: fixed;
@@ -245,5 +245,19 @@ a {
     flex-direction: column;
     gap: 10px;
     align-items: stretch;
+  }
+
+  .skeleton {
+    animation-duration: 2.2s;
+  }
+
+  @keyframes animation-skeleton {
+    0% {
+      background-position: -66vw -66vh;
+    }
+  
+    to {
+      background-position: 66vw 66vh;
+    }
   }
 }
