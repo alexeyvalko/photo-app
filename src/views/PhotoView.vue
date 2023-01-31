@@ -4,12 +4,13 @@ import { computed, onBeforeMount, watch } from 'vue';
 import { useRoute } from 'vue-router';
 import TopPhotoInfo from '@/components/PhotoInfo/TopPhotoInfo.vue';
 import BottomInfo from '@/components/PhotoInfo/BottomInfo.vue';
-import PhotoItem from '@/components/PhotoInfo/PhotoItem.vue';
+import PhotoImage from '@/components/PhotoInfo/PhotoImage.vue';
 import PhotoDescription from '@/components/PhotoInfo/PhotoDescription.vue';
 import PhotoTags from '../components/PhotoInfo/PhotoTags.vue';
 import RecommendPhotos from '@/components/PhotoInfo/RecommendPhotos.vue';
 import { capitalizeFirstLetter } from '@/utils';
 import { DEFAULT_TITLE } from '@/common/config';
+import LoaderItem from '@/components/UI/LoaderItem.vue';
 
 const store = usePhotoStore();
 const route = useRoute();
@@ -47,11 +48,12 @@ onBeforeMount(watcher);
 </script>
 
 <template>
+  <LoaderItem position="center" v-if="store.isLoading && !store.currentPhoto" />
   <div class="photo-wrapper" v-if="store.currentPhoto">
     <div class="container">
       <TopPhotoInfo :photo="store.currentPhoto" />
     </div>
-    <PhotoItem :photo="store.currentPhoto" />
+    <PhotoImage :photo="store.currentPhoto" />
     <div class="container">
       <PhotoDescription :photo="store.currentPhoto" />
       <BottomInfo :photo="store.currentPhoto" :is-loading="store.isLoading" />

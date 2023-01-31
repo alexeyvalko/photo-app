@@ -7,6 +7,7 @@ import { DEFAULT_TITLE, LIST_ORDER_OPTIONS } from '@/common/config';
 import { usePhotoStore } from '@/stores/photo';
 import { onMounted, computed } from 'vue';
 import { capitalizeFirstLetter } from '@/utils';
+import LoaderItem from '@/components/UI/LoaderItem.vue';
 
 document.title = capitalizeFirstLetter(`${DEFAULT_TITLE}`);
 
@@ -48,8 +49,15 @@ const twoColumns = computed(() => {
         :loader="store.loadPosts"
       />
     </Transition>
+    <LoaderItem
+      position="center"
+      v-if="store.isLoading && store.photos.length > 0"
+    />
     <Transition name="fade">
-      <PhotoListSkeleton :cards="12" v-if="store.isLoading" />
+      <PhotoListSkeleton
+        :cards="12"
+        v-if="store.isLoading && store.photos.length === 0"
+      />
     </Transition>
   </section>
 </template>

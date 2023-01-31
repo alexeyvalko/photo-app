@@ -16,6 +16,7 @@ import {
 } from '@/common/config';
 import { useSearchStore } from '@/stores/search';
 import { decodeQuery, capitalizeFirstLetter } from '@/utils';
+import LoaderItem from '@/components/UI/LoaderItem.vue';
 
 const route = useRoute();
 const store = useSearchStore();
@@ -48,15 +49,16 @@ const getComponentData = () => {
     store.getQueryParams(route.query);
   }
   if (searchQuery.value) {
-    store.$patch({
-      query: searchQuery.value,
-    });
+    store.query = searchQuery.value;
     store.searchPhotos();
   }
 };
 
-onBeforeMount(updateHeaderAndTitle);
-onMounted(getComponentData);
+onBeforeMount(() => {
+  updateHeaderAndTitle();
+  getComponentData();
+});
+// onMounted(getComponentData);
 watch(() => route.params.query, watcher);
 </script>
 
@@ -98,8 +100,15 @@ watch(() => route.params.query, watcher);
         <h2>Oops, can't find anything</h2>
       </section>
     </Transition>
+    <LoaderItem
+      position="center"
+      v-if="store.isLoading && store.photos.length > 0"
+    />
     <Transition name="fade">
-      <PhotoListSkeleton :cards="12" v-if="store.isLoading" />
+      <PhotoListSkeleton
+        :cards="12"
+        v-if="store.isLoading && store.photos.length === 0"
+      />
     </Transition>
   </div>
 </template>
