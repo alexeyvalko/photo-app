@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { usePhotoStore } from '@/stores/photo';
-import { onBeforeMount, ref, watch, type Ref } from 'vue';
+import { computed, onBeforeMount, watch } from 'vue';
 import { useRoute } from 'vue-router';
 import TopPhotoInfo from '@/components/PhotoInfo/TopPhotoInfo.vue';
 import BottomInfo from '@/components/PhotoInfo/BottomInfo.vue';
@@ -13,8 +13,7 @@ import { DEFAULT_TITLE } from '@/common/config';
 
 const store = usePhotoStore();
 const route = useRoute();
-
-const getDocumentTitle = () => {
+const getDocumentTitle = computed(() => {
   if (store.currentPhoto) {
     const description =
       store.currentPhoto?.alt_description ||
@@ -25,10 +24,10 @@ const getDocumentTitle = () => {
     );
   }
   return capitalizeFirstLetter(DEFAULT_TITLE);
-};
+});
 
 const updateTitle = () => {
-  const newTitle = getDocumentTitle();
+  const newTitle = getDocumentTitle.value;
   if (newTitle !== document.title) {
     document.title = newTitle;
   }

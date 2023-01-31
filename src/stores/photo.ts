@@ -106,7 +106,7 @@ export const usePhotoStore = defineStore({
     },
 
     setCurrentPhoto(photo: Photo) {
-      this.currentPhoto = photo;
+      if (this.currentPhoto?.id !== photo.id) this.currentPhoto = photo;
     },
   },
 });

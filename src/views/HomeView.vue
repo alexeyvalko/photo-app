@@ -42,14 +42,14 @@ const twoColumns = computed(() => {
     </div>
     <Transition name="fade">
       <PhotoList
-        v-if="store.photos.length > 0"
+        v-if="store.photos.length > 10000"
         :threeColumns="threeColumns"
         :twoColumns="twoColumns"
         :loader="store.loadPosts"
       />
     </Transition>
     <Transition name="fade">
-      <PhotoListSkeleton :cards="12" v-if="store.isLoading" />
+      <PhotoListSkeleton :cards="12" v-if="true || store.isLoading" />
     </Transition>
   </section>
 </template>
