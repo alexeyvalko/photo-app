@@ -14,10 +14,10 @@ import LoaderItem from '@/components/UI/LoaderItem.vue';
 
 const store = usePhotoStore();
 const route = useRoute();
-const getDocumentTitle = computed(() => {
+const documentTitle = computed(() => {
   if (store.currentPhoto) {
     const description =
-      store.currentPhoto?.alt_description ||
+      store.currentPhoto.alt_description ||
       (store.currentPhoto.tags?.length && store.currentPhoto.tags[0].title) ||
       'Stock';
     return capitalizeFirstLetter(
@@ -28,7 +28,7 @@ const getDocumentTitle = computed(() => {
 });
 
 const updateTitle = () => {
-  const newTitle = getDocumentTitle.value;
+  const newTitle = documentTitle.value;
   if (newTitle !== document.title) {
     document.title = newTitle;
   }
