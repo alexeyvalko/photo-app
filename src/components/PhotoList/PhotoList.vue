@@ -3,6 +3,8 @@ import ThreeColumns from '@/components/Columns/ThreeColumns.vue';
 import TwoColumns from '@/components/Columns/TwoColumns.vue';
 import type { Photo } from '@/types/photos';
 import ObserverItem from '../ObserverItem.vue';
+import PhotoListSkeleton from '../Skeleton/PhotoListSkeleton.vue';
+import LoaderItem from '../UI/LoaderItem.vue';
 
 const props = defineProps<{
   threeColumns: {
@@ -11,16 +13,20 @@ const props = defineProps<{
   twoColumns: {
     [key: string]: Photo[];
   };
+  isLoading: boolean;
+  photosLength: number;
   loader: () => void;
 }>();
 </script>
 
 <template>
-  <div class="list-container">
+  <div class="list-container" v-if="photosLength > 0">
     <ThreeColumns :columns="props.threeColumns" />
     <TwoColumns :columns="props.twoColumns" />
     <ObserverItem :callback="props.loader" />
   </div>
+  <PhotoListSkeleton :cards="12" v-if="props.isLoading && photosLength === 0" />
+  <LoaderItem position="center" v-if="props.isLoading && photosLength > 0" />
 </template>
 
 <style>
