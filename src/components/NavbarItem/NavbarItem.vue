@@ -11,7 +11,13 @@ import HamburgerButton from '@/components/MobileMenu/HamburgerButton.vue';
     <nav class="wrapper navbar">
       <div class="navbar__left">
         <RouterLink to="/" class="logo">
-          <img alt="logo" src="@/assets/logo.svg" width="40" height="40" />
+          <img
+            class="logo_img"
+            alt="logo"
+            src="@/assets/logo.svg"
+            width="40"
+            height="40"
+          />
           <span class="visually-hidden">Home page</span>
         </RouterLink>
         <SearchForm />
@@ -34,6 +40,13 @@ import HamburgerButton from '@/components/MobileMenu/HamburgerButton.vue';
 <style scoped>
 .logo {
   line-height: 0;
+}
+
+.logo_img {
+  transition: filter 0.3s linear;
+}
+.logo_img:hover {
+  filter: drop-shadow(0 0 1.8rem var(--primary-color-light));
 }
 
 .navbar {
