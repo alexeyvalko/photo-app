@@ -25,7 +25,7 @@ const props = defineProps<{
     <TwoColumns :columns="props.twoColumns" />
     <ObserverItem :callback="props.loader" />
   </div>
-  <PhotoListSkeleton :cards="12" v-if="props.isLoading && photosLength === 0" />
+  <PhotoListSkeleton :cards="6" v-if="props.isLoading && photosLength === 0" />
   <LoaderItem position="center" v-if="props.isLoading && photosLength > 0" />
 </template>
 
