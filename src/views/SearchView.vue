@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, onBeforeMount, onMounted, ref, watch } from 'vue';
+import { computed, onBeforeMount, watch } from 'vue';
 import { useRoute } from 'vue-router';
 import HeaderItem from '@/components/UI/HeaderItem.vue';
 import PhotoList from '@/components/PhotoList/PhotoList.vue';
@@ -16,25 +16,14 @@ import {
 } from '@/common/config';
 import { useSearchStore } from '@/stores/search';
 import { decodeQuery, capitalizeFirstLetter } from '@/utils';
+import LoaderItem from '@/components/UI/LoaderItem.vue';
 
 const route = useRoute();
 const store = useSearchStore();
-const searchQuery = ref('');
-const header = ref('');
-const updateHeaderAndTitle = () => {
-  const query = route.params.query as string;
-  searchQuery.value = query ? decodeQuery(query) : '';
-  if (searchQuery.value)
-    header.value = capitalizeFirstLetter(searchQuery.value);
-  document.title = `Free ${searchQuery.value} photos - ${DEFAULT_TITLE}`;
-};
-
-const watcher = (query: string | string[]) => {
-  if (query) {
-    updateHeaderAndTitle();
-    getComponentData();
-  }
-};
+const searchQuery = computed(() =>
+  route.params.query ? decodeQuery(route.params.query as string) : '',
+);
+const header = computed(() => capitalizeFirstLetter(searchQuery.value));
 
 const threeColumns = computed(() => {
   return store.filteredThreeColumnsByRatio;
@@ -48,16 +37,18 @@ const getComponentData = () => {
     store.getQueryParams(route.query);
   }
   if (searchQuery.value) {
-    store.$patch({
-      query: searchQuery.value,
-    });
+    store.query = searchQuery.value;
     store.searchPhotos();
   }
 };
 
-onBeforeMount(updateHeaderAndTitle);
-onMounted(getComponentData);
-watch(() => route.params.query, watcher);
+const watcher = () => {
+  document.title = `Free ${searchQuery.value} photos - ${DEFAULT_TITLE}`;
+  getComponentData();
+};
+
+onBeforeMount(watcher);
+watch(searchQuery, watcher);
 </script>
 
 <template>
@@ -98,8 +89,15 @@ watch(() => route.params.query, watcher);
         <h2>Oops, can't find anything</h2>
       </section>
     </Transition>
+    <LoaderItem
+      position="center"
+      v-if="store.isLoading && store.photos.length > 0"
+    />
     <Transition name="fade">
-      <PhotoListSkeleton :cards="12" v-if="store.isLoading" />
+      <PhotoListSkeleton
+        :cards="12"
+        v-if="store.isLoading && store.photos.length === 0"
+      />
     </Transition>
   </div>
 </template>

@@ -4,7 +4,7 @@ import { computed, onBeforeMount, watch } from 'vue';
 import { useRoute } from 'vue-router';
 import TopPhotoInfo from '@/components/PhotoInfo/TopPhotoInfo.vue';
 import BottomInfo from '@/components/PhotoInfo/BottomInfo.vue';
-import PhotoItem from '@/components/PhotoInfo/PhotoItem.vue';
+import PhotoImage from '@/components/PhotoInfo/PhotoImage.vue';
 import PhotoDescription from '@/components/PhotoInfo/PhotoDescription.vue';
 import PhotoTags from '../components/PhotoInfo/PhotoTags.vue';
 import RecommendPhotos from '@/components/PhotoInfo/RecommendPhotos.vue';
@@ -13,10 +13,10 @@ import { DEFAULT_TITLE } from '@/common/config';
 
 const store = usePhotoStore();
 const route = useRoute();
-const getDocumentTitle = computed(() => {
+const documentTitle = computed(() => {
   if (store.currentPhoto) {
     const description =
-      store.currentPhoto?.alt_description ||
+      store.currentPhoto.alt_description ||
       (store.currentPhoto.tags?.length && store.currentPhoto.tags[0].title) ||
       'Stock';
     return capitalizeFirstLetter(
@@ -27,7 +27,7 @@ const getDocumentTitle = computed(() => {
 });
 
 const updateTitle = () => {
-  const newTitle = getDocumentTitle.value;
+  const newTitle = documentTitle.value;
   if (newTitle !== document.title) {
     document.title = newTitle;
   }
@@ -51,7 +51,7 @@ onBeforeMount(watcher);
     <div class="container">
       <TopPhotoInfo :photo="store.currentPhoto" />
     </div>
-    <PhotoItem :photo="store.currentPhoto" />
+    <PhotoImage :photo="store.currentPhoto" />
     <div class="container">
       <PhotoDescription :photo="store.currentPhoto" />
       <BottomInfo :photo="store.currentPhoto" :is-loading="store.isLoading" />

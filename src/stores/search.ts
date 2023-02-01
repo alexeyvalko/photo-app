@@ -82,7 +82,7 @@ export const useSearchStore = defineStore({
         this.total = Number(response.data.total);
         this.photos = [...this.photos, ...response.data.results];
       } catch {
-        console.error(`Failed to fetch ${this.orderBy} photos`);
+        console.error(`Failed to fetch photos`);
       } finally {
         this.isLoading = false;
       }
