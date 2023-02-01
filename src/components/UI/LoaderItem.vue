@@ -1,10 +1,8 @@
 <template>
-  <TransitionGroup name="fade">
-    <div class="loader" v-if="props.position !== 'center'"></div>
-    <div class="loader_container" v-if="props.position === 'center'">
-      <div class="loader"></div>
-    </div>
-  </TransitionGroup>
+  <div class="loader_container" v-if="props.position === 'center'">
+    <div class="loader"></div>
+  </div>
+  <div class="loader" v-else></div>
 </template>
 
 <script setup lang="ts">

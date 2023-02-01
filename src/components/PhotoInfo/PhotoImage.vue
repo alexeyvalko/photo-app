@@ -9,7 +9,10 @@
       class="image-container"
       :style="`aspect-ratio: ${props.photo.width} / ${props.photo.height}`"
     >
+      <LoaderItem position="center" v-if="!imageLoaded" />
       <img
+        v-show="imageLoaded"
+        @load="onLoad"
         :src="props.photo.urls.regular"
         :width="`${props.photo.width}`"
         :height="`${props.photo.height}`"
@@ -24,11 +27,16 @@
 
 <script setup lang="ts">
 import type { Photo } from '@/types/photos';
-import { computed } from 'vue';
+import { computed, onUpdated, ref } from 'vue';
+import LoaderItem from '../UI/LoaderItem.vue';
 
 const props = defineProps<{
   photo: Photo;
 }>();
+
+const imageLoaded = ref(false);
+
+const onLoad = () => (imageLoaded.value = true);
 
 const altDescription = computed(
   () =>
