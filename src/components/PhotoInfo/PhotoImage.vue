@@ -27,7 +27,7 @@
 
 <script setup lang="ts">
 import type { Photo } from '@/types/photos';
-import { computed, onUpdated, ref } from 'vue';
+import { computed, ref } from 'vue';
 import LoaderItem from '../UI/LoaderItem.vue';
 
 const props = defineProps<{

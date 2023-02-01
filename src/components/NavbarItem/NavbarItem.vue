@@ -45,8 +45,14 @@ import HamburgerButton from '@/components/MobileMenu/HamburgerButton.vue';
 .logo_img {
   transition: filter 0.3s linear;
 }
-.logo_img:hover {
+.logo_img:active {
   filter: drop-shadow(0 0 1.8rem var(--primary-color-light));
+}
+
+@media (hover: hover) {
+  .logo_img:hover {
+    filter: drop-shadow(0 0 1.8rem var(--primary-color-light));
+  }
 }
 
 .navbar {
