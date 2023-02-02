@@ -80,7 +80,8 @@ export const usePhotoStore = defineStore({
           per_page: this.perPage,
           order_by: this.orderBy,
         };
-        await this.fetchPhotos(SERVER_ENDPOINTS.PHOTOS, params);
+        if (!this.isLoading)
+          await this.fetchPhotos(SERVER_ENDPOINTS.PHOTOS, params);
       }
     },
 

@@ -101,22 +101,23 @@ export const useSearchStore = defineStore({
           order_by: this.orderBy,
           orientation: this.orientation,
         };
-
-        await this.fetchPhotos(SERVER_ENDPOINTS.SEARCH_PHOTOS, params);
+        if (!this.isLoading)
+          await this.fetchPhotos(SERVER_ENDPOINTS.SEARCH_PHOTOS, params);
       }
     },
 
     async searchPhotos(page?: number) {
       this.photos = [];
       if (page) this.page = page;
-      await this.fetchPhotos(SERVER_ENDPOINTS.SEARCH_PHOTOS, {
-        query: this.query,
-        page: this.page,
-        per_page: this.perPage,
-        order_by: this.orderBy,
-        orientation: this.orientation,
-        color: this.color,
-      });
+      if (!this.isLoading)
+        await this.fetchPhotos(SERVER_ENDPOINTS.SEARCH_PHOTOS, {
+          query: this.query,
+          page: this.page,
+          per_page: this.perPage,
+          order_by: this.orderBy,
+          orientation: this.orientation,
+          color: this.color,
+        });
     },
 
     setOrderBy(orderBy: SearchOrderType) {
