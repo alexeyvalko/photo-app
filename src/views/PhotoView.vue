@@ -28,9 +28,8 @@ const documentTitle = computed(() => {
 });
 
 const updateTitle = () => {
-  const newTitle = documentTitle.value;
-  if (newTitle !== document.title) {
-    document.title = newTitle;
+  if (documentTitle.value !== document.title) {
+    document.title = documentTitle.value;
   }
 };
 
