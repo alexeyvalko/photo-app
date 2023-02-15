@@ -33,7 +33,7 @@
 
 <script setup lang="ts">
 import type { Photo } from '@/types/photos';
-import { computed, ref } from 'vue';
+import { computed, ref, watch } from 'vue';
 import LoaderItem from '../UI/LoaderItem.vue';
 
 const props = defineProps<{
@@ -54,6 +54,13 @@ const altDescription = computed(
     props.photo?.alt_description ||
     props.photo?.description ||
     `${props.photo?.user.name}'s photo`,
+);
+
+watch(
+  () => props.photo,
+  () => {
+    imageZoomed.value = false;
+  },
 );
 </script>
 
