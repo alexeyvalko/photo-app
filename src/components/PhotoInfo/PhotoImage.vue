@@ -1,8 +1,14 @@
 <template>
   <div
+    @click="zoomInOutImage"
     class="image-wrapper"
+    :class="{ zoom_out: imageZoomed }"
     :style="{
-      maxWidth: props.photo.width / props.photo.height > 1 ? '100vh' : '50vh',
+      maxWidth: imageZoomed
+        ? '100%'
+        : props.photo.width / props.photo.height > 1
+        ? '100vh'
+        : '50vh',
     }"
   >
     <div
@@ -13,10 +19,10 @@
       <img
         v-show="imageLoaded"
         @load="onLoad"
-        :src="props.photo.urls.regular"
+        :src="props.photo.urls.full"
         :width="`${props.photo.width}`"
         :height="`${props.photo.height}`"
-        :srcset="`${props.photo.urls.small_s3} 100w, ${props.photo.urls.thumb} 200w, ${props.photo.urls.small} 400w, ${props.photo.urls.medium} 600w, ${props.photo.urls.regular}  1024w, ${props.photo.urls.full} 1200w`"
+        :srcset="`${props.photo.urls.small} 400w, ${props.photo.urls.medium} 600w, ${props.photo.urls.regular}  1024w, ${props.photo.urls.full} 1200w`"
         sizes="(max-width: 480px) calc(100vw - 60px) (max-width: 768px) calc(100vw - 120px), (max-width: 1200px) calc(100vw - 300px) (max-width: 1920px) calc(100vw - 900px), calc(100vw - 900px)"
         :alt="altDescription"
         class="photo-image"
@@ -35,8 +41,13 @@ const props = defineProps<{
 }>();
 
 const imageLoaded = ref(false);
+const imageZoomed = ref(false);
 
 const onLoad = () => (imageLoaded.value = true);
+
+const zoomInOutImage = () => {
+  imageZoomed.value = !imageZoomed.value;
+};
 
 const altDescription = computed(
   () =>
@@ -54,6 +65,11 @@ const altDescription = computed(
   align-items: center;
   min-height: 250px;
   min-width: 250px;
+  cursor: zoom-in;
+}
+
+.zoom_out {
+  cursor: zoom-out;
 }
 
 .image-container {
