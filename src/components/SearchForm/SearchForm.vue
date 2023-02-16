@@ -20,7 +20,10 @@ const handleSubmit = (): void => {
     isBlurred.value = true;
     store.page = 1;
     const query = encodeQuery(store.query);
-    router.push(`/search/photos/${query}`);
+    router.push({
+      path: `/search/photos/${query}`,
+      query: store.searchQueryParams,
+    });
   }
 };
 </script>

@@ -13,6 +13,8 @@ const router = createRouter({
           resolve(savedPosition);
         }, DEFAULT_PAGE_TRANSITION_DURATION);
       });
+    } else if (from.path === to.path) {
+      return {};
     } else {
       return new Promise((resolve) => {
         setTimeout(() => {
