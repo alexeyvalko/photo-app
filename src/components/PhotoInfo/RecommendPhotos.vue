@@ -71,7 +71,7 @@ const photos = computed(() => {
 }
 
 .skeleton__top-line {
-  padding: 0 30px;
+  padding: var(--column-gutter) 30px 0 30px;
   margin: 0 auto;
   display: flex;
   align-items: center;

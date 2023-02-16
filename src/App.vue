@@ -28,7 +28,7 @@ import FooterItem from '@/components/Footer/FooterItem.vue';
 .list-move,
 .list-enter-active,
 .list-leave-active {
-  transition: all 0.3s ease 0.3s;
+  transition: all 0.3s ease;
 }
 
 .list-enter-from,
