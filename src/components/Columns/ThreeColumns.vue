@@ -1,28 +1,35 @@
 <template>
   <ThreeColumnsLayout>
     <template #column-1>
-      <template
-        v-for="photo in props.columns.column_1"
-        :key="photo.id + 'three-1'"
-      >
-        <PhotoCard :photo="photo" />
-      </template>
+      <TransitionGroup name="list">
+        <template
+          v-for="photo in props.columns.column_1"
+          :key="photo.id + 'three-1'"
+        >
+          <PhotoCard :photo="photo" />
+        </template>
+      </TransitionGroup>
     </template>
     <template #column-2>
-      <template
-        v-for="photo in props.columns.column_2"
-        :key="photo.id + 'three-2'"
-      >
-        <PhotoCard :photo="photo" />
-      </template>
+      <TransitionGroup name="list">
+        <template
+          v-for="photo in props.columns.column_2"
+          :key="photo.id + 'three-2'"
+        >
+          <PhotoCard :photo="photo" />
+        </template>
+      </TransitionGroup>
     </template>
+
     <template #column-3>
-      <template
-        v-for="photo in props.columns.column_3"
-        :key="photo.id + 'three-3'"
-      >
-        <PhotoCard :photo="photo" />
-      </template>
+      <TransitionGroup name="list">
+        <template
+          v-for="photo in props.columns.column_3"
+          :key="photo.id + 'three-3'"
+        >
+          <PhotoCard :photo="photo" />
+        </template>
+      </TransitionGroup>
     </template>
   </ThreeColumnsLayout>
 </template>

@@ -20,6 +20,7 @@ watch(
 
 <template>
   <input
+    id="search_input"
     ref="input"
     autocomplete="off"
     class="search-input"

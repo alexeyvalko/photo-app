@@ -1,5 +1,5 @@
 <template>
-  <section class="recommend" v-if="photos && !isLoading">
+  <section class="recommend" v-if="photos">
     <h2 class="recommend__heading">You may also like</h2>
     <ul class="recommend__list">
       <li
@@ -11,12 +11,18 @@
       </li>
     </ul>
   </section>
+  <div class="skeleton__top-line" v-if="isLoading">
+    <SkeletonLine />
+  </div>
+  <PhotoListSkeleton :cards="1" v-if="isLoading" />
 </template>
 
 <script setup lang="ts">
 import type { Photo } from '@/types/photos';
 import PhotoCard from '@/components/PhotoCard/PhotoCard.vue';
 import { computed } from 'vue';
+import PhotoListSkeleton from '../Skeleton/PhotoListSkeleton.vue';
+import SkeletonLine from '../Skeleton/SkeletonLine.vue';
 
 const props = defineProps<{
   photo: Photo;
@@ -25,7 +31,7 @@ const props = defineProps<{
 
 const photos = computed(() => {
   if (props.photo.related_collections) {
-    return props.photo.related_collections.results.map(
+    return props.photo.related_collections?.results?.map(
       ({ cover_photo }) => cover_photo,
     );
   }
@@ -58,6 +64,14 @@ const photos = computed(() => {
 .recommend__heading {
   text-align: center;
   padding: var(--column-gutter) 0;
+}
+
+.skeleton__top-line {
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  max-width: 300px;
+  margin-bottom: var(--column-gutter);
 }
 
 @media screen and (max-width: 768px) {

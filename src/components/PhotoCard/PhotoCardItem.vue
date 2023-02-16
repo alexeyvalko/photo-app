@@ -8,13 +8,11 @@
       :src="props.photo.urls.regular"
       :width="`${props.photo.width}`"
       :height="`${props.photo.height}`"
-      :srcset="`${props.photo.urls.small_s3} 100w, ${
-        props.photo.urls.thumb
-      } 200w, ${props.photo.urls.small} 400w, ${
-        props.photo.urls.medium || props.photo.urls.regular
-      } 600w, ${props.photo.urls.regular}  800w, ${
-        props.photo.urls.full
-      } 1200w`"
+      :srcset="`${props.photo.urls.thumb} 200w, ${
+        props.photo.urls.small
+      } 400w, ${props.photo.urls.medium || props.photo.urls.regular} 600w, ${
+        props.photo.urls.regular
+      }  800w, ${props.photo.urls.full} 1200w`"
       sizes="(max-width: 768px) calc((100vw - 30px - 30px) / 2), (max-width: 992px) calc((100vw - 60px - 60px) / 3), calc((100vw - 60px - 60px) / 3)"
       :alt="
         `${props.photo.alt_description}.` ||

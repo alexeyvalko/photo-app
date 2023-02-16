@@ -10,6 +10,7 @@ import PhotoTags from '../components/PhotoInfo/PhotoTags.vue';
 import RecommendPhotos from '@/components/PhotoInfo/RecommendPhotos.vue';
 import { capitalizeFirstLetter } from '@/utils';
 import { DEFAULT_TITLE } from '@/common/config';
+import LoaderItem from '@/components/UI/LoaderItem.vue';
 
 const store = usePhotoStore();
 const route = useRoute();
@@ -27,9 +28,8 @@ const documentTitle = computed(() => {
 });
 
 const updateTitle = () => {
-  const newTitle = documentTitle.value;
-  if (newTitle !== document.title) {
-    document.title = newTitle;
+  if (documentTitle.value !== document.title) {
+    document.title = documentTitle.value;
   }
 };
 
@@ -62,7 +62,7 @@ onBeforeMount(watcher);
       />
     </div>
   </div>
-
+  <LoaderItem position="center" v-if="!store.currentPhoto && store.isLoading" />
   <section
     class="header-container"
     v-if="!store.currentPhoto && !store.isLoading"

@@ -1,20 +1,24 @@
 <template>
   <TwoColumnsLayout>
     <template #column-1>
-      <template
-        v-for="photo in props.columns.column_1"
-        :key="photo.id + 'two-1'"
-      >
-        <PhotoCard :photo="photo" />
-      </template>
+      <TransitionGroup name="list">
+        <template
+          v-for="photo in props.columns.column_1"
+          :key="photo.id + 'two-1'"
+        >
+          <PhotoCard :photo="photo" />
+        </template>
+      </TransitionGroup>
     </template>
     <template #column-2>
-      <template
-        v-for="photo in props.columns.column_2"
-        :key="photo.id + 'two-2'"
-      >
-        <PhotoCard :photo="photo" />
-      </template>
+      <TransitionGroup name="list">
+        <template
+          v-for="photo in props.columns.column_2"
+          :key="photo.id + 'two-2'"
+        >
+          <PhotoCard :photo="photo" />
+        </template>
+      </TransitionGroup>
     </template>
   </TwoColumnsLayout>
 </template>

@@ -2,12 +2,10 @@
 import PhotoList from '@/components/PhotoList/PhotoList.vue';
 import HeaderItem from '@/components/UI/HeaderItem.vue';
 import CustomSelect from '@/components/UI/CustomSelect.vue';
-import PhotoListSkeleton from '@/components/Skeleton/PhotoListSkeleton.vue';
 import { DEFAULT_TITLE, LIST_ORDER_OPTIONS } from '@/common/config';
 import { usePhotoStore } from '@/stores/photo';
 import { onMounted, computed } from 'vue';
 import { capitalizeFirstLetter } from '@/utils';
-import LoaderItem from '@/components/UI/LoaderItem.vue';
 
 document.title = capitalizeFirstLetter(`${DEFAULT_TITLE}`);
 
@@ -41,24 +39,13 @@ const twoColumns = computed(() => {
         @changeOption="store.setOrderBy"
       />
     </div>
-    <Transition name="fade">
-      <PhotoList
-        v-if="store.photos.length > 0"
-        :threeColumns="threeColumns"
-        :twoColumns="twoColumns"
-        :loader="store.loadPosts"
-      />
-    </Transition>
-    <LoaderItem
-      position="center"
-      v-if="store.isLoading && store.photos.length > 0"
+    <PhotoList
+      :threeColumns="threeColumns"
+      :twoColumns="twoColumns"
+      :loader="store.loadPosts"
+      :is-loading="store.isLoading"
+      :photos-length="store.photos?.length || 0"
     />
-    <Transition name="fade">
-      <PhotoListSkeleton
-        :cards="12"
-        v-if="store.isLoading && store.photos.length === 0"
-      />
-    </Transition>
   </section>
 </template>
 

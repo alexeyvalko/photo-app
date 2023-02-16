@@ -5,7 +5,6 @@ import HeaderItem from '@/components/UI/HeaderItem.vue';
 import PhotoList from '@/components/PhotoList/PhotoList.vue';
 import CustomSelect from '@/components/UI/CustomSelect.vue';
 import ColorsSelect from '@/components/UI/ColorsSelect.vue';
-import PhotoListSkeleton from '@/components/Skeleton/PhotoListSkeleton.vue';
 import {
   SEARCH_ORDER_OPTIONS,
   ORIENTATION_OPTIONS,
@@ -16,7 +15,6 @@ import {
 } from '@/common/config';
 import { useSearchStore } from '@/stores/search';
 import { decodeQuery, capitalizeFirstLetter } from '@/utils';
-import LoaderItem from '@/components/UI/LoaderItem.vue';
 
 const route = useRoute();
 const store = useSearchStore();
@@ -73,32 +71,21 @@ watch(searchQuery, watcher);
         @changeOption="store.setOrderBy"
       />
     </div>
-    <Transition name="fade">
-      <PhotoList
-        v-if="store.photos.length > 0"
-        :threeColumns="threeColumns"
-        :twoColumns="twoColumns"
-        :loader="store.loadPosts"
-      />
-    </Transition>
-    <Transition name="fade">
-      <section
-        class="header-container"
-        v-if="!store.isLoading && store.photos.length === 0"
-      >
-        <h2>Oops, can't find anything</h2>
-      </section>
-    </Transition>
-    <LoaderItem
-      position="center"
-      v-if="store.isLoading && store.photos.length > 0"
+
+    <PhotoList
+      :threeColumns="threeColumns"
+      :twoColumns="twoColumns"
+      :loader="store.loadPosts"
+      :is-loading="store.isLoading"
+      :photos-length="store.photos?.length || 0"
     />
-    <Transition name="fade">
-      <PhotoListSkeleton
-        :cards="12"
-        v-if="store.isLoading && store.photos.length === 0"
-      />
-    </Transition>
+
+    <section
+      class="header-container"
+      v-if="!store.isLoading && store.photos.length === 0"
+    >
+      <h2>Oops, can't find anything</h2>
+    </section>
   </div>
 </template>
 

@@ -26,7 +26,13 @@ const handleSubmit = (): void => {
 </script>
 
 <template>
-  <form @submit.prevent="handleSubmit" class="search-form">
+  <form
+    @submit.prevent="handleSubmit"
+    class="search-form"
+    action="/search/photos/"
+    method="GET"
+    role="search"
+  >
     <div class="search-container" :class="{ 'active-search': isFocused }">
       <SearchInput @focused="handleFocus" :isBlurred="isBlurred" />
       <SearchButton />
