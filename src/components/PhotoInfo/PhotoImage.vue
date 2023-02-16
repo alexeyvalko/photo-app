@@ -47,6 +47,10 @@ const onLoad = () => (imageLoaded.value = true);
 
 const zoomInOutImage = () => {
   imageZoomed.value = !imageZoomed.value;
+
+  if (!imageZoomed.value) {
+    window.scrollTo({ top: 20, behavior: 'smooth' });
+  }
 };
 
 const altDescription = computed(

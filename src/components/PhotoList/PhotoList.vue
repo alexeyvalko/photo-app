@@ -20,13 +20,18 @@ const props = defineProps<{
 </script>
 
 <template>
-  <div class="list-container" v-if="photosLength > 0">
-    <ThreeColumns :columns="props.threeColumns" />
-    <TwoColumns :columns="props.twoColumns" />
-    <ObserverItem :callback="props.loader" />
-  </div>
-  <PhotoListSkeleton :cards="6" v-if="props.isLoading && photosLength === 0" />
-  <LoaderItem position="center" v-if="props.isLoading && photosLength > 0" />
+  <TransitionGroup name="fade">
+    <div class="list-container" v-if="photosLength > 0">
+      <ThreeColumns :columns="props.threeColumns" />
+      <TwoColumns :columns="props.twoColumns" />
+      <ObserverItem :callback="props.loader" />
+    </div>
+    <PhotoListSkeleton
+      :cards="6"
+      v-if="props.isLoading && photosLength === 0"
+    />
+    <LoaderItem position="center" v-if="props.isLoading && photosLength > 0" />
+  </TransitionGroup>
 </template>
 
 <style>
