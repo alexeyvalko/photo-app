@@ -53,7 +53,7 @@ const store = usePhotoStore();
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
-  padding-bottom: 20px;
+  padding-bottom: var(--column-gutter);
   gap: 20px;
 }
 
