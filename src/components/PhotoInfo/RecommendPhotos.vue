@@ -14,15 +14,19 @@
   <div class="skeleton__top-line" v-if="isLoading">
     <SkeletonLine />
   </div>
-  <PhotoListSkeleton :cards="1" v-if="isLoading" />
+  <div class="skeleton-container" v-if="isLoading">
+    <SkeletonCard :ratio="1.8" />
+    <SkeletonCard :ratio="1.8" />
+    <SkeletonCard :ratio="1.8" />
+  </div>
 </template>
 
 <script setup lang="ts">
 import type { Photo } from '@/types/photos';
 import PhotoCard from '@/components/PhotoCard/PhotoCard.vue';
 import { computed } from 'vue';
-import PhotoListSkeleton from '../Skeleton/PhotoListSkeleton.vue';
 import SkeletonLine from '../Skeleton/SkeletonLine.vue';
+import SkeletonCard from '../Skeleton/SkeletonCard.vue';
 
 const props = defineProps<{
   photo: Photo;
@@ -67,16 +71,28 @@ const photos = computed(() => {
 }
 
 .skeleton__top-line {
+  padding: 0 30px;
   margin: 0 auto;
   display: flex;
   align-items: center;
-  max-width: 300px;
+  max-width: 350px;
   margin-bottom: var(--column-gutter);
+}
+
+.skeleton-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: 350px;
+  gap: var(--column-gutter);
 }
 
 @media screen and (max-width: 768px) {
   .recommend__list {
     grid-template-columns: 1fr 1fr;
+  }
+  .skeleton-container {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: none;
   }
 }
 
@@ -86,6 +102,12 @@ const photos = computed(() => {
   }
 
   .recommend__list {
+    gap: calc(var(--column-gutter) / 2);
+  }
+
+  .skeleton-container {
+    grid-template-columns: 1fr;
+    grid-template-rows: none;
     gap: calc(var(--column-gutter) / 2);
   }
 }

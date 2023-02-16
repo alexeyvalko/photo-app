@@ -1,8 +1,6 @@
 <template>
   <div
-    @click="zoomInOutImage"
     class="image-wrapper"
-    :class="{ zoom_out: imageZoomed }"
     :style="{
       maxWidth: imageZoomed
         ? '100%'
@@ -19,6 +17,7 @@
       <img
         v-show="imageLoaded"
         @load="onLoad"
+        @click="zoomInOutImage"
         :src="props.photo.urls.full"
         :width="`${props.photo.width}`"
         :height="`${props.photo.height}`"
@@ -26,6 +25,7 @@
         sizes="(max-width: 480px) calc(100vw - 60px) (max-width: 768px) calc(100vw - 120px), (max-width: 1200px) calc(100vw - 300px) (max-width: 1920px) calc(100vw - 900px), calc(100vw - 900px)"
         :alt="altDescription"
         class="photo-image"
+        :class="{ zoom_out: imageZoomed }"
       />
     </div>
   </div>
@@ -76,11 +76,6 @@ watch(
   align-items: center;
   min-height: 250px;
   min-width: 250px;
-  cursor: zoom-in;
-}
-
-.zoom_out {
-  cursor: zoom-out;
 }
 
 .image-container {
@@ -97,5 +92,10 @@ watch(
   display: block;
   width: 100%;
   height: auto;
+  cursor: zoom-in;
+}
+
+.zoom_out {
+  cursor: zoom-out;
 }
 </style>

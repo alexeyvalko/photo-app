@@ -15,6 +15,12 @@ import {
 } from '@/common/config';
 import { useSearchStore } from '@/stores/search';
 import { decodeQuery, capitalizeFirstLetter } from '@/utils';
+import router from '@/router';
+import type {
+  SearchColorsType,
+  SearchOrderType,
+  SearchOrientationType,
+} from '@/types/helpers';
 
 const route = useRoute();
 const store = useSearchStore();
@@ -40,6 +46,30 @@ const getComponentData = () => {
   }
 };
 
+const handleChangeColor = (color: SearchColorsType) => {
+  store.setColor(color);
+  router.replace({ query: store.searchQueryParams });
+};
+
+const handleChangeOrientation = (
+  orientation: SearchOrientationType | 'All orientations',
+) => {
+  store.setOrientation(orientation);
+  router.replace({ query: store.searchQueryParams });
+};
+
+const handleChangeOrder = (orderBy: SearchOrderType) => {
+  store.setOrderBy(orderBy);
+  router.replace({ query: store.searchQueryParams });
+};
+
+const handleLoadPhotos = () => {
+  store.loadPosts();
+  router.replace({
+    query: store.searchQueryParams,
+  });
+};
+
 const watcher = () => {
   document.title = `Free ${searchQuery.value} photos - ${DEFAULT_TITLE}`;
   getComponentData();
@@ -58,24 +88,24 @@ watch(searchQuery, watcher);
       <ColorsSelect
         :options="COLOR_OPTIONS"
         :currentOption="store.color || COLOR_OPTIONS.colors.any"
-        @changeOption="store.setColor"
+        @changeOption="handleChangeColor"
       />
       <CustomSelect
         :options="[DEFAULT_ORIENTATION_OPTION, ...ORIENTATION_OPTIONS]"
         :currentOption="store.orientation || DEFAULT_ORIENTATION_OPTION"
-        @changeOption="store.setOrientation"
+        @changeOption="handleChangeOrientation"
       />
       <CustomSelect
         :options="SEARCH_ORDER_OPTIONS"
         :currentOption="store.orderBy || DEFAULT_SEARCH_ORDER"
-        @changeOption="store.setOrderBy"
+        @changeOption="handleChangeOrder"
       />
     </div>
 
     <PhotoList
       :threeColumns="threeColumns"
       :twoColumns="twoColumns"
-      :loader="store.loadPosts"
+      :loader="handleLoadPhotos"
       :is-loading="store.isLoading"
       :photos-length="store.photos?.length || 0"
     />

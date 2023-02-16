@@ -77,8 +77,8 @@ export interface ITag {
 }
 
 export interface IQueryParams {
-  orientation?: SearchOrientationType;
-  color?: SearchColorsType;
-  order_by?: OrderByListType;
-  page?: number;
+  orientation?: SearchOrientationType | null;
+  color?: SearchColorsType | null;
+  order_by?: SearchOrderType | null;
+  page?: number | null;
 }

@@ -73,6 +73,6 @@ onBeforeMount(watcher);
 
 <style scoped>
 .photo-wrapper {
-  padding: 20px 0;
+  padding: 30px 0;
 }
 </style>

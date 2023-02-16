@@ -22,6 +22,7 @@ import type {
   SearchOrderType,
   SearchOrientationType,
 } from '@/types/helpers';
+import type { LocationQueryRaw } from 'vue-router';
 
 export const useSearchStore = defineStore({
   id: 'search',
@@ -42,15 +43,15 @@ export const useSearchStore = defineStore({
   }),
 
   getters: {
-    searchQueryParams: (state): IQueryParams | null => {
-      const queries = {
+    searchQueryParams: (state): LocationQueryRaw | undefined => {
+      const queries: Partial<IQueryParams> = {
         orientation: state.orientation,
         color: state.color,
         order_by: state.orderBy,
         page: state.page === 1 ? null : state.page,
       };
-      const filteredQueries = deleteFalsyKeys(queries);
-      return filteredQueries;
+      const filteredQueries = deleteFalsyKeys<LocationQueryRaw>(queries);
+      return filteredQueries || undefined;
     },
 
     filteredThreeColumnsByRatio: (state) => {

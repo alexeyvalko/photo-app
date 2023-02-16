@@ -56,11 +56,11 @@ export const createObserver = (
 
 export const deleteFalsyKeys = <T extends Record<string, unknown>>(
   object: T,
-) => {
+): T | null => {
   const asArray = Object.entries(object);
   const filtered = asArray.filter(([, value]) => !!value);
   if (!filtered.length) return null;
-  const filteredObject = Object.fromEntries(filtered);
+  const filteredObject = Object.fromEntries(filtered) as T;
   return filteredObject;
 };
 
