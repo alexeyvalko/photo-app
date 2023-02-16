@@ -20,7 +20,7 @@ const description = computed(
 
 <style scoped>
 .photo-description {
-  padding-top: 20px;
+  padding-top: var(--column-gutter);
 }
 
 .description-title {

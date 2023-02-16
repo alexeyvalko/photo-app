@@ -140,7 +140,7 @@ const queryLocation = computed(
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
-  padding: 20px 0 0 0;
+  padding: var(--column-gutter) 0 0 0;
   gap: 20px;
 }
 
