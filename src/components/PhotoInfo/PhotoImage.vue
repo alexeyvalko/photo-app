@@ -14,19 +14,21 @@
       :style="`aspect-ratio: ${props.photo.width} / ${props.photo.height}`"
     >
       <LoaderItem position="center" v-if="!imageLoaded" />
-      <img
-        v-show="imageLoaded"
-        @load="onLoad"
-        @click="zoomInOutImage"
-        :src="props.photo.urls.full"
-        :width="`${props.photo.width}`"
-        :height="`${props.photo.height}`"
-        :srcset="`${props.photo.urls.small} 400w, ${props.photo.urls.medium} 600w, ${props.photo.urls.regular}  1024w, ${props.photo.urls.full} 1200w`"
-        sizes="(max-width: 480px) calc(100vw - 60px) (max-width: 768px) calc(100vw - 120px), (max-width: 1200px) calc(100vw - 300px) (max-width: 1920px) calc(100vw - 900px), calc(100vw - 900px)"
-        :alt="altDescription"
-        class="photo-image"
-        :class="{ zoom_out: imageZoomed }"
-      />
+      <Transition>
+        <img
+          v-show="imageLoaded"
+          @load="onLoad"
+          @click="zoomInOutImage"
+          :src="props.photo.urls.full"
+          :width="`${props.photo.width}`"
+          :height="`${props.photo.height}`"
+          :srcset="`${props.photo.urls.small} 400w, ${props.photo.urls.medium} 600w, ${props.photo.urls.regular}  1024w, ${props.photo.urls.full} 1200w`"
+          sizes="(max-width: 480px) calc(100vw - 60px) (max-width: 768px) calc(100vw - 120px), (max-width: 1200px) calc(100vw - 300px) (max-width: 1920px) calc(100vw - 900px), calc(100vw - 900px)"
+          :alt="altDescription"
+          class="photo-image"
+          :class="{ zoom_out: imageZoomed }"
+        />
+      </Transition>
     </div>
   </div>
 </template>
@@ -97,5 +99,15 @@ watch(
 
 .zoom_out {
   cursor: zoom-out;
+}
+
+.v-enter-active,
+.v-leave-active {
+  transition: all 0.3s linear;
+}
+
+.v-enter-from,
+.v-leave-to {
+  opacity: 0;
 }
 </style>

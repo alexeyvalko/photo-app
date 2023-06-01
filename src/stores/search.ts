@@ -29,7 +29,7 @@ export const useSearchStore = defineStore({
   state: () => ({
     query: '',
     page: 1,
-    perPage: 30,
+    perPage: 15,
     orientation: null as SearchOrientationType | null,
     contentFilter: 'high' as SearchContentFilterType,
     color: null as SearchColorsType | null,
