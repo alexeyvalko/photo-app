@@ -14,7 +14,7 @@ export const usePhotoStore = defineStore({
   id: 'photos',
   state: () => ({
     page: 1,
-    perPage: 30,
+    perPage: 15,
     totalPages: 1,
     orderBy: 'latest' as OrderByListType,
     photos: [] as Photo[],
